@@ -1,0 +1,4 @@
+admin 
+
+user:pz_admin
+pwd:django1617

@@ -1,0 +1,5 @@
+In Python you can use convenient list and dictionary
+In Python you can process data in dynamic way
+In Python you can use object-oriented programming
+In Python you can get rich standard library functions
+In Python you can get rid of annoying memory management

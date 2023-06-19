@@ -1,0 +1,5 @@
+normal users
+user:blog_test_1
+pwd:django-blogtest1
+user:blog_test_2
+pwd:django-blogtest2

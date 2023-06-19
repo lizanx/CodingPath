@@ -1,0 +1,5 @@
+How do embedded developers set up everything they need to do programming? A typical wired setup includes a device that stays on the developer's table, and a ribbon cable that connects it to a debug probe, which in turn is connected to the developer’s computer by a USB cable. The computer is running probe-specific software and an IDE.
+
+In many cases, this setup works fine. But embedded devices work with real-world objects. Sometimes an MCU-based control board manages high-voltage or dangerous equipment. Sometimes it’s mounted outdoors. The equipment could be moving on wheels, or floating on the water. It could even be mounted in a remote location. Using a cable setup in these cases is generally inconvenient and could even be dangerous.
+
+When I started developing an outdoor device, I immediately encountered this problem. What could be done? I took stock of what I had available to me and found a Raspberry Pi board. I have spent several hours setting it up as a wireless debug probe, and now it works like a charm.

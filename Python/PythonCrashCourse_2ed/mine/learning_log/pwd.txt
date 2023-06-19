@@ -1,0 +1,9 @@
+admin
+user:ll_admin
+pwd:django1617
+
+normal user
+user:ll_test_1
+pwd:django-lltest1
+user:ll_test_2
+pwd:django-lltest2
