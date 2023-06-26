@@ -3,10 +3,16 @@ All my coding-related readings and exercises.
 
 ## Python
 1. [Python Crash Course 2nd Edition(Python编程：从入门到实践)](https://book.douban.com/subject/31333701/) [Finished]
-2. [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/) [In Progress]
-3. [Python Cookbook 3rd Edition](https://book.douban.com/subject/26381341/) | [Github Online CN Version](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
-4. [Fluent Python 2nd Edition(流畅的Python)](https://book.douban.com/subject/34990079/)
-5. [Effective Python 2nd Edition](https://book.douban.com/subject/35334595/)
+2. [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/) [Finished]
+3. [Automate The Boring Stuff With Python](https://book.douban.com/subject/26836700/) [In Progress]
+4. [The Big Book of Small Python Projects](https://inventwithpython.com/bigbookpython/)
+5. [Python 工匠](https://book.douban.com/subject/35723705/) [In Progress]
+6. [Fluent Python 2nd Edition(流畅的Python)](https://book.douban.com/subject/34990079/)
+7. [Python Cookbook 3rd Edition](https://book.douban.com/subject/26381341/) | [Github Online CN Version](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
+8. [Effective Python 2nd Edition](https://book.douban.com/subject/35334595/)
+9. [The Hitchhiker's Guide to Python](https://book.douban.com/subject/26791779/) | [Official Site(Online Reading)](https://docs.python-guide.org/)
+10. [Python Distilled](https://book.douban.com/subject/35563594/)
+11. [Python in a Nutshell](https://www.oreilly.com/library/view/python-in-a/9781098113544/)
 
 ## Go
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
