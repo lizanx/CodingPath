@@ -4,7 +4,7 @@ All my coding-related readings and exercises.
 ## Python
 1. [Python Crash Course 2nd Edition(Python编程：从入门到实践)](https://book.douban.com/subject/31333701/) [Finished]
 2. [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/) [Finished]
-3. [Automate The Boring Stuff With Python](https://book.douban.com/subject/26836700/) [In Progress]
+3. [Automate The Boring Stuff With Python](https://book.douban.com/subject/26836700/) [Finished]
 4. [The Big Book of Small Python Projects](https://inventwithpython.com/bigbookpython/)
 5. [Python 工匠](https://book.douban.com/subject/35723705/) [In Progress]
 6. [Fluent Python 2nd Edition(流畅的Python)](https://book.douban.com/subject/34990079/)
