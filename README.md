@@ -14,6 +14,10 @@ All my coding-related readings and exercises.
 10. [Python Distilled](https://book.douban.com/subject/35563594/)
 11. [Python in a Nutshell](https://www.oreilly.com/library/view/python-in-a/9781098113544/)
 
+## C#
+1. [Illustrated C# 5th Edition(C#图解教程)](https://book.douban.com/subject/34894447/) [Finished]
+2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [In Progress]
+
 ## Go
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
 2. [Go Web Programming](https://book.douban.com/subject/27204133/)
