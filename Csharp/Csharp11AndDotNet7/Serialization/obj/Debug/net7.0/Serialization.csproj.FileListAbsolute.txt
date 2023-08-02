@@ -1,0 +1,15 @@
+C:\Users\lizan\Dev\Csharp\Serialization\bin\Debug\net7.0\Serialization.exe
+C:\Users\lizan\Dev\Csharp\Serialization\bin\Debug\net7.0\Serialization.deps.json
+C:\Users\lizan\Dev\Csharp\Serialization\bin\Debug\net7.0\Serialization.runtimeconfig.json
+C:\Users\lizan\Dev\Csharp\Serialization\bin\Debug\net7.0\Serialization.dll
+C:\Users\lizan\Dev\Csharp\Serialization\bin\Debug\net7.0\Serialization.pdb
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.csproj.AssemblyReference.cache
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.AssemblyInfoInputs.cache
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.AssemblyInfo.cs
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.csproj.CoreCompileInputs.cache
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.dll
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\refint\Serialization.dll
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.pdb
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\Serialization.genruntimeconfig.cache
+C:\Users\lizan\Dev\Csharp\Serialization\obj\Debug\net7.0\ref\Serialization.dll

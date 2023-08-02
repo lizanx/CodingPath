@@ -1,0 +1,15 @@
+C:\Users\lizan\Dev\Csharp\Encodings\bin\Debug\net7.0\Encodings.exe
+C:\Users\lizan\Dev\Csharp\Encodings\bin\Debug\net7.0\Encodings.deps.json
+C:\Users\lizan\Dev\Csharp\Encodings\bin\Debug\net7.0\Encodings.runtimeconfig.json
+C:\Users\lizan\Dev\Csharp\Encodings\bin\Debug\net7.0\Encodings.dll
+C:\Users\lizan\Dev\Csharp\Encodings\bin\Debug\net7.0\Encodings.pdb
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.csproj.AssemblyReference.cache
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.AssemblyInfoInputs.cache
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.AssemblyInfo.cs
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.csproj.CoreCompileInputs.cache
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.dll
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\refint\Encodings.dll
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.pdb
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\Encodings.genruntimeconfig.cache
+C:\Users\lizan\Dev\Csharp\Encodings\obj\Debug\net7.0\ref\Encodings.dll

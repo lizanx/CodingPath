@@ -1,0 +1,15 @@
+C:\Users\lizan\Dev\Csharp\NetworkResources\bin\Debug\net7.0\NetworkResources.exe
+C:\Users\lizan\Dev\Csharp\NetworkResources\bin\Debug\net7.0\NetworkResources.deps.json
+C:\Users\lizan\Dev\Csharp\NetworkResources\bin\Debug\net7.0\NetworkResources.runtimeconfig.json
+C:\Users\lizan\Dev\Csharp\NetworkResources\bin\Debug\net7.0\NetworkResources.dll
+C:\Users\lizan\Dev\Csharp\NetworkResources\bin\Debug\net7.0\NetworkResources.pdb
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.csproj.AssemblyReference.cache
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.AssemblyInfoInputs.cache
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.AssemblyInfo.cs
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.csproj.CoreCompileInputs.cache
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.dll
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\refint\NetworkResources.dll
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.pdb
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\NetworkResources.genruntimeconfig.cache
+C:\Users\lizan\Dev\Csharp\NetworkResources\obj\Debug\net7.0\ref\NetworkResources.dll

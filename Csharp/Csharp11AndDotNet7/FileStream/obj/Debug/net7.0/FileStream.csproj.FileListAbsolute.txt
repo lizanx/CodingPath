@@ -1,0 +1,15 @@
+C:\Users\lizan\Dev\Csharp\FileStream\bin\Debug\net7.0\FileStream.exe
+C:\Users\lizan\Dev\Csharp\FileStream\bin\Debug\net7.0\FileStream.deps.json
+C:\Users\lizan\Dev\Csharp\FileStream\bin\Debug\net7.0\FileStream.runtimeconfig.json
+C:\Users\lizan\Dev\Csharp\FileStream\bin\Debug\net7.0\FileStream.dll
+C:\Users\lizan\Dev\Csharp\FileStream\bin\Debug\net7.0\FileStream.pdb
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.csproj.AssemblyReference.cache
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.AssemblyInfoInputs.cache
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.AssemblyInfo.cs
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.csproj.CoreCompileInputs.cache
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.dll
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\refint\FileStream.dll
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.pdb
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\FileStream.genruntimeconfig.cache
+C:\Users\lizan\Dev\Csharp\FileStream\obj\Debug\net7.0\ref\FileStream.dll
