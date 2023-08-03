@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lizan\\Dev\\Csharp\\EFCore\\EFCore.csproj": {}
+    "C:\\Users\\lizan\\Dev\\CodingPath\\Csharp\\Csharp11AndDotNet7\\EFCore\\EFCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lizan\\Dev\\Csharp\\EFCore\\EFCore.csproj": {
+    "C:\\Users\\lizan\\Dev\\CodingPath\\Csharp\\Csharp11AndDotNet7\\EFCore\\EFCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lizan\\Dev\\Csharp\\EFCore\\EFCore.csproj",
+        "projectUniqueName": "C:\\Users\\lizan\\Dev\\CodingPath\\Csharp\\Csharp11AndDotNet7\\EFCore\\EFCore.csproj",
         "projectName": "EFCore",
-        "projectPath": "C:\\Users\\lizan\\Dev\\Csharp\\EFCore\\EFCore.csproj",
+        "projectPath": "C:\\Users\\lizan\\Dev\\CodingPath\\Csharp\\Csharp11AndDotNet7\\EFCore\\EFCore.csproj",
         "packagesPath": "C:\\Users\\lizan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lizan\\Dev\\Csharp\\EFCore\\obj\\",
+        "outputPath": "C:\\Users\\lizan\\Dev\\CodingPath\\Csharp\\Csharp11AndDotNet7\\EFCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -48,6 +48,10 @@
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[7.0.9, )"
             },

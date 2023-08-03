@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Packt.Shared;
 
@@ -23,6 +24,9 @@ public class Northwind : DbContext
                 .Property(product => product.Cost)
                 .HasConversion<double>();
         }
+
+        modelBuilder.Entity<Product>()
+            .HasQueryFilter( p => !p.Discontinued );
     }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -31,7 +35,12 @@ public class Northwind : DbContext
         string connection = $"Filename={dbFilePath}";
 
         // ColoredLog.Warn($"Connection: {connection}");
-
         optionsBuilder.UseSqlite(connection);
+
+
+        optionsBuilder.LogTo(WriteLine, // Console
+            new[] { RelationalEventId.CommandExecuting }) 
+            .EnableSensitiveDataLogging();
+        // optionsBuilder.UseLazyLoadingProxies();
     }
 }

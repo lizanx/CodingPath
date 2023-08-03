@@ -4,6 +4,8 @@ using Packt.Shared;
 // Northwind db = new();
 // WriteLine($"Provider: {db.Database.ProviderName}");
 
-// QueryingCategories();
+QueryingCategories();
 // FilteredIncludes();
-QueryingProducts();
+// QueryingProducts();
+// QueryingWithLike();
+// GetRandomProduct();
