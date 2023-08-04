@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.1...3.14)
+
+project(chapter_5 LANGUAGES CXX)
+
+add_executable(listing_5_1 listing_5_1.cpp)
+add_executable(listing_5_2 listing_5_2.cpp)
+add_executable(listing_5_4 listing_5_4.cpp)
+add_executable(listing_5_5 listing_5_5.cpp)
+add_executable(listing_5_6 listing_5_6.cpp)
+add_executable(listing_5_7 listing_5_7.cpp)
+add_executable(listing_5_8 listing_5_8.cpp)
+add_executable(listing_5_9 listing_5_9.cpp)
+add_executable(listing_5_10 listing_5_10.cpp)
+add_executable(listing_5_11 listing_5_11.cpp)
+add_executable(listing_5_12 listing_5_12.cpp)
+add_executable(listing_5_13 listing_5_13.cpp)
