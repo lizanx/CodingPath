@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 3.1...3.14)
+
+project(chapter_19 LANGUAGES CXX)
+
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+    add_executable(parallelism parallelism.cpp)
+    add_executable(undefined_parallel undefined_parallel.cpp)
+endif(MSVC)
+
+catch_add_test(concurrency concurrency.cpp)
+add_executable(factor_serial factor_serial.cpp)
+add_executable(factor_parallel factor_parallel.cpp)
+add_executable(goat_rodeo goat_rodeo.cpp)
+add_executable(goat_rodeo_locks goat_rodeo_locks.cpp)
+add_executable(goat_rodeo_guards goat_rodeo_guards.cpp)
+add_executable(goat_rodeo_atomic goat_rodeo_atomic.cpp)
+add_executable(goat_rodeo_cv goat_rodeo_cv.cpp)
+
+target_link_libraries(concurrency PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(factor_serial PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(factor_parallel PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(goat_rodeo PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(goat_rodeo_locks PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(goat_rodeo_guards PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(goat_rodeo_atomic PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(goat_rodeo_cv PRIVATE ${CMAKE_THREAD_LIBS_INIT})

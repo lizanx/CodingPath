@@ -1,0 +1,35 @@
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+
+html,
+body {
+  height: 100%;
+  background-color: rgb(45, 45, 50);
+}
+
+body {
+  color: #fff;
+  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+}
+
+.card,
+.jumbotron {
+  background-color: rgba(25, 25, 30, 0.4);
+}
+
+pre {
+  color: #ff1291;
+  text-shadow: 0 .05rem .1rem rgba(25, 25, 30, 0.78);
+}
+
+.no-bullet {
+  list-style-type: none;
+}
+
+.jumbo-p {
+  padding: 15px;
+}
