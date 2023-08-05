@@ -42,3 +42,22 @@ else
 {
     WriteLine("Delete was canceled.");
 }
+
+// var resultUpdateBetter = IncreaseProductPriceBetter("Bob", 200M);
+// if (resultUpdateBetter.affected > 0)
+// {
+//     WriteLine("Increase product price successfully!");
+// }
+// ListProducts(resultUpdateBetter.productIds);
+
+// WriteLine("About to delete all products whose name starts with Bob.");
+// Write("Press Enter to continue or any other key to exit: ");
+// if (ReadKey(intercept: true).Key == ConsoleKey.Enter)
+// {
+//     int deleted = DeleteProductsBetter(productNameStartsWith: "Bob");
+//     WriteLine($"{deleted} product(s) were deleted(Better).");
+// }
+// else
+// {
+//     WriteLine("Delete(Better) was canceled.");
+// }

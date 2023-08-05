@@ -1,0 +1,610 @@
+[
+  {
+    "CategoryId": 1,
+    "CategoryName": "Beverages",
+    "Description": "Soft drinks, coffees, teas, beers, and ales",
+    "Products": [
+      {
+        "ProductId": 1,
+        "ProductName": "Chai",
+        "UnitPrice": 18,
+        "Stock": 39,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 2,
+        "ProductName": "Chang",
+        "UnitPrice": 19,
+        "Stock": 17,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 34,
+        "ProductName": "Sasquatch Ale",
+        "UnitPrice": 14,
+        "Stock": 111,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 35,
+        "ProductName": "Steeleye Stout",
+        "UnitPrice": 18,
+        "Stock": 20,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 38,
+        "ProductName": "C\u00F4te de Blaye",
+        "UnitPrice": 263.5,
+        "Stock": 17,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 39,
+        "ProductName": "Chartreuse verte",
+        "UnitPrice": 18,
+        "Stock": 69,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 43,
+        "ProductName": "Ipoh Coffee",
+        "UnitPrice": 46,
+        "Stock": 17,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 67,
+        "ProductName": "Laughing Lumberjack Lager",
+        "UnitPrice": 14,
+        "Stock": 52,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 70,
+        "ProductName": "Outback Lager",
+        "UnitPrice": 15,
+        "Stock": 15,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 75,
+        "ProductName": "Rh\u00F6nbr\u00E4u Klosterbier",
+        "UnitPrice": 7.75,
+        "Stock": 125,
+        "Discontinued": false,
+        "CategoryId": 1
+      },
+      {
+        "ProductId": 76,
+        "ProductName": "Lakkalik\u00F6\u00F6ri",
+        "UnitPrice": 18,
+        "Stock": 57,
+        "Discontinued": false,
+        "CategoryId": 1
+      }
+    ]
+  },
+  {
+    "CategoryId": 2,
+    "CategoryName": "Condiments",
+    "Description": "Sweet and savory sauces, relishes, spreads, and seasonings",
+    "Products": [
+      {
+        "ProductId": 3,
+        "ProductName": "Aniseed Syrup",
+        "UnitPrice": 10,
+        "Stock": 13,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 4,
+        "ProductName": "Chef Anton\u0027s Cajun Seasoning",
+        "UnitPrice": 22,
+        "Stock": 53,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 6,
+        "ProductName": "Grandma\u0027s Boysenberry Spread",
+        "UnitPrice": 25,
+        "Stock": 120,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 8,
+        "ProductName": "Northwoods Cranberry Sauce",
+        "UnitPrice": 40,
+        "Stock": 6,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 15,
+        "ProductName": "Genen Shouyu",
+        "UnitPrice": 15.5,
+        "Stock": 39,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 44,
+        "ProductName": "Gula Malacca",
+        "UnitPrice": 19.45,
+        "Stock": 27,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 61,
+        "ProductName": "Sirop d\u0027\u00E9rable",
+        "UnitPrice": 28.5,
+        "Stock": 113,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 63,
+        "ProductName": "Vegie-spread",
+        "UnitPrice": 43.9,
+        "Stock": 24,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 65,
+        "ProductName": "Louisiana Fiery Hot Pepper Sauce",
+        "UnitPrice": 21.05,
+        "Stock": 76,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 66,
+        "ProductName": "Louisiana Hot Spiced Okra",
+        "UnitPrice": 17,
+        "Stock": 4,
+        "Discontinued": false,
+        "CategoryId": 2
+      },
+      {
+        "ProductId": 77,
+        "ProductName": "Original Frankfurter gr\u00FCne So\u00DFe",
+        "UnitPrice": 13,
+        "Stock": 32,
+        "Discontinued": false,
+        "CategoryId": 2
+      }
+    ]
+  },
+  {
+    "CategoryId": 3,
+    "CategoryName": "Confections",
+    "Description": "Desserts, candies, and sweet breads",
+    "Products": [
+      {
+        "ProductId": 16,
+        "ProductName": "Pavlova",
+        "UnitPrice": 17.45,
+        "Stock": 29,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 19,
+        "ProductName": "Teatime Chocolate Biscuits",
+        "UnitPrice": 9.2,
+        "Stock": 25,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 20,
+        "ProductName": "Sir Rodney\u0027s Marmalade",
+        "UnitPrice": 81,
+        "Stock": 40,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 21,
+        "ProductName": "Sir Rodney\u0027s Scones",
+        "UnitPrice": 10,
+        "Stock": 3,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 25,
+        "ProductName": "NuNuCa Nu\u00DF-Nougat-Creme",
+        "UnitPrice": 14,
+        "Stock": 76,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 26,
+        "ProductName": "Gumb\u00E4r Gummib\u00E4rchen",
+        "UnitPrice": 31.23,
+        "Stock": 15,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 27,
+        "ProductName": "Schoggi Schokolade",
+        "UnitPrice": 43.9,
+        "Stock": 49,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 47,
+        "ProductName": "Zaanse koeken",
+        "UnitPrice": 9.5,
+        "Stock": 36,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 48,
+        "ProductName": "Chocolade",
+        "UnitPrice": 12.75,
+        "Stock": 15,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 49,
+        "ProductName": "Maxilaku",
+        "UnitPrice": 20,
+        "Stock": 10,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 50,
+        "ProductName": "Valkoinen suklaa",
+        "UnitPrice": 16.25,
+        "Stock": 65,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 62,
+        "ProductName": "Tarte au sucre",
+        "UnitPrice": 49.3,
+        "Stock": 17,
+        "Discontinued": false,
+        "CategoryId": 3
+      },
+      {
+        "ProductId": 68,
+        "ProductName": "Scottish Longbreads",
+        "UnitPrice": 12.5,
+        "Stock": 6,
+        "Discontinued": false,
+        "CategoryId": 3
+      }
+    ]
+  },
+  {
+    "CategoryId": 4,
+    "CategoryName": "Dairy Products",
+    "Description": "Cheeses",
+    "Products": [
+      {
+        "ProductId": 11,
+        "ProductName": "Queso Cabrales",
+        "UnitPrice": 21,
+        "Stock": 22,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 12,
+        "ProductName": "Queso Manchego La Pastora",
+        "UnitPrice": 38,
+        "Stock": 86,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 31,
+        "ProductName": "Gorgonzola Telino",
+        "UnitPrice": 12.5,
+        "Stock": 0,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 32,
+        "ProductName": "Mascarpone Fabioli",
+        "UnitPrice": 32,
+        "Stock": 9,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 33,
+        "ProductName": "Geitost",
+        "UnitPrice": 2.5,
+        "Stock": 112,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 59,
+        "ProductName": "Raclette Courdavault",
+        "UnitPrice": 55,
+        "Stock": 79,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 60,
+        "ProductName": "Camembert Pierrot",
+        "UnitPrice": 34,
+        "Stock": 19,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 69,
+        "ProductName": "Gudbrandsdalsost",
+        "UnitPrice": 36,
+        "Stock": 26,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 71,
+        "ProductName": "Flotemysost",
+        "UnitPrice": 21.5,
+        "Stock": 26,
+        "Discontinued": false,
+        "CategoryId": 4
+      },
+      {
+        "ProductId": 72,
+        "ProductName": "Mozzarella di Giovanni",
+        "UnitPrice": 34.8,
+        "Stock": 14,
+        "Discontinued": false,
+        "CategoryId": 4
+      }
+    ]
+  },
+  {
+    "CategoryId": 5,
+    "CategoryName": "Grains/Cereals",
+    "Description": "Breads, crackers, pasta, and cereal",
+    "Products": [
+      {
+        "ProductId": 22,
+        "ProductName": "Gustaf\u0027s Kn\u00E4ckebr\u00F6d",
+        "UnitPrice": 21,
+        "Stock": 104,
+        "Discontinued": false,
+        "CategoryId": 5
+      },
+      {
+        "ProductId": 23,
+        "ProductName": "Tunnbr\u00F6d",
+        "UnitPrice": 9,
+        "Stock": 61,
+        "Discontinued": false,
+        "CategoryId": 5
+      },
+      {
+        "ProductId": 52,
+        "ProductName": "Filo Mix",
+        "UnitPrice": 7,
+        "Stock": 38,
+        "Discontinued": false,
+        "CategoryId": 5
+      },
+      {
+        "ProductId": 56,
+        "ProductName": "Gnocchi di nonna Alice",
+        "UnitPrice": 38,
+        "Stock": 21,
+        "Discontinued": false,
+        "CategoryId": 5
+      },
+      {
+        "ProductId": 57,
+        "ProductName": "Ravioli Angelo",
+        "UnitPrice": 19.5,
+        "Stock": 36,
+        "Discontinued": false,
+        "CategoryId": 5
+      },
+      {
+        "ProductId": 64,
+        "ProductName": "Wimmers gute Semmelkn\u00F6del",
+        "UnitPrice": 33.25,
+        "Stock": 22,
+        "Discontinued": false,
+        "CategoryId": 5
+      }
+    ]
+  },
+  {
+    "CategoryId": 6,
+    "CategoryName": "Meat/Poultry",
+    "Description": "Prepared meats",
+    "Products": [
+      {
+        "ProductId": 54,
+        "ProductName": "Tourti\u00E8re",
+        "UnitPrice": 7.45,
+        "Stock": 21,
+        "Discontinued": false,
+        "CategoryId": 6
+      },
+      {
+        "ProductId": 55,
+        "ProductName": "P\u00E2t\u00E9 chinois",
+        "UnitPrice": 24,
+        "Stock": 115,
+        "Discontinued": false,
+        "CategoryId": 6
+      }
+    ]
+  },
+  {
+    "CategoryId": 7,
+    "CategoryName": "Produce",
+    "Description": "Dried fruit and bean curd",
+    "Products": [
+      {
+        "ProductId": 7,
+        "ProductName": "Uncle Bob\u0027s Organic Dried Pears",
+        "UnitPrice": 30,
+        "Stock": 15,
+        "Discontinued": false,
+        "CategoryId": 7
+      },
+      {
+        "ProductId": 14,
+        "ProductName": "Tofu",
+        "UnitPrice": 23.25,
+        "Stock": 35,
+        "Discontinued": false,
+        "CategoryId": 7
+      },
+      {
+        "ProductId": 51,
+        "ProductName": "Manjimup Dried Apples",
+        "UnitPrice": 53,
+        "Stock": 20,
+        "Discontinued": false,
+        "CategoryId": 7
+      },
+      {
+        "ProductId": 74,
+        "ProductName": "Longlife Tofu",
+        "UnitPrice": 10,
+        "Stock": 4,
+        "Discontinued": false,
+        "CategoryId": 7
+      }
+    ]
+  },
+  {
+    "CategoryId": 8,
+    "CategoryName": "Seafood",
+    "Description": "Seaweed and fish",
+    "Products": [
+      {
+        "ProductId": 10,
+        "ProductName": "Ikura",
+        "UnitPrice": 31,
+        "Stock": 31,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 13,
+        "ProductName": "Konbu",
+        "UnitPrice": 6,
+        "Stock": 24,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 18,
+        "ProductName": "Carnarvon Tigers",
+        "UnitPrice": 62.5,
+        "Stock": 42,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 30,
+        "ProductName": "Nord-Ost Matjeshering",
+        "UnitPrice": 25.89,
+        "Stock": 10,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 36,
+        "ProductName": "Inlagd Sill",
+        "UnitPrice": 19,
+        "Stock": 112,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 37,
+        "ProductName": "Gravad lax",
+        "UnitPrice": 26,
+        "Stock": 11,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 40,
+        "ProductName": "Boston Crab Meat",
+        "UnitPrice": 18.4,
+        "Stock": 123,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 41,
+        "ProductName": "Jack\u0027s New England Clam Chowder",
+        "UnitPrice": 9.65,
+        "Stock": 85,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 45,
+        "ProductName": "Rogede sild",
+        "UnitPrice": 9.5,
+        "Stock": 5,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 46,
+        "ProductName": "Spegesild",
+        "UnitPrice": 12,
+        "Stock": 95,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 58,
+        "ProductName": "Escargots de Bourgogne",
+        "UnitPrice": 13.25,
+        "Stock": 62,
+        "Discontinued": false,
+        "CategoryId": 8
+      },
+      {
+        "ProductId": 73,
+        "ProductName": "R\u00F6d Kaviar",
+        "UnitPrice": 15,
+        "Stock": 101,
+        "Discontinued": false,
+        "CategoryId": 8
+      }
+    ]
+  }
+]
