@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<products>
+  <product id="1" price="18">
+    <name>Chai</name>
+  </product>
+  <product id="2" price="19">
+    <name>Chang</name>
+  </product>
+  <product id="3" price="10">
+    <name>Aniseed Syrup</name>
+  </product>
+  <product id="4" price="22">
+    <name>Chef Anton's Cajun Seasoning</name>
+  </product>
+  <product id="5" price="21.35">
+    <name>Chef Anton's Gumbo Mix</name>
+  </product>
+  <product id="6" price="25">
+    <name>Grandma's Boysenberry Spread</name>
+  </product>
+  <product id="7" price="30">
+    <name>Uncle Bob's Organic Dried Pears</name>
+  </product>
+  <product id="8" price="40">
+    <name>Northwoods Cranberry Sauce</name>
+  </product>
+  <product id="9" price="97">
+    <name>Mishi Kobe Niku</name>
+  </product>
+  <product id="10" price="31">
+    <name>Ikura</name>
+  </product>
+  <product id="11" price="21">
+    <name>Queso Cabrales</name>
+  </product>
+  <product id="12" price="38">
+    <name>Queso Manchego La Pastora</name>
+  </product>
+  <product id="13" price="6">
+    <name>Konbu</name>
+  </product>
+  <product id="14" price="23.25">
+    <name>Tofu</name>
+  </product>
+  <product id="15" price="15.5">
+    <name>Genen Shouyu</name>
+  </product>
+  <product id="16" price="17.45">
+    <name>Pavlova</name>
+  </product>
+  <product id="17" price="39">
+    <name>Alice Mutton</name>
+  </product>
+  <product id="18" price="62.5">
+    <name>Carnarvon Tigers</name>
+  </product>
+  <product id="19" price="9.2">
+    <name>Teatime Chocolate Biscuits</name>
+  </product>
+  <product id="20" price="81">
+    <name>Sir Rodney's Marmalade</name>
+  </product>
+  <product id="21" price="10">
+    <name>Sir Rodney's Scones</name>
+  </product>
+  <product id="22" price="21">
+    <name>Gustaf's Knäckebröd</name>
+  </product>
+  <product id="23" price="9">
+    <name>Tunnbröd</name>
+  </product>
+  <product id="24" price="4.5">
+    <name>Guaraná Fantástica</name>
+  </product>
+  <product id="25" price="14">
+    <name>NuNuCa Nuß-Nougat-Creme</name>
+  </product>
+  <product id="26" price="31.23">
+    <name>Gumbär Gummibärchen</name>
+  </product>
+  <product id="27" price="43.9">
+    <name>Schoggi Schokolade</name>
+  </product>
+  <product id="28" price="45.6">
+    <name>Rössle Sauerkraut</name>
+  </product>
+  <product id="29" price="123.79">
+    <name>Thüringer Rostbratwurst</name>
+  </product>
+  <product id="30" price="25.89">
+    <name>Nord-Ost Matjeshering</name>
+  </product>
+  <product id="31" price="12.5">
+    <name>Gorgonzola Telino</name>
+  </product>
+  <product id="32" price="32">
+    <name>Mascarpone Fabioli</name>
+  </product>
+  <product id="33" price="2.5">
+    <name>Geitost</name>
+  </product>
+  <product id="34" price="14">
+    <name>Sasquatch Ale</name>
+  </product>
+  <product id="35" price="18">
+    <name>Steeleye Stout</name>
+  </product>
+  <product id="36" price="19">
+    <name>Inlagd Sill</name>
+  </product>
+  <product id="37" price="26">
+    <name>Gravad lax</name>
+  </product>
+  <product id="38" price="263.5">
+    <name>Côte de Blaye</name>
+  </product>
+  <product id="39" price="18">
+    <name>Chartreuse verte</name>
+  </product>
+  <product id="40" price="18.4">
+    <name>Boston Crab Meat</name>
+  </product>
+  <product id="41" price="9.65">
+    <name>Jack's New England Clam Chowder</name>
+  </product>
+  <product id="42" price="14">
+    <name>Singaporean Hokkien Fried Mee</name>
+  </product>
+  <product id="43" price="46">
+    <name>Ipoh Coffee</name>
+  </product>
+  <product id="44" price="19.45">
+    <name>Gula Malacca</name>
+  </product>
+  <product id="45" price="9.5">
+    <name>Rogede sild</name>
+  </product>
+  <product id="46" price="12">
+    <name>Spegesild</name>
+  </product>
+  <product id="47" price="9.5">
+    <name>Zaanse koeken</name>
+  </product>
+  <product id="48" price="12.75">
+    <name>Chocolade</name>
+  </product>
+  <product id="49" price="20">
+    <name>Maxilaku</name>
+  </product>
+  <product id="50" price="16.25">
+    <name>Valkoinen suklaa</name>
+  </product>
+  <product id="51" price="53">
+    <name>Manjimup Dried Apples</name>
+  </product>
+  <product id="52" price="7">
+    <name>Filo Mix</name>
+  </product>
+  <product id="53" price="32.8">
+    <name>Perth Pasties</name>
+  </product>
+  <product id="54" price="7.45">
+    <name>Tourtière</name>
+  </product>
+  <product id="55" price="24">
+    <name>Pâté chinois</name>
+  </product>
+  <product id="56" price="38">
+    <name>Gnocchi di nonna Alice</name>
+  </product>
+  <product id="57" price="19.5">
+    <name>Ravioli Angelo</name>
+  </product>
+  <product id="58" price="13.25">
+    <name>Escargots de Bourgogne</name>
+  </product>
+  <product id="59" price="55">
+    <name>Raclette Courdavault</name>
+  </product>
+  <product id="60" price="34">
+    <name>Camembert Pierrot</name>
+  </product>
+  <product id="61" price="28.5">
+    <name>Sirop d'érable</name>
+  </product>
+  <product id="62" price="49.3">
+    <name>Tarte au sucre</name>
+  </product>
+  <product id="63" price="43.9">
+    <name>Vegie-spread</name>
+  </product>
+  <product id="64" price="33.25">
+    <name>Wimmers gute Semmelknödel</name>
+  </product>
+  <product id="65" price="21.05">
+    <name>Louisiana Fiery Hot Pepper Sauce</name>
+  </product>
+  <product id="66" price="17">
+    <name>Louisiana Hot Spiced Okra</name>
+  </product>
+  <product id="67" price="14">
+    <name>Laughing Lumberjack Lager</name>
+  </product>
+  <product id="68" price="12.5">
+    <name>Scottish Longbreads</name>
+  </product>
+  <product id="69" price="36">
+    <name>Gudbrandsdalsost</name>
+  </product>
+  <product id="70" price="15">
+    <name>Outback Lager</name>
+  </product>
+  <product id="71" price="21.5">
+    <name>Flotemysost</name>
+  </product>
+  <product id="72" price="34.8">
+    <name>Mozzarella di Giovanni</name>
+  </product>
+  <product id="73" price="15">
+    <name>Röd Kaviar</name>
+  </product>
+  <product id="74" price="10">
+    <name>Longlife Tofu</name>
+  </product>
+  <product id="75" price="7.75">
+    <name>Rhönbräu Klosterbier</name>
+  </product>
+  <product id="76" price="18">
+    <name>Lakkalikööri</name>
+  </product>
+  <product id="77" price="13">
+    <name>Original Frankfurter grüne Soße</name>
+  </product>
+</products>
