@@ -1,0 +1,43 @@
+@page
+@using Packt.Shared
+@model Northwind.Web.Pages.CustomerDetails.CustomerDetailsModel
+
+<div class="jumbotron">
+    <h1 class="display-2">Customer Details</h1>
+    @if (Model.Customer is not null)
+    {
+        <div class="row">
+            <p class="lead">Company: @Model.Customer.CompanyName</p>
+            <p class="lead">Address: @Model.Customer.Address</p>
+            <p class="lead">Contact(@Model.Customer.ContactTitle): @Model.Customer.ContactName</p>
+            <p class="lead">Phone: @Model.Customer.Phone</p>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Shipment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Order order in Model.Customer.Orders)
+                    {
+                        <tr>
+                            <td>@order.OrderId</td>
+                            <td>@order.OrderDate</td>
+                            <td>@order.ShipVia</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <p class="lead">Customer not found.</p>
+        </div>
+    }
+</div>
