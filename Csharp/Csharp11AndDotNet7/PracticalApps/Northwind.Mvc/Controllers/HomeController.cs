@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Northwind.Mvc.Models;
 using Packt.Shared;
 
@@ -19,7 +20,7 @@ public class HomeController : Controller
     }
 
     [ResponseCache(Duration = 10, Location = ResponseCacheLocation.Any)]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         // _logger.LogError("Logger test: Error");
         // _logger.LogWarning("Logger test: Warning");
@@ -28,22 +29,22 @@ public class HomeController : Controller
         HomeIndexViewModel model = new
         (
             VisitorCount: Random.Shared.Next(1, 1001),
-            Categories: db.Categories.ToList(),
-            Products: db.Products.ToList()
+            Categories: await db.Categories.ToListAsync(),
+            Products: await db.Products.ToListAsync()
         );
         return View(model);
     }
 
-    public IActionResult ProductDetail(int? id, string alertstyle = "success")
+    public async Task<IActionResult> ProductDetail(int? id, string alertstyle = "success")
     {
         ViewData["alertstyle"] = alertstyle;
-        
+
         if (!id.HasValue)
         {
             return BadRequest("You must pass a product ID in route, for example, /Home/ProductDetail/21");
         }
 
-        Product? model = db.Products.SingleOrDefault( p => p.ProductId == id );
+        Product? model = await db.Products.SingleOrDefaultAsync( p => p.ProductId == id );
         if (model is null)
         {
             return NotFound($"Product {id} not found.");
@@ -82,5 +83,24 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    public IActionResult ProductsThatCostMoreThan(decimal? price)
+    {
+        if (!price.HasValue)
+        {
+            return BadRequest("You must pass a prodcut price in the query string, " +
+                "for example, /home/ProductsThatCostMoreThan/?price=50");
+        }
+        IEnumerable<Product> model = db.Products
+            .Include(p => p.Category)
+            .Include(p => p.Supplier)
+            .Where(p => p.UnitPrice > price);
+        if (!model.Any())
+        {
+            return NotFound($"No products cost more than {price}.");
+        }
+        ViewData["MaxPrice"] = price.Value.ToString("C");
+        return View(model);
     }
 }
