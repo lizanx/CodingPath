@@ -103,4 +103,20 @@ public class HomeController : Controller
         ViewData["MaxPrice"] = price.Value.ToString("C");
         return View(model);
     }
+
+    public async Task<IActionResult> Category(int? id)
+    {
+        if (!id.HasValue)
+        {
+            return BadRequest("You must pass a category id in route, for example, /Home/Category/2.");
+        }
+
+        Category? model = await db.Categories.SingleOrDefaultAsync( c => c.CategoryId == id );
+        if (model is null)
+        {
+            return NotFound($"Category {id} not found.");
+        }
+
+        return View(model);
+    }
 }
