@@ -21,8 +21,8 @@ public static class NorthwindContextExtensions
             options => {
                 options.UseSqlite($"Data Source={databasePath}");
 
-                options.LogTo(Console.WriteLine,
-                    new [] { Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting });
+                // options.LogTo(Console.WriteLine,
+                //     new [] { Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting });
             }
         );
 
