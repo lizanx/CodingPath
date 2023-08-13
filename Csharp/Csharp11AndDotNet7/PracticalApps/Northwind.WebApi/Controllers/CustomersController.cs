@@ -27,7 +27,7 @@ public class CustomersController : ControllerBase
         }
         else
         {
-            return (await repo.RetrieveAllAsync()).Where( c => c.Country == country );
+            return (await repo.RetrieveAllAsync()).Where(c => c.Country == country);
         }
     }
 
@@ -61,9 +61,9 @@ public class CustomersController : ControllerBase
         else
         {
             return CreatedAtRoute( // 201 Created
-                routeName: nameof(GetCustomer),
-                routeValues: addedCustomer.CustomerId.ToLower(),
-                value: addedCustomer);
+              routeName: nameof(GetCustomer),
+              routeValues: new { id = addedCustomer.CustomerId.ToLower() },
+              value: addedCustomer);
         }
     }
 
