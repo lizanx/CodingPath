@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Swashbuckle.AspNetCore.SwaggerUI;
+using Microsoft.AspNetCore.HttpLogging;
 using Packt.Shared;
 using Northwind.WebApi.Repositories;
 
@@ -7,6 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddNorthwindContext(); // Northwind data context injection
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.All;
+    options.RequestBodyLogLimit = 4096; // default is 32k
+    options.ResponseBodyLogLimit = 4096; // default is 32k
+});
 builder.Services.AddControllers(options =>
 {
     WriteLine("Default output formatters:");
@@ -36,7 +44,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json",
+            "Northwind Service API Version 1");
+        c.SupportedSubmitMethods(new [] {
+            SubmitMethod.Get, SubmitMethod.Put,
+            SubmitMethod.Post, SubmitMethod.Delete
+        });
+    });
+
+    app.UseHttpLogging();
 }
 
 app.UseHttpsRedirection();

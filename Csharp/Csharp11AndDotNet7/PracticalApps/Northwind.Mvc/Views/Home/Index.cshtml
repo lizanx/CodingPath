@@ -84,6 +84,12 @@
         <input type="submit" />
     </form>
 
+    <h3>Query Customers From A Service</h3>
+    <form asp-action="Customers" method="get">
+        <input name="country" placeholder="Enter a country" />
+        <input type="submit" />
+    </form>
+
     @if (Model is not null)
     {
       <h2>Products</h2>

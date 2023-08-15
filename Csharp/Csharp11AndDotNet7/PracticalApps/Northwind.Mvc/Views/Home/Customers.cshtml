@@ -1,0 +1,35 @@
+@using Packt.Shared
+@model IEnumerable<Customer>
+
+<h2>@ViewData["Title"]</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Contact Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model is not null)
+        {
+            @foreach (Customer c in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(_ => c.CompanyName)</td>
+                    <td>@Html.DisplayFor(_ => c.ContactName)</td>
+                    <td>
+                        @Html.DisplayFor(_ => c.Address)
+                        @Html.DisplayFor(_ => c.City)
+                        @Html.DisplayFor(_ => c.Region)
+                        @Html.DisplayFor(_ => c.Country)
+                        @Html.DisplayFor(_ => c.PostalCode)
+                    </td>
+                    <td>@Html.DisplayFor(_ => c.Phone)</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
