@@ -1,0 +1,36 @@
+@model Packt.Shared.Customer?
+
+<h1>Customer Query Result</h1>
+@if (Model is not null)
+{
+    <h2>CustomerId - @Model.CustomerId</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Contact Name</th>
+                <th>Address</th>
+                <th>Postal Code</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>@Model.CompanyName</td>
+                <td>@Model.ContactName</td>
+                <td>@Model.Address</td>
+                <td>@Model.PostalCode</td>
+                <td>@Model.Phone</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a class="btn btn-primary" href="/customeroperation/delete/@Model.CustomerId">Delete</a>
+    </p>
+}
+else
+{
+    <p>CustomerId @ViewData["CustomerId"] not found.</p>
+}

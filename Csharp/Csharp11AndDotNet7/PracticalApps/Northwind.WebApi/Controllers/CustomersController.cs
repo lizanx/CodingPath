@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using Packt.Shared;
 using Northwind.WebApi.Repositories;
+using System.Net;
 
 namespace Northwind.WebApi.Controllers;
 
@@ -13,6 +15,12 @@ public class CustomersController : ControllerBase
     public CustomersController(ICustomerRepository repo)
     {
         this.repo = repo;
+    }
+
+    // Add to avoid 405 error.
+    public HttpResponseMessage Options()
+    {
+        return new(statusCode: HttpStatusCode.OK);
     }
 
     // GET: api/customers
