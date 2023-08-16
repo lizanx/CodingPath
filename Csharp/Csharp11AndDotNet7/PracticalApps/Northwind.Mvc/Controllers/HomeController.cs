@@ -58,6 +58,20 @@ public class HomeController : Controller
             Categories: await db.Categories.ToListAsync(),
             Products: await db.Products.ToListAsync()
         );
+
+        // WeatherForecast Minimal API
+        try
+        {
+            HttpClient client = clientFactory.CreateClient(name: "Minimal.WebApi");
+            HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "weatherforecast");
+            HttpResponseMessage response = await client.SendAsync(request);
+            ViewData["weather"] = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+        }
+        catch (Exception ex)
+        {
+            _logger.LogWarning($"The Minimal.Api service is not responding. Exception: {ex.Message}");
+            ViewData["weather"] = Enumerable.Empty<WeatherForecast>().ToArray();
+        }
         return View(model);
     }
 
