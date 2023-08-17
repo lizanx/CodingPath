@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <!-- <RunAOTCompilation>true</RunAOTCompilation> -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Northwind.BlazorWasm.Shared.csproj" />
+    <ProjectReference Include="../../Northwind.Common.EntityModels.Sqlite/Northwind.Common.EntityModels.Sqlite.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
