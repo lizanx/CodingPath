@@ -76,6 +76,21 @@ public partial class NorthwindContext : DbContext
         modelBuilder.Entity<Product>()
             .Property(product => product.UnitPrice)
             .HasConversion<double>();
+        
+        // TODO: handle exceptions when deleting a Customer.
+        // modelBuilder.Entity<Customer>(entity =>
+        // {
+        //     entity.HasMany(c => c.Orders)
+        //         .WithOne()
+        //         .OnDelete(DeleteBehavior.Cascade);
+        // });
+        // modelBuilder.Entity<Order>(entity =>
+        // {
+        //     entity.HasOne(o => o.Customer)
+        //             .WithMany(c => c.Orders)
+        //             .HasForeignKey(o => o.CustomerId)
+        //             .OnDelete(DeleteBehavior.Cascade);
+        // });
 
         OnModelCreatingPartial(modelBuilder);
     }
