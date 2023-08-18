@@ -1,0 +1,12 @@
+@foreach (int n in Enumerable.Range(0, Number))
+{
+    <p>
+        @((now + TimeSpan.FromDays((double)n)).ToLongDateString())
+    </p>
+}
+
+@code {
+    [Parameter]
+    public int Number { get; set; }
+    private DateTime now = DateTime.Now;
+}

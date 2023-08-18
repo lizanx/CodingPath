@@ -1,0 +1,21 @@
+@page "/timestable/{number?}"
+<h3>Times Table For The Following @Number Days</h3>
+<TimeTable Number=@n></TimeTable>
+
+@code {
+    [Parameter]
+    public string? Number { get; set; }
+    private int n;
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (Number is null || !int.TryParse(Number, out n))
+        {
+            n = 1;
+        }
+        if (n < 0)
+        {
+            n = 1;
+        }
+    }
+}
