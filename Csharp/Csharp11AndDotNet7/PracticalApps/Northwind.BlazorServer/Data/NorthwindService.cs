@@ -51,4 +51,13 @@ public class NorthwindService : INorthwindService
         }
     }
 
+    public Task<List<string?>> GetCountries()
+    {
+        return db.Customers
+                .Select( c => c.Country )
+                .Distinct()
+                .OrderBy( country => country )
+                .ToListAsync();
+    }
+
 }
