@@ -16,7 +16,8 @@ All my coding-related readings and exercises.
 
 ## C#
 1. [Illustrated C# 5th Edition(C#图解教程)](https://book.douban.com/subject/34894447/) [Finished]
-2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [In Progress]
+2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [Finished]
+3. [ASP.NET Core in Action, 3rd Edition](https://www.goodreads.com/book/show/126988024) [In Progress]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
