@@ -1,17 +1,22 @@
 @page "/editcustomer/{customerid}"
 @inject INorthwindService service
 @inject NavigationManager navigation
+@inject IJSRuntime JSRuntime
 
 <h3>Edit Customer</h3>
 
 <CustomerDetail ButtonText="Update"
     Customer="@customer"
+    @ref="customerDetail"
     OnValidSubmit="@Update" />
+
+<NavigationLock OnBeforeInternalNavigation="ConfirmNavigation" ConfirmExternalNavigation />
 
 @code {
     [Parameter]
     public string CustomerId { get; set; } = null!;
     private Customer? customer = new();
+    private CustomerDetail? customerDetail;
     protected async override Task OnParametersSetAsync()
     {
         customer = await service.GetCustomerAsync(CustomerId);
@@ -22,6 +27,28 @@
         {
             await service.UpdateCustomerAsync(customer);
             navigation.NavigateTo("customers");
+        }
+    }
+
+    async Task ConfirmNavigation(LocationChangingContext context)
+    {
+        if (customerDetail is null) return;
+
+        if (customerDetail.HasChanged)
+        {
+            bool leave = await JSRuntime.InvokeAsync<bool>(
+                "window.confirm",
+                "You will lose changes if you leave. OK to leave. Cancel to stay."
+            );
+
+            if (leave)
+            {
+                customerDetail.ClearChange();
+            }
+            else
+            {
+                context.PreventNavigation();
+            }
         }
     }
 }

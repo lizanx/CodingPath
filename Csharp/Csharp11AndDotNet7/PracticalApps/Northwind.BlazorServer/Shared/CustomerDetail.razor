@@ -4,7 +4,8 @@
         <div>
             <label>Customer ID</label>
             <div>
-                <InputText @bind-Value="@Customer.CustomerId"/>
+                <InputText @bind-Value="@Customer.CustomerId"
+                    @oninput="OnInputCustomerId" />
                 <ValidationMessage For="@(() => Customer.CustomerId)"/>
             </div>
         </div>
@@ -14,7 +15,8 @@
         <div>
             <label>Compnay Name</label>
             <div>
-                <InputText @bind-Value="@Customer.CompanyName"/>
+                <InputText @bind-Value="@Customer.CompanyName"
+                    @oninput="OnInputCompanyName" />
                 <ValidationMessage For="@(() => Customer.CompanyName)"/>
             </div>
         </div>
@@ -24,7 +26,8 @@
         <div>
             <label>Address</label>
             <div>
-                <InputText @bind-Value="@Customer.Address"/>
+                <InputText @bind-Value="@Customer.Address"
+                    @oninput="OnInputAddress" />
                 <ValidationMessage For="@(() => Customer.Address)"/>
             </div>
         </div>
@@ -34,7 +37,8 @@
         <div>
             <label>Country</label>
             <div>
-                <InputText @bind-Value="@Customer.Country"/>
+                <InputText @bind-Value="@Customer.Country"
+                    @oninput="OnInputCountry" />
                 <ValidationMessage For="@(() => Customer.Country)"/>
             </div>
         </div>
@@ -54,4 +58,40 @@
     public string ButtonStyle { get; set; } = "info";
     [Parameter]
     public EventCallback OnValidSubmit { get; set; }
+
+    [Parameter]
+    public bool HasChanged { get; set; } = false;
+    private void OnInputCustomerId(ChangeEventArgs args)
+    {
+        if (Customer.CustomerId != args.Value?.ToString())
+        {
+            HasChanged = true;
+        }
+    }
+    private void OnInputCompanyName(ChangeEventArgs args)
+    {
+        if (Customer.CompanyName != args.Value?.ToString())
+        {
+            HasChanged = true;
+        }
+    }
+    private void OnInputCountry(ChangeEventArgs args)
+    {
+        if (Customer.Country != args.Value?.ToString())
+        {
+            HasChanged = true;
+        }
+    }
+    private void OnInputAddress(ChangeEventArgs args)
+    {
+        if (Customer.Address != args.Value?.ToString())
+        {
+            HasChanged = true;
+        }
+    }
+
+    public void ClearChange()
+    {
+        HasChanged = false;
+    }
 }
