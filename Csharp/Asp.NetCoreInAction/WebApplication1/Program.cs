@@ -1,3 +1,4 @@
+#if false
 using Microsoft.AspNetCore.HttpLogging;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,3 +25,19 @@ app.MapGet("/person", () => new Person("Gavin", "Xu"));
 app.Run();
 
 public record Person(string FirstName, string LastName);
+#endif
+
+// Simple middlewares.
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+app.UseDeveloperExceptionPage();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/error");
+}
+app.UseStaticFiles();
+app.UseWelcomePage();
+app.UseRouting();
+app.MapGet("/", () => "Hello C#! Currently learning ASP.NET Core.");
+app.MapGet("/error", () => "Sorry, an error occurred.");
+app.Run();
