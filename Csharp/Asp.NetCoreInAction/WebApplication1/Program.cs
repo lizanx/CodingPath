@@ -1,5 +1,7 @@
-#if false
+#if true
+
 using Microsoft.AspNetCore.HttpLogging;
+using static HelperUtils.ColoredLog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpLogging(options =>
@@ -25,7 +27,8 @@ app.MapGet("/person", () => new Person("Gavin", "Xu"));
 app.Run();
 
 public record Person(string FirstName, string LastName);
-#endif
+
+#else
 
 // Simple middlewares.
 var builder = WebApplication.CreateBuilder(args);
@@ -41,3 +44,5 @@ app.UseRouting();
 app.MapGet("/", () => "Hello C#! Currently learning ASP.NET Core.");
 app.MapGet("/error", () => "Sorry, an error occurred.");
 app.Run();
+
+#endif

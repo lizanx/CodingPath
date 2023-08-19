@@ -1,6 +1,8 @@
-partial class Program
+﻿namespace HelperUtils;
+
+public static class ColoredLog
 {
-    private static void ColoredLog(string msg, ConsoleColor color)
+    private static void Log(string msg, ConsoleColor color)
     {
         ConsoleColor prevColor = Console.ForegroundColor;
         Console.ForegroundColor = color;
@@ -10,14 +12,14 @@ partial class Program
 
     public static void LogInfo(string msg)
     {
-        ColoredLog(msg, ConsoleColor.Blue);
+        Log(msg, ConsoleColor.Blue);
     }
     public static void LogWarn(string msg)
     {
-        ColoredLog(msg, ConsoleColor.Yellow);
+        Log(msg, ConsoleColor.Yellow);
     }
     public static void LogError(string msg)
     {
-        ColoredLog(msg, ConsoleColor.Red);
+        Log(msg, ConsoleColor.Red);
     }
 }
