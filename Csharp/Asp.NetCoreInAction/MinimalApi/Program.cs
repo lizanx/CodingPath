@@ -19,3 +19,9 @@ app.MapGet("/person/{name?}", (string? name) => $"Hello, {(name ?? "Mr. Anonymou
 
 app.Run();
 
+var _fruits = new ConcurrentDictionary<string, Fruit>()
+{
+    ["Apple"] = new("Apple", 10),
+    ["Pear"] = new("Pear", 5),
+    ["Peach"] = new("Peach", 3),
+};
