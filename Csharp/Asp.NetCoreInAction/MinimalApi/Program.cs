@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using System.Net.Mime;
+using System.Reflection;
 using MinimalApi.Data;
 using static HelperUtils.ColoredLog;
 
@@ -55,10 +56,14 @@ app.MapGet("/teapot", (HttpResponse response) =>
     return response.WriteAsync("You're requesting Teapot!");
 });
 
+// Test EndpointFilterFacotry with person endpoint.
+// Now only people whose name starts with 'M' will be greeted.
+app.MapGet("/person/{name}", (string name) => $"Hello, {name}!")
+.AddEndpointFilterFactory(ValidationHelper.ValidateName);
+
 // app.MapGet("/", void () => throw new Exception("Test ExceptionHandler!")); // Test ProblemDetails in ExceptionHandler
 // app.MapGet("/", () => Results.NotFound()); // Test ProblemDetails for error status code pages
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/person/{name?}", (string? name) => $"Hello, {(name ?? "Mr. Anonymous")}!");
 
 app.Run();
 
@@ -79,5 +84,39 @@ class ValidationHelper
             });
         }
         return await next(context);
+    }
+
+    internal static EndpointFilterDelegate ValidateName(
+        EndpointFilterFactoryContext context,
+        EndpointFilterDelegate next)
+    {
+        int? namePosition = default;
+        ParameterInfo[] parameters = context.MethodInfo.GetParameters();
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].Name == "name" && parameters[i].ParameterType == typeof(string))
+            {
+                namePosition = i;
+            }
+        }
+
+        if (!namePosition.HasValue)
+        {
+            return next;
+        }
+
+        return async (invocationContext) =>
+        {
+            string name = invocationContext.GetArgument<string>(namePosition.Value);
+            if (string.IsNullOrEmpty(name) || !name.StartsWith('M'))
+            {
+                return Results.ValidationProblem(new Dictionary<string, string[]>()
+                {
+                    { "id", new[] { "name must start with 'M'!"} }
+                });
+            }
+
+            return await next(invocationContext);
+        };
     }
 }
