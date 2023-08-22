@@ -23,7 +23,15 @@ var _fruits = new ConcurrentDictionary<string, Fruit>()
 app.MapGet("/fruit", () => _fruits);
 app.MapGet("/fruit/{id}", (string id) =>
     _fruits.TryGetValue(id, out Fruit? fruit) ? TypedResults.Ok(fruit) : Results.NotFound()
-);
+).AddEndpointFilter(ValidationHelper.ValidateId)
+.AddEndpointFilter( async (context, next) =>
+// This filter is behind ValidateId, thus won't be executed if ValidateId short-curcuits the pipeline.
+{
+    app.Logger.LogInformation("Executing lambda filter...");
+    object? result = await next(context);
+    app.Logger.LogInformation($"Handler result: {result}");
+    return result;
+});
 app.MapPost("/fruit/{id}", (string id, Fruit fruit) =>
     _fruits.TryAdd(id, fruit) ? TypedResults.Created($"/fruit/{id}")
         : Results.BadRequest(new { id = "A fruit with this id already exists."})
@@ -54,3 +62,22 @@ app.MapGet("/person/{name?}", (string? name) => $"Hello, {(name ?? "Mr. Anonymou
 
 app.Run();
 
+
+// Endpoint Filter
+class ValidationHelper
+{
+    internal static async ValueTask<Object?> ValidateId(
+        EndpointFilterInvocationContext context,
+        EndpointFilterDelegate next)
+    {
+        var id = context.GetArgument<string>(0);
+        if (string.IsNullOrEmpty(id) || !id.StartsWith('P'))
+        {
+            return Results.ValidationProblem(new Dictionary<string, string[]>()
+            {
+                { "id", new[] {"Invalid format, id must start with 'P'."} }
+            });
+        }
+        return await next(context);
+    }
+}
