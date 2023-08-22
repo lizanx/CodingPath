@@ -24,7 +24,9 @@ var _fruits = new ConcurrentDictionary<string, Fruit>()
 app.MapGet("/fruit", () => _fruits);
 app.MapGet("/fruit/{id}", (string id) =>
     _fruits.TryGetValue(id, out Fruit? fruit) ? TypedResults.Ok(fruit) : Results.NotFound()
-).AddEndpointFilter(ValidationHelper.ValidateId)
+)
+// .AddEndpointFilter(ValidationHelper.ValidateId)
+.AddEndpointFilter<IdValidationFilter>() // This is the same as above call.
 .AddEndpointFilter( async (context, next) =>
 // This filter is behind ValidateId, thus won't be executed if ValidateId short-curcuits the pipeline.
 {
@@ -118,5 +120,24 @@ class ValidationHelper
 
             return await next(invocationContext);
         };
+    }
+}
+
+// IEndpointFilter for AddEndpointFilter
+class IdValidationFilter : IEndpointFilter
+{
+    public async ValueTask<object?> InvokeAsync(
+        EndpointFilterInvocationContext context,
+        EndpointFilterDelegate next)
+    {
+        string? id = context.GetArgument<string>(0);
+        if (string.IsNullOrEmpty(id) || !id.StartsWith('P'))
+        {
+            return Results.ValidationProblem(new Dictionary<string, string[]>()
+            {
+                { "id", new[] { "Invalid id, must start with 'P'."}}
+            });
+        }
+        return await next(context);
     }
 }
