@@ -29,7 +29,7 @@ app.MapGet("/fruit/{id}", (string id) =>
 {
     app.Logger.LogInformation("Executing lambda filter...");
     object? result = await next(context);
-    app.Logger.LogInformation($"Handler result: {result}");
+    app.Logger.LogInformation("Handler result: {result}", result);
     return result;
 });
 app.MapPost("/fruit/{id}", (string id, Fruit fruit) =>
