@@ -50,6 +50,29 @@ app.MapDelete("/fruit/{id}", (string id) =>
     return Results.NoContent();
 });
 
+// Test RouteGroup with Language.
+var _languages = new Language[] {
+    new("Csharp", "Static"),
+    new("C", "Static"),
+    new("Python", "Dynamic"),
+    new("Javascript", "Dynamic")
+};
+RouteGroupBuilder languageApiGroupeBuilder = app.MapGroup("/language");
+languageApiGroupeBuilder.MapGet("/", () => _languages);
+RouteGroupBuilder languageApiWithFilter = languageApiGroupeBuilder.MapGroup("/")
+.AddEndpointFilterFactory(ValidationHelper.ValidateLangName);
+languageApiWithFilter.MapGet("/{name}", (string name) =>
+{
+    if (_languages.Select(lang => lang.Name).Count(n => n == name) > 0)
+    {
+        return TypedResults.Ok(_languages.First(lang => lang.Name == name));
+    }
+    return Results.ValidationProblem(new Dictionary<string, string[]>()
+    {
+        { "name", new[] { "name must start with 'C'!"} }
+    });
+});
+
 // Test with HttpResponse Handler
 app.MapGet("/teapot", (HttpResponse response) =>
 {
@@ -114,7 +137,40 @@ class ValidationHelper
             {
                 return Results.ValidationProblem(new Dictionary<string, string[]>()
                 {
-                    { "id", new[] { "name must start with 'M'!"} }
+                    { "name", new[] { "name must start with 'M'!"} }
+                });
+            }
+
+            return await next(invocationContext);
+        };
+    }
+    internal static EndpointFilterDelegate ValidateLangName(
+        EndpointFilterFactoryContext context,
+        EndpointFilterDelegate next)
+    {
+        int? namePosition = default;
+        ParameterInfo[] parameters = context.MethodInfo.GetParameters();
+        for (int i = 0; i < parameters.Length; i++)
+        {
+            if (parameters[i].Name == "name" && parameters[i].ParameterType == typeof(string))
+            {
+                namePosition = i;
+            }
+        }
+
+        if (!namePosition.HasValue)
+        {
+            return next;
+        }
+
+        return async (invocationContext) =>
+        {
+            string name = invocationContext.GetArgument<string>(namePosition.Value);
+            if (string.IsNullOrEmpty(name) || !name.StartsWith('C'))
+            {
+                return Results.ValidationProblem(new Dictionary<string, string[]>()
+                {
+                    { "name", new[] { "name must start with 'C'!"} }
                 });
             }
 
