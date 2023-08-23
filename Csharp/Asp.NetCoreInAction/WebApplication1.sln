@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalApi", "MinimalApi\Mi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperUtils", "HelperUtils\HelperUtils.csproj", "{DC201660-D5DC-4047-A38B-6620F1DA9334}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Routing.MinApi", "Routing.MinApi\Routing.MinApi.csproj", "{7896DE69-D6AA-44FA-AAB4-F3E021003402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{DC201660-D5DC-4047-A38B-6620F1DA9334}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC201660-D5DC-4047-A38B-6620F1DA9334}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC201660-D5DC-4047-A38B-6620F1DA9334}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
