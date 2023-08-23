@@ -63,7 +63,7 @@ RouteGroupBuilder languageApiWithFilter = languageApiGroupeBuilder.MapGroup("/")
 .AddEndpointFilterFactory(ValidationHelper.ValidateLangName);
 languageApiWithFilter.MapGet("/{name}", (string name) =>
 {
-    if (_languages.Select(lang => lang.Name).Count(n => n == name) > 0)
+    if (_languages.Select(lang => lang.Name).Any(n => n == name))
     {
         return TypedResults.Ok(_languages.First(lang => lang.Name == name));
     }
@@ -81,7 +81,7 @@ app.MapGet("/teapot", (HttpResponse response) =>
     return response.WriteAsync("You're requesting Teapot!");
 });
 
-// Test EndpointFilterFacotry with person endpoint.
+// Test EndpointFilterFactory with person endpoint.
 // Now only people whose name starts with 'M' will be greeted.
 app.MapGet("/person/{name}", (string name) => $"Hello, {name}!")
 .AddEndpointFilterFactory(ValidationHelper.ValidateName);
