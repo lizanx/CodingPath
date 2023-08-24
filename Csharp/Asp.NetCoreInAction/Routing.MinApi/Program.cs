@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<RouteOptions>(opt =>
@@ -6,6 +7,13 @@ builder.Services.Configure<RouteOptions>(opt =>
     opt.LowercaseQueryStrings = false;
     opt.AppendTrailingSlash = false;
 });
+// Configure Json serialization/deserialization options.
+builder.Services.ConfigureHttpJsonOptions((JsonOptions option) =>
+{
+    option.SerializerOptions.AllowTrailingCommas = true;
+    option.SerializerOptions.PropertyNameCaseInsensitive = true;
+});
+
 var app = builder.Build();
 
 app.MapGet("/", () => "Hello World!");
