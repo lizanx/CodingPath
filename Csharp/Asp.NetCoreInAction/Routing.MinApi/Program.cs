@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<RouteOptions>(opt =>
@@ -40,6 +41,14 @@ app.MapGet("/array", ( [FromQuery(Name = "id")]int[] ids ) => $"Id count: {ids.L
 // Test customized BindAsync.
 app.MapPost("/size", (SizeDetail size) => $"SizeDetail\nHeight: {size.Height}\nWidth: {size.Width}");
 
+// Test AsParameter capsulation.
+app.MapPost("/person/{id}",
+    ([AsParameters]PersonInfo pi) => $"{pi.Id} | {pi.Person.Name} | {pi.Person.Age}");
+
+// Test WithParameterValidation extension to add validation filter.
+app.MapPost("/users/", (UserModel user) => $"User: Name={user.Name}, Email={user.Email}")
+.WithParameterValidation();
+
 app.Run();
 
 // A type implementing TryParse can be used for model binding.
@@ -73,4 +82,16 @@ record SizeDetail(double Height, double Width)
             ? new SizeDetail(height, width)
             : null;
     }
+}
+
+record Person(string Name, int Age);
+record PersonInfo(int Id, [FromBody]Person Person);
+
+record UserModel {
+    [Required]
+    [StringLength(10)]
+    public string Name { get; set; }
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
 }
