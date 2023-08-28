@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Test with configuration manager.
+builder.Configuration.Sources.Clear();
+builder.Configuration.AddJsonFile("appsettings.json", optional: true);
+
 builder.Services.Configure<RouteOptions>(opt =>
 {
     opt.LowercaseUrls = true;
@@ -48,6 +53,9 @@ app.MapPost("/person/{id}",
 // Test WithParameterValidation extension to add validation filter.
 app.MapPost("/users/", (UserModel user) => $"User: Name={user.Name}, Email={user.Email}")
 .WithParameterValidation();
+
+// Test with configuration manager.
+app.MapGet("/settings", () => app.Configuration.AsEnumerable());
 
 app.Run();
 
