@@ -1,12 +1,18 @@
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.ComponentModel.DataAnnotations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Test with configuration manager.
 builder.Configuration.Sources.Clear();
-builder.Configuration.AddJsonFile("appsettings.json", optional: true);
+builder.Configuration.AddJsonFile(
+    "appsettings.json",
+    optional: true,
+    reloadOnChange: true);
+// Test with user secrets.
+builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.Configure<RouteOptions>(opt =>
 {
@@ -14,6 +20,8 @@ builder.Services.Configure<RouteOptions>(opt =>
     opt.LowercaseQueryStrings = false;
     opt.AppendTrailingSlash = false;
 });
+// Test with IOption<T>
+builder.Services.Configure<OptionTest>(builder.Configuration.GetSection(nameof(OptionTest)));
 // Configure Json serialization/deserialization options.
 builder.Services.ConfigureHttpJsonOptions((Microsoft.AspNetCore.Http.Json.JsonOptions option) =>
 {
@@ -55,7 +63,13 @@ app.MapPost("/users/", (UserModel user) => $"User: Name={user.Name}, Email={user
 .WithParameterValidation();
 
 // Test with configuration manager.
-app.MapGet("/settings", () => app.Configuration.AsEnumerable());
+// app.MapGet("/settings", () => app.Configuration.AsEnumerable());
+app.MapGet("/settings", (IConfiguration config) => config.AsEnumerable());
+// Test with user secrets.
+app.MapGet("/usersecrets", (IConfiguration config) => config.GetValue<string>("MapSettings:GoogleMapsApiKey"));
+
+// Test with IOption<T>
+app.MapGet("/ioption", (IOptions<OptionTest> iop) => iop.Value);
 
 app.Run();
 
@@ -98,8 +112,16 @@ record PersonInfo(int Id, [FromBody]Person Person);
 record UserModel {
     [Required]
     [StringLength(10)]
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
     [Required]
     [EmailAddress]
-    public string Email { get; set; }
+    public string Email { get; set; } = null!;
+}
+
+// Test with IOption<T>
+public class OptionTest
+{
+    public int IntValue { get; set; }
+    public string StrValue { get; set; } = null!;
+    public double DoubleValue { get; set; }
 }
