@@ -18,6 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <OpenApiReference Include="swagger.json" SourceUrl="http://localhost:5191/swagger/v1/swagger.json"
-    Namespace="Fruit" ClassName="FruitClient" />
+    Namespace="Fruit" ClassName="FruitClient" >
+  </OpenApiReference>
   </ItemGroup>
 </Project>
