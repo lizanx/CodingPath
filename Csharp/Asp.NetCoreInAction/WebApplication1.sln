@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelperUtils", "HelperUtils\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Routing.MinApi", "Routing.MinApi\Routing.MinApi.csproj", "{7896DE69-D6AA-44FA-AAB4-F3E021003402}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApi.MinimalApi", "OpenApi.MinimalApi\OpenApi.MinimalApi.csproj", "{A54DE64A-A38B-4829-BF0D-D44F2E10DD01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiClient.Console", "OpenApiClient.Console\OpenApiClient.Console.csproj", "{55A87B2F-7ACC-43A0-A87C-F91A04165C23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7896DE69-D6AA-44FA-AAB4-F3E021003402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54DE64A-A38B-4829-BF0D-D44F2E10DD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54DE64A-A38B-4829-BF0D-D44F2E10DD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54DE64A-A38B-4829-BF0D-D44F2E10DD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54DE64A-A38B-4829-BF0D-D44F2E10DD01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
