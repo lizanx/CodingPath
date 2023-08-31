@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cooking.Services;
+using Cooking.Data;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlite(connString);
 });
+// Add RecipeService
+builder.Services.AddScoped<RecipeService>();
 
 var app = builder.Build();
 
@@ -25,29 +29,22 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/recipe/{id}", async (int id, RecipeService service) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var recipe = await service.GetRecipe(id);
+    return recipe is null
+        ? Results.NotFound()
+        : Results.Ok(recipe);
 })
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+.WithName("view-recipe")
+.WithSummary("Get recipe")
+.ProducesProblem(statusCode: 404)
+.Produces<Recipe>();
+
+app.MapPost("/recipe", async ([FromBody]Recipe recipe, RecipeService service) =>
+{
+    int recipeId = await service.CreateRecipeAsync(recipe);
+    return Results.CreatedAtRoute("view-recipe", new { recipeId });
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
