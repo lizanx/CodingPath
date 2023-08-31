@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApi.MinimalApi", "OpenA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiClient.Console", "OpenApiClient.Console\OpenApiClient.Console.csproj", "{55A87B2F-7ACC-43A0-A87C-F91A04165C23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookingApplication", "CookingApplication\CookingApplication.csproj", "{ABF24A53-D0E6-45AC-91F1-E05D7E96B5BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55A87B2F-7ACC-43A0-A87C-F91A04165C23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF24A53-D0E6-45AC-91F1-E05D7E96B5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF24A53-D0E6-45AC-91F1-E05D7E96B5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF24A53-D0E6-45AC-91F1-E05D7E96B5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF24A53-D0E6-45AC-91F1-E05D7E96B5BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
