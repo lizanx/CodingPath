@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddProblemDetails();
 // Config EFCore
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -29,22 +30,56 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/recipe/{id}", async (int id, RecipeService service) =>
+var routeGroup = app.MapGroup("")
+    .WithTags("Recipe")
+    .WithOpenApi();
+
+routeGroup.MapGet("/", async (RecipeService service) =>
+    await service.GetRecipes()
+)
+.WithSummary("List All Recipes");
+
+routeGroup.MapGet("/{id}", async (int id, RecipeService service) =>
 {
-    var recipe = await service.GetRecipe(id);
-    return recipe is null
+    var recipeViewModel = await service.GetRecipe(id);
+    return recipeViewModel is null
         ? Results.NotFound()
-        : Results.Ok(recipe);
+        : Results.Ok(recipeViewModel);
 })
 .WithName("view-recipe")
 .WithSummary("Get recipe")
 .ProducesProblem(statusCode: 404)
-.Produces<Recipe>();
+.Produces<RecipeViewModel>();
 
-app.MapPost("/recipe", async ([FromBody]Recipe recipe, RecipeService service) =>
+routeGroup.MapPost("/", async (RecipeViewModel rvm, RecipeService service) =>
 {
-    int recipeId = await service.CreateRecipeAsync(recipe);
-    return Results.CreatedAtRoute("view-recipe", new { recipeId });
-});
+    int recipeId = await service.CreateRecipeAsync(rvm);
+    return Results.Created("/", new{ recipeId });
+})
+.WithName("create-recipe")
+.WithSummary("Create a new Recipe");
+
+routeGroup.MapPut("/{id}", async (RecipeViewModel rvm, int id, RecipeService service) =>
+{
+    try
+    {
+        await service.UpdateRecipeAsync(rvm, id);
+        return Results.NoContent();
+    }
+    catch (Exception e)
+    {
+        return Results.Problem($"Exception: {e}");
+    }
+})
+.WithName("update-recipe")
+.WithSummary("Update an old recipe")
+.ProducesProblem(statusCode: 404);
+
+routeGroup.MapDelete("/{id}", async (int id, RecipeService service) =>
+{
+    await service.DeleteRecipeAsync(id);
+})
+.WithDescription("delete-recipe")
+.WithSummary("Delete an existed Recipe");
 
 app.Run();
