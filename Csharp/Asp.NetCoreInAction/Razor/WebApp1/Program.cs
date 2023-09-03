@@ -1,7 +1,20 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages()
+.AddRazorPagesOptions(option =>
+{
+    // option.RootDirectory = ""; // Change the path of Pages folder
+    option.Conventions.AddPageRoute("/Index", "/SecIndex"); // Add a new route for Index.cshtml, without replacing default routing.
+});
+
+// Customize the url: using lowercase + trailing slash
+builder.Services.Configure<RouteOptions>(option =>
+{
+    option.LowercaseUrls = true;
+    option.LowercaseQueryStrings = true;
+    option.AppendTrailingSlash = true;
+});
 
 var app = builder.Build();
 
