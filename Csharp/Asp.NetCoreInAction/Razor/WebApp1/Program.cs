@@ -18,6 +18,8 @@ builder.Services.Configure<RouteOptions>(option =>
 
 var app = builder.Build();
 
+// Add StatusCodePagesMiddleware
+app.UseStatusCodePagesWithReExecute("/Error");
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
