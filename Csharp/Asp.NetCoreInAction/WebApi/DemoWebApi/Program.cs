@@ -1,8 +1,16 @@
+using DemoWebApi.Filters;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddXmlSerializerFormatters();
+builder.Services.AddControllers(options =>
+{
+    // options.Filters.Add<LogResourceFilter>(); // Add Global-Scope filter.
+    options.Filters.Add(new LogResourceFilter(1)); // Equivalent call.
+    // options.Filters.Add(typeof(LogResourceFilter)); // Equivalent call.
+})
+    .AddXmlSerializerFormatters();
     // Modify the default behavior of [ApiController].
     // .ConfigureApiBehaviorOptions(options =>
     // {
