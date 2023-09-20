@@ -28,8 +28,18 @@ public class FruitController : ControllerBase
         return Ok(_fruits);
     }
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    public IActionResult Get(int id, ILogger<FruitController> _logger)
     {
+        _logger.LogInformation("Get all fruits, logging without any scope");
+        using (_logger.BeginScope("Scope Value 1"))
+        {
+            _logger.LogInformation("Get all fruits, logging with a list of scope values");
+        }
+        using (_logger.BeginScope(new Dictionary<string, string> { {"ScopeLogging", "DictState"} }))
+        {
+            _logger.LogInformation("Get all fruits, logging with Dict scope");
+        }
+
         if (id >= 0 && id < _fruits.Count)
         {
             return Ok(_fruits[id]);
