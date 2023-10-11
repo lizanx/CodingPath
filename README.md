@@ -17,7 +17,8 @@ All my coding-related readings and exercises.
 ## C#
 1. [Illustrated C# 5th Edition(C#图解教程)](https://book.douban.com/subject/34894447/) [Finished]
 2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [Finished]
-3. [ASP.NET Core in Action, 3rd Edition](https://www.goodreads.com/book/show/126988024) [In Progress]
+3. [ASP.NET Core in Action, 3rd Edition](https://www.goodreads.com/book/show/126988024) [Finished]
+4. [Apps and Services with .NET 7](https://www.goodreads.com/book/show/63336482-apps-and-services-with-net-7) [In Progress]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
@@ -27,6 +28,9 @@ All my coding-related readings and exercises.
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
 2. [Go Web Programming](https://book.douban.com/subject/27204133/)
 3. [Go语言核心36讲](https://time.geekbang.org/column/intro/112)
+
+## Lua
+1. [Programming In Lua 4th Edition](https://book.douban.com/subject/30262035/)
 
 ## OS
 1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [In Progress]
