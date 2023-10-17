@@ -83,7 +83,7 @@ try
 {
     WriteLine($"Opening connection, please wait up to {builder.ConnectTimeout} seconds...");
     WriteLine();
-    connection.Open();
+    await connection.OpenAsync();
 
     WriteLine($"SQL Server version: {connection.ServerVersion}");
 
@@ -109,18 +109,18 @@ cmd.CommandType = CommandType.Text;
 cmd.CommandText = "SELECT ProductId, ProductName, UnitPrice FROM Products " +
     "WHERE UnitPrice > @price";
 cmd.Parameters.AddWithValue("price", price);
-SqlDataReader r = cmd.ExecuteReader();
+SqlDataReader r = await cmd.ExecuteReaderAsync();
 WriteLine("----------------------------------------------------------");
 WriteLine("| {0,5} | {1,-35} | {2,8} |", "Id", "Name", "Price");
 WriteLine("----------------------------------------------------------");
 while (r.Read())
 {
     WriteLine("| {0,5} | {1,-35} | {2,8:C} |",
-        r.GetInt32("ProductId"),
-        r.GetString("ProductName"),
-        r.GetDecimal("UnitPrice"));
+        await r.GetFieldValueAsync<int>("ProductId"),
+        await r.GetFieldValueAsync<string>("ProductName"),
+        await r.GetFieldValueAsync<decimal>("UnitPrice"));
 }
 WriteLine("----------------------------------------------------------");
-r.Close();
+await r.CloseAsync();
 
-connection.Close();
+await connection.CloseAsync();
