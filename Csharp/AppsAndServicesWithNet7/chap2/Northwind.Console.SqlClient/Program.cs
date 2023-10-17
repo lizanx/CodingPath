@@ -101,14 +101,62 @@ string? priceText = ReadLine();
 if (!decimal.TryParse(priceText, out decimal price))
 {
     WriteLine("You must enter a valid unit price.");
-    connection.Close();
+    await connection.CloseAsync();
     return;
 }
 SqlCommand cmd = connection.CreateCommand();
-cmd.CommandType = CommandType.Text;
-cmd.CommandText = "SELECT ProductId, ProductName, UnitPrice FROM Products " +
-    "WHERE UnitPrice > @price";
-cmd.Parameters.AddWithValue("price", price);
+
+WriteLine("Execute command using:");
+WriteLine(" 1 - Text");
+WriteLine(" 2 - Stored Procedure");
+WriteLine();
+Write("Press a key: ");
+key = ReadKey().Key;
+WriteLine();
+WriteLine();
+
+SqlParameter? p1 = null, p2 = null, p3 = null;
+
+if (key is ConsoleKey.NumPad1 or ConsoleKey.D1)
+{
+    cmd.CommandType = CommandType.Text;
+    cmd.CommandText = "SELECT ProductId, ProductName, UnitPrice FROM Products " +
+        "WHERE UnitPrice > @price";
+    cmd.Parameters.AddWithValue("price", price);
+}
+else if (key is ConsoleKey.NumPad2 or ConsoleKey.D2)
+{
+    cmd.CommandType = CommandType.StoredProcedure;
+    cmd.CommandText = "GetExpensiveProducts";
+    p1 = new()
+    {
+        ParameterName = "price",
+        SqlDbType = SqlDbType.Money,
+        SqlValue = price,
+    };
+    p2 = new()
+    {
+        Direction = ParameterDirection.Output,
+        ParameterName = "count",
+        SqlDbType = SqlDbType.Int,
+    };
+    p3 = new()
+    {
+        Direction = ParameterDirection.ReturnValue,
+        ParameterName = "rv",
+        SqlDbType = SqlDbType.Int,
+    };
+    cmd.Parameters.Add(p1);
+    cmd.Parameters.Add(p2);
+    cmd.Parameters.Add(p3);
+}
+else
+{
+    WriteLine("You must enter a valid selection.");
+    await connection.CloseAsync();
+    return;
+}
+
 SqlDataReader r = await cmd.ExecuteReaderAsync();
 WriteLine("----------------------------------------------------------");
 WriteLine("| {0,5} | {1,-35} | {2,8} |", "Id", "Name", "Price");
@@ -122,5 +170,11 @@ while (r.Read())
 }
 WriteLine("----------------------------------------------------------");
 await r.CloseAsync();
+
+if (p2 != null && p3 != null)
+{
+    WriteLine($"Output count: {p2.Value}");
+    WriteLine($"Return value: {p3.Value}");
+}
 
 await connection.CloseAsync();
