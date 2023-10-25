@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 SqlConnectionStringBuilder builder = new()
@@ -95,6 +96,17 @@ catch (SqlException ex)
     return;
 }
 
+// Try with Dapper.
+IEnumerable<Supplier> suppliers = connection.Query<Supplier>(
+    sql: "SELECT * FROM Suppliers WHERE Country=@Country",
+    param: new { Country = "Germany" });
+foreach (Supplier supplier in suppliers)
+{
+    WriteLine("Supplier: {0}, {1}, {2}, {3}",
+        supplier.SupplierId, supplier.CompanyName,
+        supplier.Country, supplier.City);
+}
+
 
 Write("Enter a unit price: ");
 string? priceText = ReadLine();
@@ -178,3 +190,11 @@ if (p2 != null && p3 != null)
 }
 
 await connection.CloseAsync();
+
+public class Supplier
+{
+    public int SupplierId { get; set; }
+    public string? CompanyName { get; set; }
+    public string? City { get; set; }
+    public string? Country { get; set; }
+}
