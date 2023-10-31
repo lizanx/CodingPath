@@ -1,4 +1,7 @@
 using Microsoft.Azure.Cosmos;
+using Microsoft.EntityFrameworkCore;
+using Packt.Shared;
+using Northwind.CosmosDb.Items;
 
 using System.Net; // HttpStatusCode
 
@@ -66,5 +69,97 @@ partial class Program
         {
             WriteLine($"Error: {ex.GetType()} says {ex.Message}");
         }
+    }
+
+    static async Task CreateProductItems()
+    {
+        SectionTitle("Creating Product Items");
+
+        double totalCharge = 0.0;
+
+        try
+        {
+            using (CosmosClient client = new(accountEndpoint: endpointUri, authKeyOrResourceToken: primaryKey))
+            {
+                Container container = client.GetContainer(databaseId: "Northwind", containerId: "Products");
+
+                using (NorthwindContext db = new())
+                {
+                    ProductCosmos[] products = db.Products
+                        .Include(p => p.Category)
+                        .Include(p => p.Supplier)
+                        .Where(p => p.Category != null && p.Supplier != null)
+                        .Select(p => new ProductCosmos
+                        {
+                            id = p.ProductId.ToString(),
+                            productId = p.ProductId.ToString(),
+                            productName = p.ProductName,
+                            quantityPerUnit = p.QuantityPerUnit,
+                            category = new CategoryCosmos
+                            {
+                                categoryId = p.Category!.CategoryId,
+                                categoryName = p.Category.CategoryName,
+                                description = p.Category.Description,
+                            },
+                            supplier = new SupplierCosmos
+                            {
+                                supplierId = p.Supplier!.SupplierId,
+                                companyName = p.Supplier.CompanyName,
+                                contactName = p.Supplier.ContactName,
+                                contactTitle = p.Supplier.ContactTitle,
+                                address = p.Supplier.Address,
+                                city = p.Supplier.City,
+                                country = p.Supplier.Country,
+                                postalCode = p.Supplier.PostalCode,
+                                region = p.Supplier.Region,
+                                phone = p.Supplier.Phone,
+                                fax = p.Supplier.Fax,
+                                homePage = p.Supplier.HomePage
+                            },
+                            unitPrice = p.UnitPrice,
+                            unitsInStock = p.UnitsInStock,
+                            reorderLevel = p.ReorderLevel,
+                            unitsOnOrder = p.UnitsOnOrder,
+                            discontinued = p.Discontinued,
+                        })
+                        .ToArray();
+                    
+                    foreach (ProductCosmos product in products)
+                    {
+                        try
+                        {
+                            ItemResponse<ProductCosmos> productResponse =
+                                await container.ReadItemAsync<ProductCosmos>(id: product.id, new PartitionKey(product.productId));
+                            WriteLine($"Item with Id: {productResponse.Resource.id} exists. Query consumed {productResponse.RequestCharge} RUs.");
+                            totalCharge += productResponse.RequestCharge;
+                        }
+                        catch (CosmosException ex) when (ex.StatusCode == HttpStatusCode.NotFound)
+                        {
+                            ItemResponse<ProductCosmos> productResponse =
+                                await container.CreateItemAsync(product);
+                            
+                            WriteLine("Created item with id: {0}. Insert consumed {1} RUs.",
+                                productResponse.Resource.id, productResponse.RequestCharge);
+                            totalCharge += productResponse.RequestCharge;
+                        }
+                        catch (Exception ex)
+                        {
+                            WriteLine($"Error {ex.GetType()} says {ex.Message}");
+                        }
+                    }
+                }
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            WriteLine($"Error: {ex.Message}");
+            WriteLine("Hint: Make sure the Azure Cosmos Emulator is running.");
+        }
+        catch (Exception ex)
+        {
+            WriteLine($"Error {ex.GetType()} says {ex.Message}");
+        }
+
+        WriteLine("Total requests charge: {0:N2} RUs", totalCharge);
     }
 }
