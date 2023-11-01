@@ -1,3 +1,7 @@
 ﻿// await CreateCosmosResources();
 
-await CreateProductItems();
+// await CreateProductItems();
+
+await ListProductItems();
+
+// await DeleteProductItems();

@@ -31,7 +31,7 @@ partial class Program
                 {
                     IndexingMode = IndexingMode.Consistent,
                     Automatic = true,
-                    IncludedPaths = { new IncludedPath { Path = "/"} },
+                    IncludedPaths = { new IncludedPath { Path = "/" } },
                 };
 
                 ContainerProperties containerProperties = new("Products", partitionKeyPath: "/productId")
@@ -123,7 +123,7 @@ partial class Program
                             discontinued = p.Discontinued,
                         })
                         .ToArray();
-                    
+
                     foreach (ProductCosmos product in products)
                     {
                         try
@@ -137,7 +137,7 @@ partial class Program
                         {
                             ItemResponse<ProductCosmos> productResponse =
                                 await container.CreateItemAsync(product);
-                            
+
                             WriteLine("Created item with id: {0}. Insert consumed {1} RUs.",
                                 productResponse.Resource.id, productResponse.RequestCharge);
                             totalCharge += productResponse.RequestCharge;
@@ -158,6 +158,111 @@ partial class Program
         catch (Exception ex)
         {
             WriteLine($"Error {ex.GetType()} says {ex.Message}");
+        }
+
+        WriteLine("Total requests charge: {0:N2} RUs", totalCharge);
+    }
+
+    static async Task ListProductItems(string sqlText = "SELECT * FROM c")
+    {
+        SectionTitle("List Product Items");
+
+        try
+        {
+            using (CosmosClient client = new(accountEndpoint: endpointUri, authKeyOrResourceToken: primaryKey))
+            {
+                Container container = client.GetContainer(databaseId: "Northwind", containerId: "Products");
+
+                WriteLine($"Running query: {sqlText}");
+
+                QueryDefinition query = new(sqlText);
+
+                using FeedIterator<ProductCosmos> resultIterator =
+                    container.GetItemQueryIterator<ProductCosmos>(query);
+                if (!resultIterator.HasMoreResults)
+                {
+                    WriteLine("No results found.");
+                }
+                while (resultIterator.HasMoreResults)
+                {
+                    FeedResponse<ProductCosmos> products =
+                        await resultIterator.ReadNextAsync();
+
+                    WriteLine("Status code: {0}, Request charge: {1} RUs",
+                        products.StatusCode, products.RequestCharge);
+
+                    WriteLine("{0} products found.", products.Count);
+
+                    foreach (ProductCosmos product in products)
+                    {
+                        WriteLine("id: {0}, productName: {1}, unitPrice: {2}",
+                            product.id, product.productName, product.unitPrice);
+                    }
+                }
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            WriteLine("Error: {0}", arg0: ex.Message);
+            WriteLine("Hint: Make sure the Azure Cosmos Emulator is running.");
+        }
+        catch (Exception ex)
+        {
+            WriteLine("Error: {0} says {1}",
+                arg0: ex.GetType(), arg1: ex.Message);
+        }
+    }
+
+    static async Task DeleteProductItems()
+    {
+        SectionTitle("Delete Product Items");
+
+        double totalCharge = 0.0;
+
+        try
+        {
+            using CosmosClient client = new(accountEndpoint: endpointUri, authKeyOrResourceToken: primaryKey);
+            Container container = client.GetContainer(databaseId: "Northwind", containerId: "Products");
+
+            string sqlText = "SELECT * FROM c";
+            WriteLine($"Running query: {sqlText}");
+
+            QueryDefinition query = new(sqlText);
+
+            using FeedIterator<ProductCosmos> resultIterator =
+                container.GetItemQueryIterator<ProductCosmos>(query);
+
+            while (resultIterator.HasMoreResults)
+            {
+                FeedResponse<ProductCosmos> products =
+                    await resultIterator.ReadNextAsync();
+
+                foreach (ProductCosmos product in products)
+                {
+                    WriteLine("Delete id: {0}, productName: {1}",
+                        product.id, product.productName);
+
+                    ItemResponse<ProductCosmos> response =
+                        await container.DeleteItemAsync<ProductCosmos>(
+                            id: product.id, partitionKey: new PartitionKey(product.id));
+
+                    WriteLine("Status code: {0}, Request charge: {1} RUs.",
+                        response.StatusCode, response.RequestCharge);
+
+                    totalCharge += response.RequestCharge;
+                }
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            WriteLine("Error: {0}", arg0: ex.Message);
+            WriteLine("Hint: Make sure the Azure Cosmos Emulator is running.");
+        }
+        catch (Exception ex)
+        {
+            WriteLine("Error: {0} says {1}",
+            arg0: ex.GetType(),
+            arg1: ex.Message);
         }
 
         WriteLine("Total requests charge: {0:N2} RUs", totalCharge);
