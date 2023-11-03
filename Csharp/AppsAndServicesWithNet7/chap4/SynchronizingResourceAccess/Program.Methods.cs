@@ -11,6 +11,7 @@ partial class Program
                 {
                     Thread.Sleep(Random.Shared.Next(2000));
                     SharedObjects.Message += "A";
+                    Interlocked.Increment(ref SharedObjects.Counter);
                     Write(".");
                 }
             }
@@ -35,6 +36,7 @@ partial class Program
                 {
                     Thread.Sleep(Random.Shared.Next(2000));
                     SharedObjects.Message += "B";
+                    Interlocked.Increment(ref SharedObjects.Counter);
                     Write(".");
                 }
             }

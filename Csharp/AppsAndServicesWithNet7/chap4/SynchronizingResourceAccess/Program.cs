@@ -9,4 +9,5 @@ Task.WaitAll(new Task[] { a, b });
 watch.Stop();
 WriteLine();
 WriteLine("Results: {0}", SharedObjects.Message);
+WriteLine($"{SharedObjects.Counter} string modifications.");
 WriteLine("Time elapsed: {0:N0}ms.", watch.ElapsedMilliseconds);
