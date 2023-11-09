@@ -41,8 +41,11 @@ foreach (Type type in types)
 
     foreach (MemberInfo member in members)
     {
-        WriteLine("\t{0}: {1} ({2})",
-            member.MemberType, member.Name, member.DeclaringType?.Name);
+        ObsoleteAttribute? obsolete = member.GetCustomAttribute<ObsoleteAttribute>();
+
+        WriteLine("\t{0}: {1} ({2}) {3}",
+            member.MemberType, member.Name, member.DeclaringType?.Name,
+            obsolete is null ? "" : $"Obsolete! {obsolete.Message}");
         
         IOrderedEnumerable<CoderAttribute> coders =
             member.GetCustomAttributes<CoderAttribute>()
