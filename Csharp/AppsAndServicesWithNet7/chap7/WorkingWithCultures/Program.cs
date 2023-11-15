@@ -1,4 +1,18 @@
-﻿OutputEncoding = System.Text.Encoding.Unicode;
+﻿using Microsoft.Extensions.Hosting; // IHost, Host
+using Microsoft.Extensions.DependencyInjection; // AddLocalization, AddTransient<T>
+
+using IHost host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices(services =>
+    {
+        services.AddLocalization(options =>
+        {
+            options.ResourcesPath = "Resources";
+        });
+        services.AddTransient<PacktResources>();
+    })
+    .Build();
+
+OutputEncoding = System.Text.Encoding.Unicode;
 
 OutputCultures("Current culture");
 
@@ -46,14 +60,16 @@ CultureInfo.CurrentUICulture = ci;
 
 OutputCultures("After changing the current culture");
 
-Write("Enter your name: ");
+PacktResources resources = host.Services.GetRequiredService<PacktResources>();
+
+Write(resources.GetEnterYourNamePrompt());
 string? name = ReadLine();
 if (string.IsNullOrWhiteSpace(name))
 {
     name = "Bob";
 }
 
-Write("Enter your date of birth: ");
+Write(resources.GetEnterYourDobPrompt());
 string? dobText = ReadLine();
 if (string.IsNullOrWhiteSpace(dobText))
 {
@@ -66,7 +82,7 @@ if (string.IsNullOrWhiteSpace(dobText))
         };
 }
 
-Write("Enter your salary: ");
+Write(resources.GetEnterYourSalaryPrompt());
 string? salaryText = ReadLine();
 if (string.IsNullOrWhiteSpace(salaryText))
 {
@@ -77,6 +93,4 @@ DateTime dob = DateTime.Parse(dobText);
 int minutes = (int)DateTime.Today.Subtract(dob).TotalMinutes;
 decimal salary = decimal.Parse(salaryText);
 
-WriteLine(
-    "{0} was born on a {1:dddd}. {0} is {2:N0} minutes old. {0} earns {3:C}.",
-    name, dob, minutes, salary);
+WriteLine(resources.GetPersonDetails(name, dob, minutes, salary));
