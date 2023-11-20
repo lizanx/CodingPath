@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptographyLib", "Cryptogr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionApp", "EncryptionApp\EncryptionApp.csproj", "{165259F3-8090-42DA-AAB0-B05B9551165C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashingApp", "HashingApp\HashingApp.csproj", "{C46C39E2-DD44-4E32-9968-EAA80BB88AF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{165259F3-8090-42DA-AAB0-B05B9551165C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{165259F3-8090-42DA-AAB0-B05B9551165C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{165259F3-8090-42DA-AAB0-B05B9551165C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C46C39E2-DD44-4E32-9968-EAA80BB88AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C46C39E2-DD44-4E32-9968-EAA80BB88AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C46C39E2-DD44-4E32-9968-EAA80BB88AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C46C39E2-DD44-4E32-9968-EAA80BB88AF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

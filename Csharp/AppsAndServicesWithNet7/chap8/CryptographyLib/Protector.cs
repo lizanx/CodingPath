@@ -16,6 +16,52 @@ public static class Protector
     // generate a Key and IV on the target machine.
     private static readonly int iterations = 500_000;
 
+    private static Dictionary<string, User> Users = new();
+
+    public static User Register(string username, string password)
+    {
+        RandomNumberGenerator rng = RandomNumberGenerator.Create();
+        byte[] saltBytes = new byte[16];
+        rng.GetBytes(saltBytes);
+        string saltText = ToBase64String(saltBytes);
+
+        string saltedHashedPassword = SaltAndHashPassword(password, saltText);
+
+        User user = new(username, saltText, saltedHashedPassword);
+
+        Users.Add(user.Name, user);
+
+        return user;
+    }
+
+    public static bool CheckPassword(string username, string password)
+    {
+        if (!Users.ContainsKey(username))
+        {
+            return false;
+        }
+
+        User u = Users[username];
+
+        return CheckPassword(password, u.Salt, u.SaltedHashedPassword);
+    }
+
+    public static bool CheckPassword(string password, string salt, string hashedPassword)
+    {
+        return hashedPassword == SaltAndHashPassword(password, salt);
+    }
+
+    public static string SaltAndHashPassword(string password, string salt)
+    {
+        using SHA256 sha = SHA256.Create();
+        string saltedPassword = password + salt;
+        return ToBase64String(
+            sha.ComputeHash(
+                Encoding.Unicode.GetBytes(saltedPassword)
+            )
+        );
+    }
+
     public static string Encrypt(string plainText, string password)
     {
         byte[] encryptedBytes;
