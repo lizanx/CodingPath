@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics; // Stopwach
 using System.Security.Cryptography; // Aes, Rfc2898DeriveBytes, etc.
 using System.Text; // Encoding
+using System.Security.Principal;
 
 using static System.Convert; // ToBase64String, FromBase64String
 
@@ -19,6 +20,17 @@ public static class Protector
     private static Dictionary<string, User> Users = new();
 
     public static string? PublicKey;
+
+    public static byte[] GetRandomKeyOrIV(int size)
+    {
+        RandomNumberGenerator r = RandomNumberGenerator.Create();
+
+        byte[] data = new byte[size];
+
+        r.GetBytes(data);
+
+        return data;
+    }
 
     public static string GenerateSignature(string data)
     {
@@ -57,7 +69,7 @@ public static class Protector
         );
     }
 
-    public static User Register(string username, string password)
+    public static User Register(string username, string password, string[]? roles = null)
     {
         RandomNumberGenerator rng = RandomNumberGenerator.Create();
         byte[] saltBytes = new byte[16];
@@ -66,11 +78,22 @@ public static class Protector
 
         string saltedHashedPassword = SaltAndHashPassword(password, saltText);
 
-        User user = new(username, saltText, saltedHashedPassword);
+        User user = new(username, saltText, saltedHashedPassword, roles);
 
         Users.Add(user.Name, user);
 
         return user;
+    }
+
+    public static void LogIn(string username, string password)
+    {
+        if (CheckPassword(username, password))
+        {
+            GenericIdentity gi = new(name: username, type: "PacktAuth");
+            GenericPrincipal gp = new(identity: gi, roles: Users[username].roles);
+
+            Thread.CurrentPrincipal = gp;
+        }
     }
 
     public static bool CheckPassword(string username, string password)
