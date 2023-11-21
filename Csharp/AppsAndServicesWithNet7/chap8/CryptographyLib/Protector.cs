@@ -18,6 +18,45 @@ public static class Protector
 
     private static Dictionary<string, User> Users = new();
 
+    public static string? PublicKey;
+
+    public static string GenerateSignature(string data)
+    {
+        byte[] dataBytes = Encoding.Unicode.GetBytes(data);
+        SHA256 sha = SHA256.Create();
+
+        byte[] hashedData = sha.ComputeHash(dataBytes);
+        RSA rsa = RSA.Create();
+
+        PublicKey = rsa.ToXmlString(includePrivateParameters: false);
+
+        return ToBase64String(
+            rsa.SignHash(hashedData, HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1)
+        );
+    }
+
+    public static bool ValidateSignature(string data, string signature)
+    {
+        if (PublicKey is null)
+        {
+            return false;
+        }
+
+        byte[] dataBytes = Encoding.Unicode.GetBytes(data);
+        SHA256 sha = SHA256.Create();
+
+        byte[] hashedData = sha.ComputeHash(dataBytes);
+        byte[] signatureBytes = FromBase64String(signature);
+
+        RSA rsa = RSA.Create();
+        rsa.FromXmlString(PublicKey);
+
+        return rsa.VerifyHash(
+            hashedData, signatureBytes,
+            HashAlgorithmName.SHA256, RSASignaturePadding.Pkcs1
+        );
+    }
+
     public static User Register(string username, string password)
     {
         RandomNumberGenerator rng = RandomNumberGenerator.Create();
