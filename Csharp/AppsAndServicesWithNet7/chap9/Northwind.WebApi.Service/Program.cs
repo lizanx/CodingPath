@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Http.HttpResults; // Results
 using Microsoft.AspNetCore.Mvc; // [FromServices]
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpLogging; // HttpLoggingFields
 using Packt.Shared; // AddNorthwindContext
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +12,22 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddNorthwindContext();
 
+builder.Services.AddHttpLogging(options =>
+{
+    options.RequestHeaders.Add("Origin");
+    options.LoggingFields = HttpLoggingFields.All;
+});
+
+string northwindMvc = "Northwind.Mvc.Policy";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: northwindMvc,
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:5093");
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +38,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseHttpLogging();
+// without a named policy the middleware is added but not active
+// app.UseCors(policyName: northwindMvc);
+app.UseCors();
 
 app.MapGet("/", () => "Hello World!")
   .ExcludeFromDescription();
@@ -68,14 +88,17 @@ app.MapGet("api/products/{id:int}",
   .WithName("GetProductById")
   .WithOpenApi()
   .Produces<Product>(StatusCodes.Status200OK)
-  .Produces(StatusCodes.Status404NotFound);
+  .Produces(StatusCodes.Status404NotFound)
+  .RequireCors(policyName: northwindMvc);
+
 app.MapGet("api/products/{name}", (
   [FromServices] NorthwindContext db,
   [FromRoute] string name) =>
     db.Products.Where(p => p.ProductName.Contains(name)))
   .WithName("GetProductsByName")
   .WithOpenApi()
-  .Produces<Product[]>(StatusCodes.Status200OK);
+  .Produces<Product[]>(StatusCodes.Status200OK)
+  .RequireCors(policyName: northwindMvc);
 
 app.MapPost("api/products", async (
   [FromBody] Product product,

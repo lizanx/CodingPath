@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.WebApi.Service", "Northwind.WebApi.Service\Northwind.WebApi.Service.csproj", "{BFACCE1A-6DAF-4203-BF45-EF8EC8BCBEBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.WebApi.Client.Mvc", "Northwind.WebApi.Client.Mvc\Northwind.WebApi.Client.Mvc.csproj", "{10934BD6-7CC2-4D75-B217-EFA1D47EFA2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BFACCE1A-6DAF-4203-BF45-EF8EC8BCBEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFACCE1A-6DAF-4203-BF45-EF8EC8BCBEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFACCE1A-6DAF-4203-BF45-EF8EC8BCBEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10934BD6-7CC2-4D75-B217-EFA1D47EFA2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10934BD6-7CC2-4D75-B217-EFA1D47EFA2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10934BD6-7CC2-4D75-B217-EFA1D47EFA2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10934BD6-7CC2-4D75-B217-EFA1D47EFA2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
