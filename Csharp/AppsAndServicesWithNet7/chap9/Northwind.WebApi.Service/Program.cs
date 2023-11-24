@@ -1,7 +1,12 @@
 using Microsoft.AspNetCore.Http.HttpResults; // Results
 using Microsoft.AspNetCore.Mvc; // [FromServices]
 using Microsoft.AspNetCore.HttpLogging; // HttpLoggingFields
+using Microsoft.AspNetCore.RateLimiting; // RateLimiterOptions
+using System.Threading.RateLimiting; // FixedWindowRateLimiterOptions
+using AspNetCoreRateLimit; // ClientRateLimitOptions, ClientRateLimitPolicies
 using Packt.Shared; // AddNorthwindContext
+
+bool useMicrosoftRateLimiting = false;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +21,10 @@ builder.Services.AddHttpLogging(options =>
 {
     options.RequestHeaders.Add("Origin");
     options.LoggingFields = HttpLoggingFields.All;
+
+	// Add rate limiting headers so they won't be redacted.
+	options.RequestHeaders.Add("X-Client-Id");
+	options.RequestHeaders.Add("Retry-After");
 });
 
 string northwindMvc = "Northwind.Mvc.Policy";
@@ -28,7 +37,53 @@ builder.Services.AddCors(options =>
         });
 });
 
+// Configure AspNetCoreRateLimit rate limiting middleware.
+if (!useMicrosoftRateLimiting)
+{
+	// Add services to store rate limit counters and rules.
+	builder.Services.AddMemoryCache();
+	builder.Services.AddInMemoryRateLimiting();
+
+	// Load default rate limit options from appsettings.json
+	builder.Services.Configure<ClientRateLimitOptions>(
+		builder.Configuration.GetSection("ClientRateLimiting")
+	);
+
+	// Load client-specific policies from appsettings.json
+	builder.Services.Configure<ClientRateLimitPolicies>(
+		builder.Configuration.GetSection("ClientRateLimitPolicies")
+	);
+
+	// Register the configuration.
+	builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
+}
+else
+{
+	builder.Services.AddRateLimiter(rateLimiterOptions =>
+	{
+		rateLimiterOptions.AddFixedWindowLimiter(
+			policyName: "fixed5per10seconds",
+			options =>
+			{
+				options.PermitLimit = 5;
+				options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+				options.QueueLimit = 2;
+				options.Window = TimeSpan.FromSeconds(10);
+			}
+		);
+	});
+}
+
 var app = builder.Build();
+
+if (!useMicrosoftRateLimiting)
+{
+	using IServiceScope serviceScope = app.Services.CreateScope();
+	IClientPolicyStore clientPolicyStore = serviceScope.ServiceProvider
+		.GetRequiredService<IClientPolicyStore>();
+
+	await clientPolicyStore.SeedAsync();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -42,6 +97,11 @@ app.UseHttpLogging();
 // without a named policy the middleware is added but not active
 // app.UseCors(policyName: northwindMvc);
 app.UseCors();
+
+if (!useMicrosoftRateLimiting)
+{
+	app.UseClientRateLimiting();
+}
 
 app.MapGet("/", () => "Hello World!")
   .ExcludeFromDescription();
@@ -150,5 +210,26 @@ app.MapDelete("api/products/{id:int}", async (
 }).WithOpenApi()
   .Produces(StatusCodes.Status404NotFound)
   .Produces(StatusCodes.Status204NoContent);
+
+if (useMicrosoftRateLimiting)
+{
+	// RateLimiterOptions rateLimiterOptions = new();
+
+	// rateLimiterOptions.AddFixedWindowLimiter(
+	// 	policyName: "fixed5per10seconds",
+	// 	options =>
+	// 	{
+	// 		options.PermitLimit = 5;
+	// 		options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+	// 		options.QueueLimit = 2;
+	// 		options.Window = TimeSpan.FromSeconds(10);
+	// 	}
+	// );
+
+	// app.UseRateLimiter(rateLimiterOptions);
+
+	// The above config has been moved to service injection phase.
+	app.UseRateLimiter();
+}
 
 app.Run();
