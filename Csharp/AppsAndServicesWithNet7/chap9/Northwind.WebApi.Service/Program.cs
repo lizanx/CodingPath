@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc; // [FromServices]
 using Microsoft.AspNetCore.HttpLogging; // HttpLoggingFields
 using Microsoft.AspNetCore.RateLimiting; // RateLimiterOptions
 using System.Threading.RateLimiting; // FixedWindowRateLimiterOptions
+using System.Security.Claims; // ClaimsPrincipal
 using AspNetCoreRateLimit; // ClientRateLimitOptions, ClientRateLimitPolicies
 using Packt.Shared; // AddNorthwindContext
 
@@ -74,7 +75,13 @@ else
 	});
 }
 
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication(defaultScheme: "Bearer")
+	.AddJwtBearer();
+
 var app = builder.Build();
+
+app.UseAuthorization();
 
 if (!useMicrosoftRateLimiting)
 {
@@ -105,6 +112,10 @@ if (!useMicrosoftRateLimiting)
 
 app.MapGet("/", () => "Hello World!")
   .ExcludeFromDescription();
+
+app.MapGet("/secret", (ClaimsPrincipal user) =>
+	$"Welcome, {user.Identity?.Name ?? "secure user"}. The secret ingredient is love.")
+	.RequireAuthorization();
 
 int pageSize = 10;
 
