@@ -45,4 +45,34 @@ public class ProductsController : ODataController
 
         return Ok(product);
     }
+
+    public IActionResult Post([FromBody]Product product)
+    {
+        db.Products.Add(product);
+        db.SaveChanges();
+        return Created(product);
+    }
+
+    public IActionResult Put([FromBody]Product product)
+    {
+        if (db.Products.FirstOrDefault(p => p.ProductId == product.ProductId)
+            is Product)
+        {
+            db.Products.Update(product);
+            db.SaveChanges();
+            return Updated(product);
+        }
+        return NotFound();
+    }
+
+    public IActionResult Delete([FromRoute]int id)
+    {
+        if (db.Products.FirstOrDefault(p => p.ProductId == id) is Product product)
+        {
+            db.Products.Remove(product);
+            db.SaveChanges();
+            return NoContent();
+        }
+        return NotFound();
+    }
 }

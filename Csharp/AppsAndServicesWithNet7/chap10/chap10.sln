@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.OData.Service", "Northwind.OData.Service\Northwind.OData.Service.csproj", "{F5460E05-8948-49B9-98E6-7AE577620733}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.OData.Client.Mvc", "Northwind.OData.Client.Mvc\Northwind.OData.Client.Mvc.csproj", "{0CE97546-6037-407F-A5E9-8ED217329707}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,5 +24,9 @@ Global
 		{F5460E05-8948-49B9-98E6-7AE577620733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5460E05-8948-49B9-98E6-7AE577620733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5460E05-8948-49B9-98E6-7AE577620733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CE97546-6037-407F-A5E9-8ED217329707}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE97546-6037-407F-A5E9-8ED217329707}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE97546-6037-407F-A5E9-8ED217329707}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE97546-6037-407F-A5E9-8ED217329707}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
