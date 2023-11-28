@@ -1,11 +1,17 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
 option csharp_namespace = "Northwind.Grpc.Service";
 
 package shipper;
 
 service Shipper {
-    rpc GetShipper (ShipperRequest) returns (ShipperReply);
+    rpc GetShipper (ShipperRequest) returns (ShipperReply) {
+        option (google.api.http) = {
+          get: "/v1/shipper/{shipperId}"
+        };
+    }
 }
 
 message ShipperRequest {

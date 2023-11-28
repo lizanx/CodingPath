@@ -19,9 +19,9 @@ public class ShipperService : Shipper.ShipperBase
     public override async Task<ShipperReply?> GetShipper(
         ShipperRequest request, ServerCallContext context)
     {
-        _logger.LogCritical("This request has deadline of {0:T}, now is {1:T}.",
-            context.Deadline, DateTime.UtcNow);
-        await Task.Delay(TimeSpan.FromSeconds(5));
+        // _logger.LogCritical("This request has deadline of {0:T}, now is {1:T}.",
+        //     context.Deadline, DateTime.UtcNow);
+        // await Task.Delay(TimeSpan.FromSeconds(5));
 
         ShipperEntity? shipper = await db.Shippers.FindAsync(request.ShipperId);
 
