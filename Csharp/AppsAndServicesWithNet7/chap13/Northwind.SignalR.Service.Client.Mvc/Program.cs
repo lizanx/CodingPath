@@ -24,6 +24,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapHub<ChatHub>("/chat");
+app.MapHub<StockPriceHub>("/stockprice");
 
 app.MapControllerRoute(
     name: "default",
