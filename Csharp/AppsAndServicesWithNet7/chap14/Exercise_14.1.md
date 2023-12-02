@@ -1,0 +1,5 @@
+1. The in-process hosting model requires your Azure Function to be loaded alongside other code and to target a predefined version of an LTS release like .NET Core 3.1 or .NET 6. The isolated hosting model allows your Azure Function to load in its own process and it can use any version of .NET that you choose.
+2. `[QueueTrigger("QueueName")]`
+3. Decorate the Run method parameter that represents the queue with the [Queue] at- tribute and specify the queue name.
+4. In June, for every Saturday, for every 6 hours starting from 00:00:00.
+5. To register a dependency service for use in a function, create a class that inherits from the `FunctionsStartup` class and override its `Configure` method. Add the `[FunctionsStartup]` assembly attribute to specify the class name registered for startup. Add services to the `IFunctionsHostBuilder` instance passed to the method.
