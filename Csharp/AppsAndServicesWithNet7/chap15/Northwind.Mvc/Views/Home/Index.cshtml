@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Orders";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Company Name</th>
+                <th>Country</th>
+                <th>Item Count</th>
+                <th>Order Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order order in Model)
+            {
+                <tr>
+                    <td>@order.OrderId</td>
+                    <td>@order.OrderDate?.ToString("D")</td>
+                    <td>@order.Customer?.CompanyName</td>
+                    <td>@order.Customer?.Country</td>
+                    <td>@order.OrderDetails.Count()</td>
+                    <td>@order.OrderDetails.Sum(detail => detail.Quantity * detail.
+                                 UnitPrice).ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
