@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Order>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model IEnumerable<Order>
+@inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = "Orders";
+    ViewData["Title"] = Localizer["Orders"];
 }
 
 <div class="text-center">
@@ -9,12 +11,12 @@
     <table class="table table-bordered table-striped">
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>Order Date</th>
-                <th>Company Name</th>
-                <th>Country</th>
-                <th>Item Count</th>
-                <th>Order Total</th>
+                <th>@Localizer["Order ID"]</th>
+                <th>@Localizer["Order Date"]</th>
+                <th>@Localizer["Company Name"]</th>
+                <th>@Localizer["Country</"]th>
+                <th>@Localizer["Item Count"]</th>
+                <th>@Localizer["Order Total"]</th>
             </tr>
         </thead>
         <tbody>

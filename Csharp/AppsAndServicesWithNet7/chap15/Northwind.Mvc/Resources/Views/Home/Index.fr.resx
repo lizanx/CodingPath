@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="Company Name" xml:space="preserve">
+    <value>Nom de l'entreprise</value>
+    </data>
+    <data name="Country" xml:space="preserve">
+    <value>Pays</value>
+    </data>
+    <data name="Item Count" xml:space="preserve">
+    <value>Nombre d'éléments</value>
+    </data>
+    <data name="Order Date" xml:space="preserve">
+    <value>Date de commande</value>
+    </data>
+    <data name="Order ID" xml:space="preserve">
+    <value>Numéro de commande</value>
+    </data>
+    <data name="Order Total" xml:space="preserve">
+    <value>Total de la commande</value>
+    </data>
+    <data name="Orders" xml:space="preserve">
+    <value>Commandes (Neutral French)</value>
+    </data>
+</root>

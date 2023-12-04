@@ -13,11 +13,22 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddLocalization(options =>
+    options.ResourcesPath = "Resources");
+builder.Services.AddControllersWithViews()
+    .AddViewLocalization();
 
 builder.Services.AddNorthwindContext();
 
 var app = builder.Build();
+
+string[] cultures = new[] { "en-US", "en-GB", "fr", "fr-FR" };
+RequestLocalizationOptions localizationOptions = new();
+localizationOptions.SetDefaultCulture(cultures[0])
+    .AddSupportedCultures(cultures) // globalization of data formats
+    .AddSupportedUICultures(cultures); // Localization of UI
+app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
