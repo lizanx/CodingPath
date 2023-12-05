@@ -1,0 +1,20 @@
+@model Shipper
+@{
+    ViewData["Title"] = "Shippers";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div>
+    <div class="mb-3">
+        <label for="shipperIdInput" class="form-label">Shipper Id</label>
+        <input type="number" class="form-control" id="shipperIdInput" value="@Model.ShipperId">
+    </div>
+    <div class="mb-3">
+        <label for="companyNameInput" class="form-label">Company Name</label>
+        <input class="form-control" id="companyNameInput" value="@Model.CompanyName">
+    </div>
+    <div class="mb-3">
+        <label for="phoneInput" class="form-label">Phone</label>
+        <input class="form-control" id="phoneInput" value="@Model.Phone">
+    </div>
+</div>

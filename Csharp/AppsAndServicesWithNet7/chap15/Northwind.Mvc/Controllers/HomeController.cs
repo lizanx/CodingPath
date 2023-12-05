@@ -18,16 +18,32 @@ public class HomeController : Controller
         this.db = db;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string? id = null, string? country = null)
     {
         IEnumerable<Order> model = db.Orders
             .Include(order => order.Customer)
-            .Include(order => order.OrderDetails)
-            .OrderByDescending(order => order.OrderDetails
-                .Sum(detail => detail.Quantity * detail.UnitPrice))
-            .AsEnumerable();
+            .Include(order => order.OrderDetails);
         
+        if (id is not null)
+        {
+            model = model.Where(order => order.Customer?.CustomerId  == id);
+        }
+        else if (country is not null)
+        {
+            model = model.Where(order => order.Customer?.Country == country);
+        }
+        else
+        {
+            model = model.OrderByDescending(order => order.OrderDetails
+                        .Sum(detail => detail.Quantity * detail.UnitPrice))
+                    .AsEnumerable();
+        }
         return View(model);
+    }
+
+    public IActionResult Shipper(Shipper shipper)
+    {
+        return View(shipper);
     }
 
     public IActionResult Privacy()
