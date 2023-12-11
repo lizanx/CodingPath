@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\Northwind.BlazorLibraries.Client.csproj" />
     <ProjectReference Include="..\Shared\Northwind.BlazorLibraries.Shared.csproj" />
+    <ProjectReference Include="../../../chap2/Northwind.Common.DataContext.SqlServer/Northwind.Common.DataContext.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

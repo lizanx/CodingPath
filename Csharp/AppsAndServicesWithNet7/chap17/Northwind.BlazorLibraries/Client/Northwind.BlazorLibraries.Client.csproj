@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Northwind.BlazorLibraries.Shared.csproj" />
+    <ProjectReference Include="../../../chap2/Northwind.Common.EntityModels.SqlServer/Northwind.Common.EntityModels.SqlServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
