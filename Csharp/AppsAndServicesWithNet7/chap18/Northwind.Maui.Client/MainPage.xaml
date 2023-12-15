@@ -17,12 +17,14 @@
 
             <Label
                 Text="Hello, World!"
+                TextColor="{DynamicResource TextColor}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Label
                 Text="Welcome to .NET Multi-platform App UI"
+                TextColor="{DynamicResource TextColor}"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
@@ -31,6 +33,8 @@
             <Button
                 x:Name="CounterBtn"
                 Text="Click me"
+                TextColor="{DynamicResource TextColor}"
+                BackgroundColor="{DynamicResource BackgroundColor}"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />

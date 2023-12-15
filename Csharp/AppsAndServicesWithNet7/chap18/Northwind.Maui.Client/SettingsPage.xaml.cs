@@ -1,9 +1,77 @@
+using System.Reflection;
+
 namespace Northwind.Maui.Client;
 
 public partial class SettingsPage : ContentPage
 {
+    private const string textColorKey = "TextColor";
+    private const string backgroundColorKey = "BackgroundColor";
+
 	public SettingsPage()
 	{
 		InitializeComponent();
 	}
+
+    private async void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        object color;
+        try
+        {
+            if (App.Current.Resources.TryGetValue(textColorKey, out color))
+            {
+                TextColorEntry.Text = GetNameFromColor(color as Color);
+            }
+            if (App.Current.Resources.TryGetValue(backgroundColorKey, out color))
+            {
+                BackgroundColorEntry.Text = GetNameFromColor(color as Color);
+            }
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert(title: "Exception",
+                message: ex.Message, cancel: "OK");
+        }
+    }
+
+    private string GetNameFromColor(Color color)
+    {
+        Type colorsType = typeof(Colors);
+
+        FieldInfo info = colorsType.GetFields().Where(
+            field => field.GetValue(field) == color)
+            .FirstOrDefault();
+        return info?.Name;
+    }
+
+    private void BackgroundColorEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (ApplyButton.IsEnabled)
+        {
+            ApplyButton.IsEnabled = true;
+        }
+    }
+
+    private async void ApplyButton_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            App.Current.Resources[textColorKey] =
+                Color.Parse(TextColorEntry.Text);
+            App.Current.Resources[backgroundColorKey] =
+                Color.Parse(BackgroundColorEntry.Text);
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert(title: "Exception",
+                message: ex.Message, cancel: "OK");
+        }
+    }
+
+    private void TextColorEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (!ApplyButton.IsEnabled)
+        {
+            ApplyButton.IsEnabled = true;
+        }
+    }
 }
