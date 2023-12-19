@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Northwind.Maui.Client.CustomersPage"
              Title="CustomersPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Spacing="15" Padding="20">
+        <HorizontalStackLayout Spacing="10">
+            <Label Text="Customers" FontSize="Title" />
+            <Button Text="Add" Clicked="Add_Clicked" HorizontalOptions="End" />
+        </HorizontalStackLayout>
+        <ListView ItemsSource="{Binding .}"
+                  VerticalOptions="Start"
+                  HorizontalOptions="Start"
+                  IsPullToRefreshEnabled="True"
+                  ItemTapped="Customer_Tapped"
+                  Refreshing="Customers_Refreshing" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding CompanyName}"
+                              Detail="{Binding Location}"
+                              TextColor="{DynamicResource PrimaryTextColor}"
+                              DetailColor="{DynamicResource PrimaryTextColor}">
+                        <TextCell.ContextActions>
+                            <MenuItem Clicked="Customer_Phoned" Text="Phone" />
+                            <MenuItem Clicked="Customer_Deleted" Text="Delete" IsDestructive="True" />
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
