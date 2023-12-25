@@ -18,11 +18,12 @@ All my coding-related readings and exercises.
 1. [Illustrated C# 5th Edition(C#图解教程)](https://book.douban.com/subject/34894447/) [Finished]
 2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [Finished]
 3. [ASP.NET Core in Action, 3rd Edition](https://www.goodreads.com/book/show/126988024) [Finished]
-4. [Apps and Services with .NET 7](https://www.goodreads.com/book/show/63336482-apps-and-services-with-net-7) [In Progress]
+4. [Apps and Services with .NET 7](https://www.goodreads.com/book/show/63336482-apps-and-services-with-net-7) [Finished]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
 2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [In Progress]
+3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [In Progress]
 
 ## Go
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
@@ -33,8 +34,8 @@ All my coding-related readings and exercises.
 1. [Programming In Lua 4th Edition](https://book.douban.com/subject/30262035/)
 
 ## OS
-1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [In Progress]
-2. [Linux C编程一站式学习](https://book.douban.com/subject/4141733/) [In Progress]
+1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [Finished]
+2. [Linux C编程一站式学习](https://book.douban.com/subject/4141733/) [Finished]
 
 ## Algorithm
 1. [Grokking Algorithms(算法图解)](https://book.douban.com/subject/26979890/) | [《算法图解》读书笔记与课后练习](https://book.douban.com/review/9372724/) [Finished]
