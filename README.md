@@ -6,7 +6,7 @@ All my coding-related readings and exercises.
 2. [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/) [Finished]
 3. [Automate The Boring Stuff With Python](https://book.douban.com/subject/26836700/) [Finished]
 4. [The Big Book of Small Python Projects](https://inventwithpython.com/bigbookpython/)
-5. [Python 工匠](https://book.douban.com/subject/35723705/) [In Progress]
+5. [Python 工匠](https://book.douban.com/subject/35723705/) [Finished]
 6. [Fluent Python 2nd Edition(流畅的Python)](https://book.douban.com/subject/34990079/)
 7. [Python Cookbook 3rd Edition](https://book.douban.com/subject/26381341/) | [Github Online CN Version](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
 8. [Effective Python 2nd Edition](https://book.douban.com/subject/35334595/)
@@ -23,7 +23,8 @@ All my coding-related readings and exercises.
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
 2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [In Progress]
-3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [In Progress]
+3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [Finished]
+4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/)
 
 ## Go
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
