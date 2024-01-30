@@ -37,6 +37,7 @@ All my coding-related readings and exercises.
 ## OS
 1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [Finished]
 2. [Linux C编程一站式学习](https://book.douban.com/subject/4141733/) [Finished]
+3. [Modern Operating Systems 4th Edition](https://book.douban.com/subject/25864553/) [In Progress]
 
 ## Algorithm
 1. [Grokking Algorithms(算法图解)](https://book.douban.com/subject/26979890/) | [《算法图解》读书笔记与课后练习](https://book.douban.com/review/9372724/) [Finished]
