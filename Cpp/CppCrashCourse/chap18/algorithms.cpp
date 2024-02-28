@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const vector<const string> languages{
+const vector<string> languages{
     "C++",
     "C",
     "C#",
@@ -112,4 +112,77 @@ TEST_CASE("find_first_of")
             });
     REQUIRE_FALSE(itr == languages.cend());
     REQUIRE(*itr == "C++");
+}
+
+TEST_CASE("adjacent_find")
+{
+    const auto itr = adjacent_find(languages.cbegin(), languages.cend(),
+            [](const string& s1, const string& s2){
+                return s1.size() > 1 && s2.size() > 1 && s1[1] == s2[1];
+            });
+    REQUIRE_FALSE(itr == languages.cend());
+    REQUIRE(*itr == languages[4]);
+}
+
+TEST_CASE("count count_if")
+{
+    const auto cLangCnt = count(languages.cbegin(), languages.cend(), "C");
+    REQUIRE(cLangCnt == 1);
+
+    const auto cStyleCnt = count_if(languages.cbegin(), languages.cend(),
+            [](const string& str){ return !str.empty() && str.front() == 'C'; });
+    REQUIRE(cStyleCnt == 3);
+}
+
+TEST_CASE("mismatch")
+{
+    const vector<string> cStyle = { "C++", "C", "Csharp" };
+
+    auto itr = mismatch(languages.cbegin(), languages.cend(),
+            cStyle.cbegin(), cStyle.cend());
+    REQUIRE_FALSE(itr.first == languages.cend());
+    REQUIRE_FALSE(itr.second == cStyle.cend());
+    REQUIRE(*itr.first == "C#");
+    REQUIRE(*itr.second == "Csharp");
+}
+
+TEST_CASE("equal")
+{
+    const vector<string> cStyle = { "c++", "c", "c#" };
+    const vector<string> langCopy{ languages };
+
+    REQUIRE_FALSE(equal(languages.cbegin(), languages.cend(), cStyle.cbegin(), cStyle.cend()));
+    REQUIRE(equal(languages.cbegin(), languages.cend(), langCopy.cbegin(), langCopy.cend()));
+    REQUIRE(equal(languages.cbegin(), languages.cbegin() + 3, cStyle.cbegin(), cStyle.cend(),
+            [](const string& s1, const string& s2){ return s1.size() == s2.size(); }));
+}
+
+TEST_CASE("is_permutation")
+{
+    const vector<string> languagesReordered{
+        "Go",
+        "Kotlin",
+        "Rust",
+        "Python",
+        "HTML",
+        "Javascript",
+        "C++",
+        "C",
+        "C#",
+    };
+    REQUIRE(is_permutation(languages.cbegin(), languages.cend(),
+            languagesReordered.cbegin(), languagesReordered.cend()));
+}
+
+TEST_CASE("search")
+{
+    const vector<string> searchLang = {
+        "Go",
+        "Kotlin",
+        "Rust",
+    };
+    const auto itr = search(languages.cbegin(), languages.cend(),
+            searchLang.cbegin(), searchLang.cend());
+    REQUIRE_FALSE(itr == languages.cend());
+    REQUIRE(*itr == "Go");
 }
