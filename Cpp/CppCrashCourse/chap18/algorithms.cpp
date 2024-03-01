@@ -1,6 +1,8 @@
 #include <algorithm>
 #include <string>
 #include <vector>
+#include <random>
+#include <iomanip>
 #define CATCH_CONFIG_MAIN
 #include "../catch.hpp"
 
@@ -336,4 +338,81 @@ TEST_CASE("remove remove_if")
         { return c >= 'A' && c <= 'Z'; });
     s.erase(itr, s.end());
     REQUIRE(s == "ice o eet ou.");
+}
+
+TEST_CASE("unique")
+{
+    string s{ "WowGood" };
+    auto itr = unique(s.begin(), s.end());
+    REQUIRE(s.size() == 7);
+    s.erase(itr, s.end());
+    REQUIRE(s == "WowGod");
+
+    s = "WowWonderful";
+    itr = unique(s.begin(), s.end(), [](const auto& c1, const auto& c2)
+        {
+            return tolower(c1) == tolower(c2);
+        });
+    s.erase(itr, s.end());
+    REQUIRE(s == "Wowonderful");
+}
+
+TEST_CASE("reverse")
+{
+    string s{ "diaper" };
+    reverse(s.begin(), s.end());
+    REQUIRE(s == "repaid");
+}
+
+TEST_CASE("shuffle")
+{
+    map<string, size_t> samples{};
+    string population{ "ABC" };
+    mt19937 urbGenerator{};
+
+    for (size_t i{}; i < 1'000'000; i++)
+    {
+        auto result{ population };
+        shuffle(result.begin(), result.end(), urbGenerator);
+        samples[result]++;
+    }
+
+    REQUIRE(samples.size() == 6);
+    REQUIRE(samples.contains("ABC"));
+    REQUIRE(samples.contains("ACB"));
+    REQUIRE(samples.contains("BAC"));
+    REQUIRE(samples.contains("BCA"));
+    REQUIRE(samples.contains("CAB"));
+    REQUIRE(samples.contains("CBA"));
+
+    for (const auto&[key, val] : samples)
+    {
+        auto percentage = val * 100 / 1'000'000;
+        REQUIRE(percentage == 16);
+    }
+}
+
+TEST_CASE("sort")
+{
+    string s{ "hello" };
+    sort(s.begin(), s.end());
+    REQUIRE(s == "ehllo");
+}
+
+TEST_CASE("stable_sort")
+{
+    string s{ "HelloWorld" };
+    stable_sort(s.begin(), s.end(), [](const char& c1, const char& c2)
+        {
+            return isupper(c1) && islower(c2);
+        });
+    REQUIRE(s == "HWelloorld");
+}
+
+TEST_CASE("partial_sort")
+{
+    string s{ "hello" };
+    partial_sort(s.begin(), s.begin() + 2, s.end());
+    REQUIRE(s[0] == 'e');
+    REQUIRE(s[1] == 'h');
 }
