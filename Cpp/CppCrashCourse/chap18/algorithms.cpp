@@ -280,3 +280,60 @@ TEST_CASE("transform")
         "Hey, Maria!"
     });
 }
+
+TEST_CASE("replace replace_if")
+{
+    using namespace std::literals::string_literals;
+    vector<string> cLangs{ "C", "C++", "C#" };
+    replace(cLangs.begin(), cLangs.end(), "C#"s, "Csharp"s);
+    REQUIRE(cLangs == vector<string>{ "C", "C++", "Csharp" });
+    
+    const auto Ctoc = [](const string& s) {
+        if (!s.empty() && s[0] == 'C') return true;
+        return false;
+    };
+    replace_if(cLangs.begin(), cLangs.end(), Ctoc, "D"s);
+    REQUIRE(cLangs == vector<string>{ "D", "D", "D" });
+}
+
+TEST_CASE("fill fill_n")
+{
+    using namespace std::literals::string_literals;
+
+    vector<string> v1(3);
+    fill(v1.begin(), v1.end(), "Hi");
+    REQUIRE(v1 == vector<string>{ "Hi", "Hi", "Hi" });
+
+    vector<string> v2{};
+    fill_n(back_inserter(v2), 3, "ok");
+    REQUIRE(v2 == vector<string>{ "ok", "ok", "ok" });
+}
+
+TEST_CASE("generate generate_n")
+{
+    int i{};
+    const auto generator = [&i]() { return ++i; };
+
+    vector<int> v1(3);
+    generate(v1.begin(), v1.end(), generator);
+    REQUIRE(v1 == vector<int>{ 1, 2, 3 });
+
+    vector<int> v2{};
+    generate_n(back_inserter(v2), 3, generator);
+    REQUIRE(v2 == vector<int>{ 4, 5, 6 });
+}
+
+TEST_CASE("remove remove_if")
+{
+    string s{ "Nice To Meet You." };
+
+    auto itr = remove(s.begin(), s.end(), ' ');
+    s.erase(itr, s.end());
+    REQUIRE(s == "NiceToMeetYou.");
+
+    s = "Nice To Meet You.";
+    itr = remove_if(s.begin(), s.end(), [](unsigned char c)
+        { return c >= 'A' && c <= 'Z'; });
+    s.erase(itr, s.end());
+    REQUIRE(s == "ice o eet ou.");
+}
