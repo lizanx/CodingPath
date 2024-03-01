@@ -416,3 +416,49 @@ TEST_CASE("partial_sort")
     REQUIRE(s[0] == 'e');
     REQUIRE(s[1] == 'h');
 }
+
+TEST_CASE("is_sorted is_sorted_until")
+{
+    string s{ "hello" };
+    REQUIRE_FALSE(is_sorted(s.cbegin(), s.cend()));
+    REQUIRE(is_sorted_until(s.cbegin(), s.cend()) == s.cbegin() + 1);
+
+    sort(s.begin(), s.end());
+    REQUIRE(is_sorted(s.cbegin(), s.cend()));
+    REQUIRE(is_sorted_until(s.cbegin(), s.cend()) == s.cend());
+}
+
+TEST_CASE("nth_element")
+{
+    vector<int> v{ 1, 9, 8, 0, 7, 6, 5, 4, 3, 2 };
+
+    nth_element(v.begin(), v.begin() + 5, v.end());
+    REQUIRE(v[5] == 5);
+    for (size_t i{}; i < v.size(); i++)
+    {
+        if (i < 5)
+        {
+            REQUIRE(v[i] < 5);
+        }
+        else if (i > 5)
+        {
+            REQUIRE(v[i] > 5);
+        }
+    }
+}
+
+TEST_CASE("lower_bound")
+{
+    vector<int> v{ 2, 4, 5, 6, 6, 9 };
+    assert(is_sorted(v.cbegin(), v.cend()));
+
+    REQUIRE(lower_bound(v.cbegin(), v.cend(), 6) == v.cbegin() + 3);
+}
+
+TEST_CASE("upper_bound")
+{
+    vector<int> v{ 2, 4, 5, 6, 6, 9 };
+    assert(is_sorted(v.cbegin(), v.cend()));
+
+    REQUIRE(upper_bound(v.cbegin(), v.cend(), 5) == v.cbegin() + 3);
+}
