@@ -462,3 +462,94 @@ TEST_CASE("upper_bound")
 
     REQUIRE(upper_bound(v.cbegin(), v.cend(), 5) == v.cbegin() + 3);
 }
+
+TEST_CASE("equal_range")
+{
+    vector<int> v{ 2, 4, 5, 6, 6, 9 };
+    assert(is_sorted(v.cbegin(), v.cend()));
+
+    auto range = equal_range(v.cbegin(), v.cend(), 6);
+    REQUIRE(range.first == v.cbegin() + 3);
+    REQUIRE(range.second == v.cbegin() + 5);
+}
+
+TEST_CASE("binary_search")
+{
+    vector<int> v{ 2, 4, 5, 6, 6, 9 };
+    assert(is_sorted(v.cbegin(), v.cend()));
+
+    REQUIRE(binary_search(v.cbegin(), v.cend(), 5));
+    REQUIRE_FALSE(binary_search(v.cbegin(), v.cend(), 7));
+}
+
+TEST_CASE("is_partitioned")
+{
+    string s1{ "HelloWorld" };
+    string s2{ "HELLOworld" };
+
+    REQUIRE_FALSE(is_partitioned(s1.cbegin(), s1.cend(), ::isupper));
+    REQUIRE(is_partitioned(s2.cbegin(), s2.cend(), ::isupper));
+}
+
+TEST_CASE("partition")
+{
+    string s{ "HelloWorld" };
+
+    auto itr = partition(s.begin(), s.end(), ::isupper);
+    REQUIRE(is_partitioned(s.cbegin(), s.cend(), ::isupper));
+    REQUIRE(itr == s.begin() + 2);
+}
+
+TEST_CASE("stable_partition")
+{
+    string s{ "HelloWorld" };
+
+    auto itr = stable_partition(s.begin(), s.end(), ::isupper);
+    REQUIRE(itr == s.begin() + 2);
+    REQUIRE(s == "HWelloorld");
+}
+
+TEST_CASE("partition_copy")
+{
+    string s{ "HelloWorld" };
+    string upper{}, lower{};
+
+    partition_copy(s.cbegin(), s.cend(), back_inserter(upper), back_inserter(lower), ::isupper);
+    REQUIRE(s == "HelloWorld");
+    REQUIRE(upper.size() == 2);
+    REQUIRE(s.find('H') != string::npos);
+    REQUIRE(s.find('W') != string::npos);
+    REQUIRE(lower.size() == 8);
+    REQUIRE(all_of(lower.cbegin(), lower.cend(), ::islower));
+}
+
+TEST_CASE("merge")
+{
+    vector<int> v1{ 1, 3, 3, 5, 7 };
+    vector<int> v2{ 2, 4, 6, 6, 8 };
+    vector<int> v3{};
+
+    assert(is_sorted(v1.cbegin(), v1.cend()));
+    assert(is_sorted(v2.cbegin(), v2.cend()));
+
+    merge(v1.cbegin(), v1.cend(), v2.cbegin(), v2.cend(), back_inserter(v3));
+    REQUIRE(v3 == vector<int>{ 1, 2, 3, 3, 4, 5, 6, 6, 7, 8 });
+}
+
+TEST_CASE("min max minmax")
+{
+    int i{1}, j{4};
+    REQUIRE(min(i, j) == 1);
+    REQUIRE(max(i, j) == 4);
+    auto pair = minmax({i, j});
+    REQUIRE(pair.first == i);
+    REQUIRE(pair.second == j);
+}
+
+TEST_CASE("minmax_element")
+{
+    vector<int> v{ 3, 3, 5, 7, 1 };
+    auto pair = minmax_element(v.cbegin(), v.cend());
+    REQUIRE(*pair.first == 1);
+    REQUIRE(*pair.second == 7);
+}
