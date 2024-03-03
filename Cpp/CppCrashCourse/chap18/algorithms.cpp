@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <numeric>
+#include <functional>
 #include <string>
 #include <vector>
 #include <random>
@@ -552,4 +554,74 @@ TEST_CASE("minmax_element")
     auto pair = minmax_element(v.cbegin(), v.cend());
     REQUIRE(*pair.first == 1);
     REQUIRE(*pair.second == 7);
+}
+
+TEST_CASE("clamp")
+{
+    constexpr auto low = 0;
+    constexpr auto high = 100;
+    REQUIRE(clamp(50, low, high) == 50);
+    REQUIRE(clamp(-50, low, high) == 0);
+    REQUIRE(clamp(500, low, high) == 100);
+}
+
+TEST_CASE("plus minus multiply divide")
+{
+    plus<int> p;
+    minus<int> m;
+    multiplies<int> mul;
+    divides<int> d;
+
+    REQUIRE(p(1, 2) == 3);
+    REQUIRE(m(2, 1) == 1);
+    REQUIRE(mul(2, 3) == 6);
+    REQUIRE(d(8, 2) == 4);
+}
+
+TEST_CASE("iota")
+{
+    array<int, 3> arr{};
+    iota(arr.begin(), arr.end(), 3);
+    REQUIRE(arr[0] == 3);
+    REQUIRE(arr[1] == 4);
+    REQUIRE(arr[2] == 5);
+}
+
+TEST_CASE("accumulate")
+{
+    array<int, 3> arr{ 1, 2, 3 };
+    REQUIRE(accumulate(arr.cbegin(), arr.cend(), 0) == 6);
+    REQUIRE(accumulate(arr.cbegin(), arr.cend(), 2, multiplies()) == 12);
+}
+
+TEST_CASE("reduce")
+{
+    array<int, 3> arr{ 1, 2, 3 };
+    REQUIRE(reduce(arr.cbegin(), arr.cend(), 0) == 6);
+    REQUIRE(reduce(arr.cbegin(), arr.cend(), 2, multiplies()) == 12);
+}
+
+TEST_CASE("inner_product")
+{
+    array<int, 5> arr1{ 1, -2, 3, -4, 5 };
+    array<int, 5> arr2{ -9, -8, -7, -6, -5 };
+    REQUIRE(inner_product(arr1.cbegin(), arr1.cend(), arr2.cbegin(), 0) == -15);
+}
+
+TEST_CASE("adjacent_difference")
+{
+    array<int, 5> arr{ 1, 5, 7, 4, 2 };
+    array<int, 5> result{};
+
+    adjacent_difference(arr.cbegin(), arr.cend(), result.begin());
+    REQUIRE(result == array<int, 5>{ 1, 4, 2, -3, -2 });
+}
+
+TEST_CASE("partial_sum")
+{
+    array<int, 5> arr{ 1, 2, 3, 4, 5 };
+    array<int, 5> result{};
+
+    partial_sum(arr.cbegin(), arr.cend(), result.begin());
+    REQUIRE(result == array<int, 5>{ 1, 3, 6, 10, 15 });
 }
