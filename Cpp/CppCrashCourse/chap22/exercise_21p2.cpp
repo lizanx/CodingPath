@@ -11,15 +11,17 @@ std::vector<std::string> request(std::string host, const std::vector<std::string
     for (const auto& resource : resources)
     {
         requestStream.str("");
-        requestStream << "GET " << resource << " HTTP1.1\r\n"
-                << "Host: " << host << "\r\n"
-                << "Accept: text/html\r\n"
-                << "Accept-Language: en-us\r\n"
-                << "Accept-Encoding: identity\r\n"
-                << "Connection: close\r\n\r\n";
+        requestStream << "GET " << resource << " HTTP/1.1\r\n"
+                            "Host: "
+                        << host
+                        << "\r\n"
+                            "Accept: text/html\r\n"
+                            "Accept-Language: en-us\r\n"
+                            "Accept-Encoding: identity\r\n"
+                            "Connection: close\r\n\r\n";
         const auto request = requestStream.str();
         boost::asio::ip::tcp::resolver resolver{ ctx };
-        const auto endpoints = resolver.resolve(host, "https");
+        const auto endpoints = resolver.resolve(host, "http");
         boost::asio::ip::tcp::socket socket{ ctx };
         const auto connectedEndpoint = boost::asio::connect(socket, endpoints);
         std::cout << "Connected enpoint: " << connectedEndpoint << std::endl;
@@ -48,7 +50,7 @@ int main()
     boost::asio::io_context ctx{};
     try
     {
-        const auto results = request("stackoverflow.com", reqResources, ctx);
+        const auto results = request("www.stackoverflow.com", reqResources, ctx);
         for (size_t i{}; i < reqResources.size(); i++)
         {
             std::cout << "Requested resource: " << reqResources[i] << "\n"

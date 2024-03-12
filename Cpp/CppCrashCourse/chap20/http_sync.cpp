@@ -6,15 +6,17 @@
 std::string request(std::string host, boost::asio::io_context &ctx)
 {
     std::stringstream requestStream{};
-    requestStream << "GET / HTTP1.1\r\n"
-            << "Host: " << host << "\r\n"
-            << "Accept: text/html\r\n"
-            << "Accept-Language: en-us\r\n"
-            << "Accept-Encoding: identity\r\n"
-            << "Connection: close\r\n\r\n";
+    requestStream << "GET / HTTP/1.1\r\n"
+                    "Host: "
+                    << host
+                    << "\r\n"
+                    "Accept: text/html\r\n"
+                    "Accept-Language: en-us\r\n"
+                    "Accept-Encoding: identity\r\n"
+                    "Connection: close\r\n\r\n";
     const auto request = requestStream.str();
     boost::asio::ip::tcp::resolver resolver{ ctx };
-    const auto endpoints = resolver.resolve(host, "https");
+    const auto endpoints = resolver.resolve(host, "http");
     boost::asio::ip::tcp::socket socket{ ctx };
     const auto connectedEndpoint = boost::asio::connect(socket, endpoints);
     std::cout << "Connected enpoint: " << connectedEndpoint << std::endl;
@@ -35,7 +37,7 @@ int main()
     boost::asio::io_context ctx{};
     try
     {
-        const auto result = request("www.sspai.com", ctx);
+        const auto result = request("www.stackoverflow.com", ctx);
         std::cout << "Response:\n" << result << std::endl;
     }
     catch(const boost::system::system_error& se)

@@ -31,7 +31,7 @@ std::string make_request(std::string host, boost::asio::io_context& io_context) 
 int main() {
   boost::asio::io_context io_context;
   try {
-    const auto response = make_request("www.arcyber.army.mil", io_context);
+    const auto response = make_request("www.stackoverflow.com", io_context);
     std::cout << response << "\n";
   } catch(boost::system::system_error& se) {
     std::cerr << "Error: " << se.what() << std::endl;
