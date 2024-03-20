@@ -54,3 +54,6 @@ while (enumerator2.MoveNext())
         break; // The "finally" block is not called, resource leaks!
     }
 }
+
+
+Console.WriteLine(new PartialMethodsDemo().ToString());
