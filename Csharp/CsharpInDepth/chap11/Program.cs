@@ -16,3 +16,5 @@ foreach (int i in SequenceGenerator.Generate((current: 0, next: 1), pair => (pai
     }
 }
 
+DynamicTuple.DemoCompileTimeBind();
+DynamicTuple.DemoExecutionTimeBind();
