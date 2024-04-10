@@ -16,6 +16,8 @@ namespace Data
         {
             _settings = option.Value;
 
+            Console.WriteLine($"Data path: {_settings.DataPath}");
+
             if (!Directory.Exists(_settings.DataPath))
             {
                 Directory.CreateDirectory(_settings.DataPath);

@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServer", "BlazorServer\BlazorServer.csproj", "{FA8F8BAB-76AB-491E-A39D-ED3A38776F98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorServer", "BlazorServer\BlazorServer.csproj", "{FA8F8BAB-76AB-491E-A39D-ED3A38776F98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssembly.Server", "BlazorWebAssembly\Server\BlazorWebAssembly.Server.csproj", "{B7FECCFD-585D-49F8-AD3B-634138E02C47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssembly.Server", "BlazorWebAssembly\Server\BlazorWebAssembly.Server.csproj", "{B7FECCFD-585D-49F8-AD3B-634138E02C47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssembly.Client", "BlazorWebAssembly\Client\BlazorWebAssembly.Client.csproj", "{21F031C9-55CB-4696-9D3C-F2792F35BC70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssembly.Client", "BlazorWebAssembly\Client\BlazorWebAssembly.Client.csproj", "{21F031C9-55CB-4696-9D3C-F2792F35BC70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebAssembly.Shared", "BlazorWebAssembly\Shared\BlazorWebAssembly.Shared.csproj", "{3562FA5E-80B9-44B1-97D0-F6DA7ADADB1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebAssembly.Shared", "BlazorWebAssembly\Shared\BlazorWebAssembly.Shared.csproj", "{3562FA5E-80B9-44B1-97D0-F6DA7ADADB1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{30DB0669-5529-4640-B9AB-4074F58F187A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{30DB0669-5529-4640-B9AB-4074F58F187A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Models", "Data.Models\Data.Models.csproj", "{75225EB1-BB82-441F-AB3A-73C92084E9F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Models", "Data.Models\Data.Models.csproj", "{75225EB1-BB82-441F-AB3A-73C92084E9F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Components", "Components\Components.csproj", "{40D04F32-735F-4AC3-9D41-FC108F007F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{75225EB1-BB82-441F-AB3A-73C92084E9F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75225EB1-BB82-441F-AB3A-73C92084E9F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75225EB1-BB82-441F-AB3A-73C92084E9F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D04F32-735F-4AC3-9D41-FC108F007F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D04F32-735F-4AC3-9D41-FC108F007F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D04F32-735F-4AC3-9D41-FC108F007F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D04F32-735F-4AC3-9D41-FC108F007F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
