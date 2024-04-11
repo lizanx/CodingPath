@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -6,17 +6,34 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="RazorComponents\BlogNavigationLock.razor" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.37.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.17" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Data.Models\Data.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="RazorComponents\BlogNavigationLock.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="RazorComponents\BlogNavigationLock.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="RazorComponents\BlogNavigationLock.razor" />
   </ItemGroup>
 
 </Project>
