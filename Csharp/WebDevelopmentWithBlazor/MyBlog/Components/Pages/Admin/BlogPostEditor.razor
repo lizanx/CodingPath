@@ -8,7 +8,7 @@
 <EditForm Model="Post" OnValidSubmit="SavePost">
     <DataAnnotationsValidator />
     <CustomCssClassProvider ProviderType="BootstrapFieldCssClassProvider" />
-    @* <BlogNavigationLock @ref="NavigationLock"/> *@
+    <BlogNavigationLock @ref="NavigationLock"/>
     @* <BlogNavigationLock /> *@
     <InputText @bind-Value="Post.Title"/>
     <ValidationMessage For="() => Post.Title"/>
@@ -53,7 +53,7 @@
     string? selectedCategory = null;
     string? markdownAsHtml { get; set; }
     MarkdownPipeline pipeline = default!;
-    // BlogNavigationLock? NavigationLock { get; set; }
+    BlogNavigationLock? NavigationLock { get; set; }
 
     protected override Task OnInitializedAsync()
     {
@@ -71,7 +71,7 @@
                 Post.Category = category;
             }
             await _api.SaveBlogPostAsync(Post);
-            // NavigationLock?.CurrentEditContext.MarkAsUnmodified();
+            NavigationLock?.CurrentEditContext.MarkAsUnmodified();
             _manager.NavigateTo("/admin/blogposts");
         }
     }

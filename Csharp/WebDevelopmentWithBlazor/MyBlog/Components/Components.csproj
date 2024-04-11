@@ -6,10 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="RazorComponents\BlogNavigationLock.razor" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -22,18 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data.Models\Data.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="RazorComponents\BlogNavigationLock.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="RazorComponents\BlogNavigationLock.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="RazorComponents\BlogNavigationLock.razor" />
   </ItemGroup>
 
 </Project>
