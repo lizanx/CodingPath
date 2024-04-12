@@ -14,7 +14,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
     .Configure(options =>
     {
-        options.DataPath = @"..\..\..\..\Data\";
+        options.DataPath = Path.Join(Directory.GetCurrentDirectory(), "..", "..", "DataStorage");
         options.BlogPostsFolder = "Blogposts";
         options.TagsFolder = "Tags";
         options.CategoriesFolder = "Categories";
