@@ -1,9 +1,7 @@
 ﻿@page "/admin/blogposts"
-@inject IBlogApi _api
 @attribute [Authorize]
-
-<a href="/admin/blogposts/new">New Blog Post</a>
-
+@inject IBlogApi _api
+<a href="/admin/blogposts/new">New blog post</a>
 <ul>
     <Virtualize ItemsProvider="LoadPosts" Context="p">
         <li>
@@ -12,19 +10,17 @@
         </li>
     </Virtualize>
 </ul>
-
 @code {
     public int TotalBlogposts { get; set; }
-
-    private async ValueTask<ItemsProviderResult<BlogPost>>
-    LoadPosts(ItemsProviderRequest request)
+    private async ValueTask<ItemsProviderResult<BlogPost>> LoadPosts(ItemsProviderRequest request)
     {
         if (TotalBlogposts == 0)
         {
-            TotalBlogposts = await _api.GetBlogPostCountAsync();
+            TotalBlogposts = await
+              _api.GetBlogPostCountAsync();
         }
-        var numOfPosts = Math.Min(request.Count, TotalBlogposts - request.StartIndex);
-        var blogPosts = await _api.GetBlogPostsAsync(numOfPosts, request.StartIndex);
-        return new ItemsProviderResult<BlogPost>(blogPosts, TotalBlogposts);
+        var numblogposts = Math.Min(request.Count, TotalBlogposts - request.StartIndex);
+        List<BlogPost> posts = (await _api.GetBlogPostsAsync(numblogposts, request.StartIndex)) ?? new();
+        return new ItemsProviderResult<BlogPost>(posts, TotalBlogposts);
     }
 }

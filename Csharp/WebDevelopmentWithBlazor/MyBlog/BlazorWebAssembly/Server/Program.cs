@@ -1,7 +1,8 @@
 using Data.Models.Interfaces;
-using Data;
 using Microsoft.AspNetCore.ResponseCompression;
+using Data;
 using BlazorWebAssembly.Server.Endpoints;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,17 +10,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
     .Configure(options =>
     {
-        //options.DataPath = $@"..{Path.DirectorySeparatorChar}..DataStorage";
-        options.DataPath = Path.Join(Directory.GetCurrentDirectory(), "..", "..", "DataStorage");
+        options.DataPath = @"..\..\..\..\Data\";
         options.BlogPostsFolder = "Blogposts";
-        options.CategoriesFolder = "Categories";
         options.TagsFolder = "Tags";
-        Console.WriteLine($"Data path: {Path.GetFullPath(options.DataPath)}");
+        options.CategoriesFolder = "Categories";
     });
 builder.Services.AddScoped<IBlogApi, BlogApiJsonDirectAccess>();
+
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, c =>
+    {
+        c.Authority = builder.Configuration["Auth0:Authority"];
+        c.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidAudience = builder.Configuration["Auth0:Audience"],
+            ValidIssuer = builder.Configuration["Auth0:Authority"]
+        };
+    });
+builder.Services.AddAuthorization();
+
 
 var app = builder.Build();
 
@@ -41,10 +55,14 @@ app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.MapBlogPostApi();
+
 app.MapCategoryApi();
+app.MapBlogPostApi();
 app.MapTagApi();
+
 
 app.MapRazorPages();
 app.MapControllers();

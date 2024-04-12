@@ -1,19 +1,16 @@
 ﻿@page "/admin/tags"
+@attribute [Authorize]
 @using Components.RazorComponents
 @inject IBlogApi _api
-@attribute [Authorize]
-
 <h3>Tags</h3>
-
-<EditForm Model="Item" OnValidSubmit="Save">
+<EditForm OnValidSubmit="Save" Model="Item">
     <DataAnnotationsValidator />
     <CustomCssClassProvider ProviderType="BootstrapFieldCssClassProvider" />
-    <InputText @bind-Value="Item.Name" />
-    <ValidationMessage For="@(() => Item.Name)" />
-    <button class="btn btn-success" type="submit">Submit</button>
+    <InputText @bind-Value="@Item.Name" />
+    <ValidationMessage For="@(()=>Item.Name)" />
+    <button class="btn btn-success" type="submit">Save</button>
 </EditForm>
-
-<ItemList Items="Items" ItemType="Tag" DeleteEvent="@Delete" SelectEvent="@Select">
+<ItemList Items="Items" DeleteEvent="@Delete" SelectEvent="@Select" ItemType="Tag">
     <ItemTemplate>
         @{
             var item = context as Tag;
@@ -26,26 +23,22 @@
 </ItemList>
 
 @code {
-    private List<Tag> Items { get; set; } = new();
-    public Tag Item { get; set; } = new();
-
-    protected override async Task OnInitializedAsync()
+    private List<Tag> Items { get; set; } = new List<Tag>();
+    public Tag Item { get; set; } = new Tag();
+    protected async override Task OnInitializedAsync()
     {
-        Items = (await _api.GetTagsAsync()) ?? Items;
+        Items = (await _api.GetTagsAsync()) ?? new();
         await base.OnInitializedAsync();
     }
 
-    private async Task Delete(Tag item)
+    private async Task Delete(Tag tag)
     {
         try
         {
-            await _api.DeleteTagAsync(item.Id!);
-            Items.Remove(item);
+            await _api.DeleteTagAsync(tag.Id!);
+            Items.Remove(tag);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Failed to delete tag of id {item.Id}, exception: {e.Message}");
-        }
+        catch { }
     }
 
     private async Task Save()
@@ -54,25 +47,21 @@
         {
             await _api.SaveTagAsync(Item);
             if (!Items.Contains(Item))
+            {
                 Items.Add(Item);
-            Item = new();
+            }
+            Item = new Tag();
         }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Failed to save tag of id {Item.Id}, exception: {e.Message}");
-        }
+        catch { }
     }
 
-    private Task Select(Tag item)
+    private Task Select(Tag tag)
     {
         try
         {
-            Item = item;
+            Item = tag;
         }
-        catch
-        {
-
-        }
+        catch { }
         return Task.CompletedTask;
     }
 }

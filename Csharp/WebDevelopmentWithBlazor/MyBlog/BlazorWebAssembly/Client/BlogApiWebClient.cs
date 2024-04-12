@@ -1,44 +1,49 @@
-﻿using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using System.Text.Json;
-using System.Net.Http.Json;
-using Data.Models;
+﻿using Data.Models;
 using Data.Models.Interfaces;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace BlazorWebAssembly.Client;
+
 public class BlogApiWebClient : IBlogApi
 {
-    public BlogApiWebClient(IHttpClientFactory httpClientFactory)
+    private readonly IHttpClientFactory _factory;
+    public BlogApiWebClient(IHttpClientFactory factory)
     {
-        _factory = httpClientFactory;
+        _factory = factory;
     }
-
     public async Task<BlogPost?> GetBlogPostAsync(string id)
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<BlogPost>($"api/BlogPosts/{id}");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<BlogPost>($"api/BlogPosts/{id}");
     }
+
     public async Task<int> GetBlogPostCountAsync()
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<int>("api/BlogPostCount");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<int>("/api/BlogPostCount");
     }
-    public async Task<List<BlogPost>?> GetBlogPostsAsync(int numberOfPosts, int startIndex)
+
+    public async Task<List<BlogPost>?> GetBlogPostsAsync(int numberofposts, int startindex)
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<List<BlogPost>>($"api/BlogPosts?numberofposts={numberOfPosts}&startindex={startIndex}");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<List<BlogPost>>($"/api/BlogPosts?numberofposts={numberofposts}&startindex={startindex}");
     }
+
     public async Task<BlogPost?> SaveBlogPostAsync(BlogPost item)
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            var response = await client.PutAsJsonAsync<BlogPost>("api/BlogPosts", item);
+            var httpclient = _factory.CreateClient("Authenticated");
+            var response = await httpclient.PutAsJsonAsync<BlogPost>
+               ("api/BlogPosts", item);
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<BlogPost>(json);
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
         return null;
     }
@@ -46,87 +51,86 @@ public class BlogApiWebClient : IBlogApi
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            await client.DeleteAsync($"api/BlogPosts/{id}");
+            var httpclient = _factory.CreateClient("Authenticated");
+            await httpclient.DeleteAsync($"api/BlogPosts/{id}");
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
     }
 
     public async Task<List<Category>?> GetCategoriesAsync()
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<List<Category>>("api/Categories");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<List<Category>>($"api/Categories");
     }
     public async Task<Category?> GetCategoryAsync(string id)
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<Category>($"api/Categories/{id}");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<Category>($"api/Categories/{id}");
     }
     public async Task DeleteCategoryAsync(string id)
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            await client.DeleteAsync($"api/Categories/{id}");
+            var httpclient = _factory.CreateClient("Authenticated");
+            await httpclient.DeleteAsync($"api/Categories/{id}");
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
     }
     public async Task<Category?> SaveCategoryAsync(Category item)
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            var response = await client.PutAsJsonAsync<Category>("api/Categories", item);
+            var httpclient = _factory.CreateClient("Authenticated");
+            var response = await httpclient.PutAsJsonAsync<Category>("api/Categories", item);
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<Category>(json);
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
         return null;
     }
-
     public async Task<Tag?> GetTagAsync(string id)
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<Tag>($"api/Tags/{id}");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<Tag>($"api/Tags/{id}");
     }
     public async Task<List<Tag>?> GetTagsAsync()
     {
-        var client = _factory.CreateClient("Public");
-        return await client.GetFromJsonAsync<List<Tag>>("api/Tags");
+        var httpclient = _factory.CreateClient("Public");
+        return await httpclient.GetFromJsonAsync<List<Tag>>($"api/Tags");
     }
     public async Task DeleteTagAsync(string id)
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            await client.DeleteAsync($"api/Tags/{id}");
+            var httpclient = _factory.CreateClient("Authenticated");
+            await httpclient.DeleteAsync($"api/Tags/{id}");
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
     }
     public async Task<Tag?> SaveTagAsync(Tag item)
     {
         try
         {
-            var client = _factory.CreateClient("Authenticated");
-            var response = await client.PutAsJsonAsync<Tag>("api/Tags", item);
+            var httpclient = _factory.CreateClient("Authenticated");
+            var response = await httpclient.PutAsJsonAsync<Tag>("api/Tags", item);
             var json = await response.Content.ReadAsStringAsync();
             return JsonSerializer.Deserialize<Tag>(json);
         }
-        catch (AccessTokenNotAvailableException ex)
+        catch (AccessTokenNotAvailableException exception)
         {
-            ex.Redirect();
+            exception.Redirect();
         }
         return null;
     }
@@ -135,6 +139,4 @@ public class BlogApiWebClient : IBlogApi
     {
         throw new NotImplementedException();
     }
-
-    private readonly IHttpClientFactory _factory;
 }
