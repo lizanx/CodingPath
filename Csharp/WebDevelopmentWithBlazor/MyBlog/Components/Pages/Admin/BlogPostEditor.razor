@@ -4,6 +4,7 @@
 @inject NavigationManager _manager
 @using Components.RazorComponents
 @using Markdig
+@attribute [Authorize]
 
 <EditForm Model="Post" OnValidSubmit="SavePost">
     <DataAnnotationsValidator />
