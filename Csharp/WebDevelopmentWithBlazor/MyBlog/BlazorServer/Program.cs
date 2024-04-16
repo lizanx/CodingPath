@@ -7,6 +7,8 @@ using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Components.RazorComponents;
+using Components.Interfaces;
+using BlazorServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,8 @@ builder.Services.AddAuth0WebAppAuthentication(
         options.ClientId = builder.Configuration["Auth0:ClientId"] ?? "";
     });
 builder.Services.AddTransient<ILoginStatus, LoginStatus>();
+builder.Services.AddScoped<IBrowserStorage, BlogProtectedBrowserStorage>();
+builder.Services.AddSingleton<IBlogNotificationService, BlazorServerBlogNotificationService>();
 
 var app = builder.Build();
 

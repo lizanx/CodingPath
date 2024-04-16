@@ -3,6 +3,9 @@
 @attribute [Authorize]
 @inject IBlogApi _api
 @inject NavigationManager _manager
+@using Components.Interfaces
+@inject IBrowserStorage _storage
+@inject IBlogNotificationService notificationService
 @using Components.RazorComponents
 @using Markdig;
 
@@ -37,7 +40,7 @@
             </li>
         }
     </ul>
-    <InputTextAreaOnInput @bind-Value="Post.Text" @onkeyup="UpdateHTML" />
+    <InputTextAreaOnInput @bind-Value="Post.Text" @onkeyup="UpdateHTMLAsync" />
     <ValidationMessage For="()=>Post.Text" />
     <button type="submit" class="btn btn-success">Save</button>
 </EditForm>
@@ -64,9 +67,17 @@
         return base.OnInitializedAsync();
     }
 
-    protected void UpdateHTML()
+    protected async Task UpdateHTMLAsync()
     {
-        markDownAsHTML = Markdig.Markdown.ToHtml(Post.Text, pipeline);
+        if (Post.Text != null)
+        {
+            await notificationService.SendNotification(Post);
+            markDownAsHTML = Markdig.Markdown.ToHtml(Post.Text, pipeline);
+            if (string.IsNullOrEmpty(Post.Id))
+            {
+                await _storage.SetAsync("EditCurrentPost", Post);
+            }
+        }
     }
     bool hasTag(Tag tag)
     {
@@ -84,7 +95,7 @@
                 {
                     selectedCategory = Post.Category.Id;
                 }
-                UpdateHTML();
+                await UpdateHTMLAsync();
             }
         }
         Categories = (await _api.GetCategoriesAsync()) ?? new();
@@ -92,7 +103,19 @@
         base.OnParametersSet();
     }
 
-
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && string.IsNullOrEmpty(Id))
+        {
+            var saved = await _storage.GetAsync<BlogPost>("EditCurrentPost");
+            if (saved != null)
+            {
+                Post = saved;
+                StateHasChanged();
+            }
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
 
     public async Task SavePost()
     {

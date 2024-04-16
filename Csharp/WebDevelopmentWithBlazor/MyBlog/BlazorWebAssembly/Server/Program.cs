@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Data;
 using BlazorWebAssembly.Server.Endpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using BlazorWebAssembly.Server.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
     .Configure(options =>
@@ -66,6 +68,7 @@ app.MapTagApi();
 
 app.MapRazorPages();
 app.MapControllers();
+app.MapHub<BlogNotificationHub>("/BlogNotificationHub");
 app.MapFallbackToFile("index.html");
 
 app.Run();
