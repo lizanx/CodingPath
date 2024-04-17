@@ -1,0 +1,65 @@
+﻿@using Data.Models
+@inherits TestContext
+
+@code {
+    public IndexTest()
+    {
+        Services.AddScoped<IBlogApi, BlogApiMock>();
+    }
+
+    [Fact(DisplayName = "Checks that the Index component shows 10 posts")]
+    public void Shows10BlogPosts()
+    {
+        // Act
+        var cut = Render(@<Index />);
+
+        // Assert that the content has 10 article tags(each representing a blogpost)
+        Assert.Equal(10, cut.FindAll("article").Count());
+    }
+
+    [Fact(DisplayName = "Checks if log in is showed")]
+    public void ShouldShowLogin()
+    {
+        // Arrange
+        this.AddTestAuthorization();
+        // Act
+        var cut = Render(@<LoginStatus />);
+
+        // Assert that there's a link with the text "log in"
+        Assert.Equal("Log in", cut.Find("a").InnerHtml);
+    }
+
+    [Fact(DisplayName = "Checks if log out is showed")]
+    public void ShouldShowLogout()
+    {
+        // Arrange
+        var authContext = this.AddTestAuthorization();
+        authContext.SetAuthorized("TestUser", AuthorizationState.Authorized);
+        // Act 
+        var cut = Render(@<LoginStatus />);
+
+        // Assert that there's a link with the text "log out"
+        Assert.Equal("Log out", cut.Find("a").InnerHtml);
+    }
+
+    [Fact(DisplayName = "Test if js method 'showConfirm' is called upon JS interop")]
+    public void ShouldShowConfirm()
+    {
+        // Arrange
+        var moduleInterop = this.JSInterop.SetupModule("/_content/Components/RazorComponents/ItemList.razor.js");
+        moduleInterop.Setup<bool>("showConfirm", "Are you sure?");
+
+        var cut = RenderComponent<ItemList<BlogPost>>(parameters =>
+            parameters
+                .Add(_ => _.Items, new() { new BlogPost() { Title = "Title" } })
+                .Add(_ => _.ItemTemplate, blogpost => $"<span>{blogpost}</span>")
+        );
+
+        // Act 
+        var buttons = cut.FindAll("button");
+        buttons.First(_ => _.ClassList.Contains("btn-danger")).Click();
+
+        // Assert
+        JSInterop.VerifyInvoke("showConfirm");
+    }
+}
