@@ -19,12 +19,14 @@ All my coding-related readings and exercises.
 2. [C#11 and .NET 7 – Modern Cross-Platform Development Fundamentals](https://www.goodreads.com/book/show/63259355-c-11-and-net-7-modern-cross-platform-development-fundamentals) [Finished]
 3. [ASP.NET Core in Action, 3rd Edition](https://www.goodreads.com/book/show/126988024) [Finished]
 4. [Apps and Services with .NET 7](https://www.goodreads.com/book/show/63336482-apps-and-services-with-net-7) [Finished]
+5. [C# in Depth, 4th Edition](https://www.goodreads.com/book/show/58359576-c-in-depth) [Finished]
+6. [Web Development with Blazor](https://www.goodreads.com/book/show/120781374-web-development-with-blazor) [Finished]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
-2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [In Progress]
+2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [Finished]
 3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [Finished]
-4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/)
+4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/) [In Progress]
 
 ## Go
 1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
