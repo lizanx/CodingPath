@@ -1,9 +1,20 @@
 @page "/lifecycle"
+@implements IDisposable
 
 <h1>Component Lifecycle</h1>
 <p>Check the brower console for details...</p>
 
+<p>Greetings: </p>
+<ul>
+    @foreach (var greeting in _greetings)
+    {
+        <li>@greeting</li>
+    }
+</ul>
+
 @code {
+    private List<string> _greetings = new();
+
     public override async Task SetParametersAsync(ParameterView parameters)
     {
         Console.WriteLine("SetParametersAsync: Begin");
@@ -14,8 +25,16 @@
     protected override void OnInitialized() =>
         Console.WriteLine("OnInitialized");
     
-    protected override async Task OnInitializedAsync() =>
+    protected override async Task OnInitializedAsync()
+    {
         Console.WriteLine("OnInitializedAsync");
+        _greetings.Add("Welcome");
+        await Task.Delay(2000);
+        _greetings.Add("to");
+        @* StateHasChanged(); *@
+        await Task.Delay(2000);
+        _greetings.Add("Blazor in Action");
+    }
     
     protected override void OnParametersSet() =>
         Console.WriteLine("OnParametersSet");
@@ -28,4 +47,7 @@
     
     protected override async Task OnAfterRenderAsync(bool firstRender) =>
         Console.WriteLine("OnAfterRenderAsync: firstRender = {0}", firstRender);
+    
+    public void Dispose() =>
+        Console.WriteLine("Lifecycle component disposed.");
 }
