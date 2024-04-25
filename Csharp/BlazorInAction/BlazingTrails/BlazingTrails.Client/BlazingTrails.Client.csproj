@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../BlazingTrails.Shared/BlazingTrails.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
 		<Watch Include="**/*.scss" />
 		<None Update="**/*.css" Watch="false" />
 	</ItemGroup>
