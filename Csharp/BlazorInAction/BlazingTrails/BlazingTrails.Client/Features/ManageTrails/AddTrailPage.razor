@@ -1,0 +1,127 @@
+@page "/add-trail"
+
+<PageTitle>Add Trail - Blazing Trails</PageTitle>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            Add Trail
+        </li>
+    </ol>
+</nav>
+
+<h3 class="mt-5 mb-4">Add a trail</h3>
+
+<EditForm Model="_trail" OnValidSubmit="SubmitForm">
+
+    <FormSection Title="Basic Details"
+        HelpText="This information is used to identify the trail and can be searched to help hikers find it.">
+        <FormFieldSet Width="col-6">
+            <label for="trailName" class="font-weight-bold text-secondary">
+                Name
+            </label>
+            <InputText class="form-control" id="trailName" @bind-Value="_trail.Name" />
+        </FormFieldSet>
+
+        <FormFieldSet>
+            <label for="trailDescription" class="font-weight-bold text-secondary">
+                Description
+            </label>
+            <InputTextArea rows="6" class="form-control" id="trailDescription" @bind-Value="_trail.Description" />
+        </FormFieldSet>
+
+        <FormFieldSet Width="col-6">
+            <label for="trailLocation" class="font-weight-bold text-secondary">
+                Location
+            </label>
+            <InputText class="form-control" id="trailLocation" @bind-Value="_trail.Location" />
+        </FormFieldSet>
+    </FormSection>
+
+    <FormSection Title="Difficulty"
+    HelpText="Help other hikers out by telling them the length of the trail is how long it might take them.">
+        <FormFieldSet Width="col-3">
+            <label for="trailLength" class="font-weight-bold text-secondary">
+                Length (km)
+            </label>
+            <InputNumber class="form-control" id="trailLength" @bind-Value="_trail.Length" />
+        </FormFieldSet>
+    </FormSection>
+
+    <FormSection Title="Route Instructions"
+    HelpText="Route instructions are a guide for the trail. This helps hikers new to the trail stay on track.">
+        @{ var i = 0; }
+        @foreach (var routeInstruction in _trail.Route)
+        {
+            routeInstruction.Stage = ++i;
+
+            <div class="row">
+                <div class="col-2">
+                    <div class="form-group">
+                        <label class="font-weight-bold text-secondary">
+                            Stage
+                        </label>
+                        <p>
+                            @routeInstruction.Stage
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col">
+                    <div class="form-group">
+                        <label for="routeInstructionDescription" class="font-weight-bold text-secondary">
+                            Description
+                        </label>
+                        <InputText id="routeInstructionDescription" @bind-Value="routeInstruction.Description"
+                        class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="col-1 d-flex mt-3">
+                    <button class="btn btn-link" type="button"
+                    @onclick="@(() => _trail.Route.Remove(routeInstruction))">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle-fill text-danger" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-outline-primary" type="button"
+                @onclick="@(() => _trail.Route.Add(new TrailDto.RouteInstruction()))">
+                Add Instruction
+                </button>
+            </div>
+        </div>
+    </FormSection>
+
+    <div class="mt-4 mb-5">
+        <div class="row">
+            <div class="offset-4 col-8 text-right">
+                <button class="btn btn-outline-secondary" type="button"
+                    @onclick="@(() => _trail = new())">
+                    Reset
+                </button>
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+
+@code {
+    private TrailDto _trail = new();
+
+    private async Task SubmitForm()
+    {
+        @* TODO *@
+    }
+}
