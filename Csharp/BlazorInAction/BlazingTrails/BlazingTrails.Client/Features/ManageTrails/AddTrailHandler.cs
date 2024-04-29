@@ -4,13 +4,8 @@ using MediatR;
 
 namespace BlazingTrails.Client.Features.ManageTrails;
 
-public class AddTrailHandler : IRequestHandler<AddTrailRequest, AddTrailRequest.Response>
+public class AddTrailHandler(HttpClient httpClient) : IRequestHandler<AddTrailRequest, AddTrailRequest.Response>
 {
-    public AddTrailHandler(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
-
     public async Task<AddTrailRequest.Response> Handle(AddTrailRequest request, CancellationToken cancellationToken)
     {
         var response = await _httpClient.PostAsJsonAsync(AddTrailRequest.RouteTemplate, request, cancellationToken);
@@ -25,5 +20,5 @@ public class AddTrailHandler : IRequestHandler<AddTrailRequest, AddTrailRequest.
         }
     }
 
-    private readonly HttpClient _httpClient;
+    private readonly HttpClient _httpClient = httpClient;
 }
