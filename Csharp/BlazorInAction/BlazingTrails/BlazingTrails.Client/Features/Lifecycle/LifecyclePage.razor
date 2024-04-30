@@ -40,13 +40,13 @@
         Console.WriteLine("OnParametersSet");
     
     protected override async Task OnParametersSetAsync() =>
-        Console.WriteLine("OnParametersSetAsync");
+        await Task.Run(() => Console.WriteLine("OnParametersSetAsync"));
     
     protected override void OnAfterRender(bool firstRender) =>
         Console.WriteLine("OnAfterRender: firstRender = {0}", firstRender);
     
     protected override async Task OnAfterRenderAsync(bool firstRender) =>
-        Console.WriteLine("OnAfterRenderAsync: firstRender = {0}", firstRender);
+        await Task.Run(() => Console.WriteLine("OnAfterRenderAsync: firstRender = {0}", firstRender));
     
     public void Dispose() =>
         Console.WriteLine("Lifecycle component disposed.");
