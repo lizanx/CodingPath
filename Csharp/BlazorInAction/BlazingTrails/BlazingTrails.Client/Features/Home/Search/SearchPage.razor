@@ -1,5 +1,5 @@
 @page "/search/{SearchTerm}"
-@inject HttpClient Http
+@inject IMediator Mediator
 @inject NavigationManager NavManager
 
 <PageTitle>Search Trails - Blazing Trails</PageTitle>
@@ -49,11 +49,23 @@ else
     {
         try
         {
-            var allTrails = await Http.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
+            var response = await Mediator.Send(new GetTrailsRequest());
+            var allTrails = response?.Trails.Select(t => new Trail
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                    Image = t.Image ?? string.Empty,
+                    Description = t.Description,
+                    TimeInMinutes = t.TimeInMinutes,
+                    Location = t.Location,
+                    Length = t.Length
+                });
             _searchResults = allTrails?.Where(trail =>
                 trail.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase) ||
                 trail.Location.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));
             _cachedSearchResults = _searchResults ?? _cachedSearchResults;
+
+            UpdateFilters();
         }
         catch (HttpRequestException ex)
         {

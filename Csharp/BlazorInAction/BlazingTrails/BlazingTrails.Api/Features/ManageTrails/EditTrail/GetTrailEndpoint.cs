@@ -7,10 +7,10 @@ namespace BlazingTrails.Api.Features.ManageTrails.EditTrail;
 
 public static class GetTrailEndpoint
 {
-    public static async Task<IResult> GetTrail([FromRoute] int trailId, BlazingTrailsContext db, CancellationToken cancellationToken= default)
+    public static async Task<IResult> GetTrail([FromRoute] int trailId, BlazingTrailsContext db, CancellationToken cancellationToken = default)
     {
-        var trail = await db.Trails.
-            Include(t => t.Route)
+        var trail = await db.Trails
+            .Include(t => t.Route)
             .SingleOrDefaultAsync(t => t.Id == trailId, cancellationToken: cancellationToken);
         if (trail == null)
         {

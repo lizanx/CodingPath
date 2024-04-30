@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.Extensions.FileProviders;
 using BlazingTrails.Api.Features.ManageTrails.EditTrail;
+using BlazingTrails.Shared.Features.Home.Shared;
+using BlazingTrails.Api.Features.Home.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,5 +53,6 @@ app.MapPost(UploadTrailImageRequest.RouteTemplate, UploadTrailImageEndpoint.Uplo
     .DisableAntiforgery();
 app.MapGet(GetTrailRequest.RouteTemplate, GetTrailEndpoint.GetTrail);
 app.MapPut(EditTrailRequest.RouteTemplate, EditTrailEndpoint.EditTrail);
+app.MapGet(GetTrailsRequest.RouteTemplate, GetTrailsEndpoint.GetTrails);
 
 app.Run();
