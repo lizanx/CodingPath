@@ -15,17 +15,14 @@ public static class AddTrailEndpoint
             Location = request.Trail.Location,
             TimeInMinutes = request.Trail.TimeInMinutes,
             Length = request.Trail.Length,
+            Waypoints = request.Trail.Waypoints.Select(wp =>
+                new Waypoint{
+                    Latitude = wp.Latitude,
+                    Longitude = wp.Longitude,
+                })
+                .ToList()
         };
         await db.Trails.AddAsync(trail);
-        
-        var routeInstructions = request.Trail.Route.Select(x => new RouteInstruction()
-            {
-                Stage = x.Stage,
-                Description = x.Description,
-                Trail = trail
-            });
-        await db.RouteInstructions.AddRangeAsync(routeInstructions);
-
         await db.SaveChangesAsync();
 
         return Results.Ok(trail.Id);

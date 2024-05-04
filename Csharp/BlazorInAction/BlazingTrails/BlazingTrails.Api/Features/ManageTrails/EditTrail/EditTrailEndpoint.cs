@@ -13,7 +13,7 @@ public static class EditTrailEndpoint
     CancellationToken cancellationToken = default)
     {
         var trail = await db.Trails
-            .Include(t => t.Route)
+            .Include(t => t.Waypoints)
             .SingleOrDefaultAsync(t => t.Id == request.Trail.Id, cancellationToken: cancellationToken);
         if (trail == null)
         {
@@ -25,11 +25,11 @@ public static class EditTrailEndpoint
         trail.Location = request.Trail.Location;
         trail.TimeInMinutes = request.Trail.TimeInMinutes;
         trail.Length = request.Trail.Length;
-        trail.Route = request.Trail.Route.Select(ri =>
-            new RouteInstruction
+        trail.Waypoints = request.Trail.Waypoints.Select(wp =>
+            new Waypoint
             {
-                Stage = ri.Stage,
-                Description = ri.Description
+                Latitude = wp.Latitude,
+                Longitude = wp.Longitude,
             })
             .ToList();
         

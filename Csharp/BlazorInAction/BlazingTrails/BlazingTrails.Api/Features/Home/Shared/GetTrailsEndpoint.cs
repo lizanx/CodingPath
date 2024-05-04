@@ -10,7 +10,7 @@ public static class GetTrailsEndpoint
     public static async Task<IResult> GetTrails(BlazingTrailsContext db, CancellationToken cancellationToken = default)
     {
         var trails = await db.Trails
-            .Include(t => t.Route)
+            .Include(t => t.Waypoints)
             .ToListAsync(cancellationToken);
         
         var response = new GetTrailsRequest.Response(trails.Select(t =>

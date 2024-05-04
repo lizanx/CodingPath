@@ -12,7 +12,7 @@ public class Trail
     public string Location { get; set; } = default!;
     public int TimeInMinutes { get; set; }
     public int Length { get; set; }
-    public ICollection<RouteInstruction> Route { get; set; } = default!;
+    public ICollection<Waypoint> Waypoints { get; set; } = default!;
 }
 
 public class TrailConfig : IEntityTypeConfiguration<Trail>

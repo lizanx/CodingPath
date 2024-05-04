@@ -10,7 +10,7 @@ public static class GetTrailEndpoint
     public static async Task<IResult> GetTrail([FromRoute] int trailId, BlazingTrailsContext db, CancellationToken cancellationToken = default)
     {
         var trail = await db.Trails
-            .Include(t => t.Route)
+            .Include(t => t.Waypoints)
             .SingleOrDefaultAsync(t => t.Id == trailId, cancellationToken: cancellationToken);
         if (trail == null)
         {
@@ -26,7 +26,7 @@ public static class GetTrailEndpoint
                 trail.TimeInMinutes,
                 trail.Length,
                 trail.Description,
-                trail.Route.Select(ri => new GetTrailRequest.RouteInstruction(ri.Id, ri.Stage, ri.Description))
+                trail.Waypoints.Select(wp => new GetTrailRequest.Waypoint(wp.Latitude, wp.Longitude))
             )
         );
 

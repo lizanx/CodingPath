@@ -6,11 +6,11 @@ namespace BlazingTrails.Api.Persistence;
 public class BlazingTrailsContext(DbContextOptions<BlazingTrailsContext> options) : DbContext(options)
 {
     public DbSet<Trail> Trails { get; set; }
-    public DbSet<RouteInstruction> RouteInstructions { get; set; }
+    public DbSet<Waypoint> Waypoints { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new TrailConfig());
-        modelBuilder.ApplyConfiguration(new RouteInstructionConfig());
+        modelBuilder.ApplyConfiguration(new WaypointConfig());
     }
 }
