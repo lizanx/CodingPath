@@ -14,7 +14,9 @@ public static class GetTrailsEndpoint
             .ToListAsync(cancellationToken);
         
         var response = new GetTrailsRequest.Response(trails.Select(t =>
-            new GetTrailsRequest.Trail(t.Id, t.Name, t.Image, t.Location, t.TimeInMinutes, t.Length, t.Description)));
+            new GetTrailsRequest.Trail(t.Id, t.Name, t.Image, t.Location, t.TimeInMinutes,
+                t.Length, t.Description, t.Waypoints.Select(wp =>
+                    new GetTrailsRequest.Waypoint(wp.Latitude, wp.Longitude)).ToList())));
         return Results.Ok(response);
     }
 }

@@ -6,13 +6,14 @@ export function initialize(hostElement, routeMapComponent, existingWaypoints) {
     hostElement.waypoints = [];
     hostElement.lines = [];
     if (existingWaypoints && existingWaypoints.length > 0) {
-        existingWaypoints.foreach(cord => {
+        for (let index = 0, len = existingWaypoints.length; index < len; ++index) {
+            let cord = existingWaypoints[index];
             let waypoint = L.marker(cord);
             waypoint.addTo(hostElement.map);
             hostElement.waypoints.push(waypoint);
             let line = L.polyline(hostElement.waypoints.map(m => m.getLatLng()), { color: 'var(--brand)' }).addTo(hostElement.map);
             hostElement.lines.push(line);
-        });
+        };
     }
 
     if (hostElement.waypoints.length > 0) {

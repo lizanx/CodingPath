@@ -83,7 +83,8 @@ else
                     Image = t.Image ?? string.Empty,
                     Location = t.Location,
                     Length = t.Length,
-                    TimeInMinutes = t.TimeInMinutes
+                    TimeInMinutes = t.TimeInMinutes,
+                    Waypoints = t.Waypoints.Select(wp => new BlazingTrails.ComponentLibrary.Map.LatLong(wp.Latitude, wp.Longitude)).ToList()
                 });
         }
         catch (HttpRequestException ex)
