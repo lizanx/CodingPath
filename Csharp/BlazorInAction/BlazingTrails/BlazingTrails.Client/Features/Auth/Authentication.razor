@@ -1,0 +1,24 @@
+@page "/authentication/{action}"
+@using Microsoft.Extensions.Configuration
+@inject NavigationManager NavManager
+@inject IConfiguration Configuration
+
+<RemoteAuthenticatorView Action="@Action">
+    <LogOut>
+        @{
+            var authority = (string)(Configuration["Auth0:Authority"] ?? "");
+            var clientId = (string)(Configuration["Autho0:ClientId"] ?? "");
+            NavManager.NavigateTo($"{authority}/v2/logout?client_id={clientId}");
+        }
+    </LogOut>
+</RemoteAuthenticatorView>
+
+@code {
+    [Parameter]
+    public string? Action { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        Console.WriteLine("AuthenticationPage: Action: {0}", Action);
+    }
+}
