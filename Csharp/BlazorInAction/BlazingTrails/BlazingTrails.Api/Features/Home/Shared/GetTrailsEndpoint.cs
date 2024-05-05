@@ -15,7 +15,7 @@ public static class GetTrailsEndpoint
         
         var response = new GetTrailsRequest.Response(trails.Select(t =>
             new GetTrailsRequest.Trail(t.Id, t.Name, t.Image, t.Location, t.TimeInMinutes,
-                t.Length, t.Description, t.Waypoints.Select(wp =>
+                t.Length, t.Description, t.Owner ?? "Anonymous", t.Waypoints.Select(wp =>
                     new GetTrailsRequest.Waypoint(wp.Latitude, wp.Longitude)).ToList())));
         return Results.Ok(response);
     }

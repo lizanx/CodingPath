@@ -1,4 +1,5 @@
 @page "/add-trail"
+@attribute [Authorize]
 @inject IMediator Mediator
 
 <PageTitle>Add Trail - Blazing Trails</PageTitle>
@@ -25,15 +26,23 @@ else if (_errorMessage != null)
     <ErrorAlert Message="@_errorMessage" />
 }
 
-<TrailForm @ref="_trailForm" OnSubmit="SubmitNewTrail" />
+<AuthorizeView>
+    @{
+        _owner = context.User.Identity?.Name ?? "Anonymous";
+    }
+    <TrailForm @ref="_trailForm" OnSubmit="SubmitNewTrail" />
+</AuthorizeView>
 
 @code {
     private bool _submitSuccessful;
     private string? _errorMessage;
     private TrailForm _trailForm = default!;
+    // TODO: cannot get httpContext.User.Identity?.Name, temporarily set Onwer using this.
+    private string _owner = default!;
 
     private async Task SubmitNewTrail(TrailDto trail, IBrowserFile? image)
     {
+        trail.Owner = _owner;
         var response = await Mediator.Send(new AddTrailRequest(trail));
         if (response == null || response?.TrailId == -1)
         {

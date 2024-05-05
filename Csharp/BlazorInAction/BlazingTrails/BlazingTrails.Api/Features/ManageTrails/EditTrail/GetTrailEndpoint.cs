@@ -7,7 +7,8 @@ namespace BlazingTrails.Api.Features.ManageTrails.EditTrail;
 
 public static class GetTrailEndpoint
 {
-    public static async Task<IResult> GetTrail([FromRoute] int trailId, BlazingTrailsContext db, CancellationToken cancellationToken = default)
+    public static async Task<IResult> GetTrail([FromRoute] int trailId, BlazingTrailsContext db,
+        HttpContext httpContext, CancellationToken cancellationToken = default)
     {
         var trail = await db.Trails
             .Include(t => t.Waypoints)
@@ -16,6 +17,14 @@ public static class GetTrailEndpoint
         {
             return Results.BadRequest("Trail couldn't be found.");
         }
+
+        Console.WriteLine("##### httpContext.User.Identity?.Name = {0} #####", httpContext.User.Identity?.Name);
+
+        // TODO: cannot get httpContext.User.Identity?.Name, temporarily skip identity verification.
+        // if (trail.Owner != null && !trail.Owner.Equals(httpContext.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
+        // {
+        //     return Results.Unauthorized();
+        // }
 
         var response = new GetTrailRequest.Response(
             new GetTrailRequest.Trail(

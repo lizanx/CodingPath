@@ -4,11 +4,12 @@ using MediatR;
 
 namespace BlazingTrails.Client.Features.ManageTrails.AddTrail;
 
-public class AddTrailHandler(HttpClient httpClient) : IRequestHandler<AddTrailRequest, AddTrailRequest.Response>
+public class AddTrailHandler(IHttpClientFactory httpClientFactory) : IRequestHandler<AddTrailRequest, AddTrailRequest.Response>
 {
     public async Task<AddTrailRequest.Response> Handle(AddTrailRequest request, CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PostAsJsonAsync(AddTrailRequest.RouteTemplate, request, cancellationToken);
+        var client = _httpClientFactory.CreateClient("SecureAPIClient");
+        var response = await client.PostAsJsonAsync(AddTrailRequest.RouteTemplate, request, cancellationToken);
         if (response.IsSuccessStatusCode)
         {
             var trailId = await response.Content.ReadFromJsonAsync<int>(cancellationToken);
@@ -20,5 +21,5 @@ public class AddTrailHandler(HttpClient httpClient) : IRequestHandler<AddTrailRe
         }
     }
 
-    private readonly HttpClient _httpClient = httpClient;
+    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
 }

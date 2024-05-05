@@ -10,7 +10,7 @@ namespace BlazingTrails.Api.Features.ManageTrails.EditTrail;
 public static class EditTrailEndpoint
 {
     public static async Task<IResult> EditTrail([FromBody] EditTrailRequest request, BlazingTrailsContext db,
-    CancellationToken cancellationToken = default)
+        HttpContext httpContext, CancellationToken cancellationToken = default)
     {
         var trail = await db.Trails
             .Include(t => t.Waypoints)
@@ -19,6 +19,12 @@ public static class EditTrailEndpoint
         {
             return Results.BadRequest("Trail couldn't be found.");
         }
+
+        // TODO: cannot get httpContext.User.Identity?.Name, temporarily skip identity verification.
+        // if (trail.Owner != null && !trail.Owner.Equals(httpContext.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
+        // {
+        //     return Results.Unauthorized();
+        // }
 
         trail.Name = request.Trail.Name;
         trail.Description = request.Trail.Description;

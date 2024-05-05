@@ -11,13 +11,20 @@ namespace BlazingTrails.Api.Features.ManageTrails.AddTrail;
 
 public static class UploadTrailImageEndpoint
 {
-    public static async Task<IResult> UploadTrailImage(int trailId, HttpRequest request, BlazingTrailsContext db)
+    public static async Task<IResult> UploadTrailImage(int trailId, HttpRequest request,
+        HttpContext httpContext, BlazingTrailsContext db)
     {
         var trail = await db.Trails.SingleOrDefaultAsync(x => x.Id == trailId);
         if (trail == null)
         {
             return Results.BadRequest("Trail doesn't exist.");
         }
+
+        // TODO: cannot get httpContext.User.Identity?.Name, temporarily skip identity verification.
+        // if (trail.Owner != null && !trail.Owner.Equals(httpContext.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
+        // {
+        //     return Results.Unauthorized();
+        // }
 
         var file = request.Form.Files[0];
         if (file == null || file.Length == 0)

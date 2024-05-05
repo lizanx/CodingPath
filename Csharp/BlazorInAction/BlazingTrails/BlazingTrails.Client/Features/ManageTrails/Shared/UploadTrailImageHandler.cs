@@ -3,10 +3,10 @@ using BlazingTrails.Shared.Features.ManageTrails.Shared;
 
 namespace BlazingTrails.Client.Features.ManageTrails.Shared;
 
-public class UploadTrailImageHandler(HttpClient httpClient) :
+public class UploadTrailImageHandler(IHttpClientFactory httpClientFactory) :
     IRequestHandler<UploadTrailImageRequest, UploadTrailImageRequest.Response>
 {
-    private readonly HttpClient _httpClient = httpClient;
+    private readonly IHttpClientFactory _httpClientFactory = httpClientFactory;
 
     public async Task<UploadTrailImageRequest.Response> Handle(UploadTrailImageRequest request, CancellationToken cancellationToken)
     {
@@ -16,7 +16,8 @@ public class UploadTrailImageHandler(HttpClient httpClient) :
             { new StreamContent(fileContent), "image", request.File.Name }
         };
         
-        var response = await _httpClient.PostAsync(
+        var client = _httpClientFactory.CreateClient("SecureAPIClient");
+        var response = await client.PostAsync(
             UploadTrailImageRequest.RouteTemplate.Replace("{trailId}", request.TrailId.ToString()),
             content,
             cancellationToken);

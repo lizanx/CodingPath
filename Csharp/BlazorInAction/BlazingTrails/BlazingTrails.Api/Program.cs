@@ -36,6 +36,10 @@ builder.Services.AddAuthentication(options =>
             options.RequireHttpsMetadata = false;
         });
 builder.Services.AddAuthorization();
+builder.Services.AddAuthorizationBuilder().AddDefaultPolicy("LoggedInPolicy", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+    });
 
 builder.Services.AddDbContext<BlazingTrailsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BlazingTrailsContext")));

@@ -12,6 +12,9 @@ public class Trail
     public string Location { get; set; } = default!;
     public int TimeInMinutes { get; set; }
     public int Length { get; set; }
+    // TODO: cannot get httpContext.User.Identity?.Name, temporarily add owner here.
+    // public string Owner { get; set; } = default!;
+    public string? Owner { get; set; }
     public ICollection<Waypoint> Waypoints { get; set; } = default!;
 }
 
@@ -24,5 +27,7 @@ public class TrailConfig : IEntityTypeConfiguration<Trail>
         builder.Property(x => x.Location).IsRequired();
         builder.Property(x => x.TimeInMinutes).IsRequired();
         builder.Property(x => x.Length).IsRequired();
+        // TODO: cannot get httpContext.User.Identity?.Name, temporarily disable DB requirement here
+        // builder.Property(x => x.Owner).IsRequired();
     }
 }

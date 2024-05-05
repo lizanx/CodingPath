@@ -2,6 +2,7 @@
 using BlazingTrails.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazingTrails.Api.Persistence.Data.Migrations
 {
     [DbContext(typeof(BlazingTrailsContext))]
-    partial class BlazingTrailsContextModelSnapshot : ModelSnapshot
+    [Migration("20240505064326_AddOwnerToTrail")]
+    partial class AddOwnerToTrail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.4");
@@ -41,6 +44,7 @@ namespace BlazingTrails.Api.Persistence.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Owner")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("TimeInMinutes")

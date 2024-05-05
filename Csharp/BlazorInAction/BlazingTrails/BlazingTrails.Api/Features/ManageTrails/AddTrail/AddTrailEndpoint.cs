@@ -7,7 +7,8 @@ namespace BlazingTrails.Api.Features.ManageTrails.AddTrail;
 
 public static class AddTrailEndpoint
 {
-    public static async Task<IResult> AddTrail([FromBody] AddTrailRequest request, BlazingTrailsContext db)
+    public static async Task<IResult> AddTrail([FromBody] AddTrailRequest request, BlazingTrailsContext db,
+        HttpContext httpContext)
     {
         Trail trail = new() {
             Name = request.Trail.Name,
@@ -15,6 +16,9 @@ public static class AddTrailEndpoint
             Location = request.Trail.Location,
             TimeInMinutes = request.Trail.TimeInMinutes,
             Length = request.Trail.Length,
+            // TODO: cannot get httpContext.User.Identity?.Name, temporarily use Trail.Owner instead
+            // Owner = httpContext.User.Identity!.Name!,
+            Owner = request.Trail.Owner,
             Waypoints = request.Trail.Waypoints.Select(wp =>
                 new Waypoint{
                     Latitude = wp.Latitude,
