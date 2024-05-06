@@ -18,10 +18,9 @@ public static class GetTrailEndpoint
             return Results.BadRequest("Trail couldn't be found.");
         }
 
-        Console.WriteLine("##### httpContext.User.Identity?.Name = {0} #####", httpContext.User.Identity?.Name);
-
-        // TODO: cannot get httpContext.User.Identity?.Name, temporarily skip identity verification.
-        // if (trail.Owner != null && !trail.Owner.Equals(httpContext.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
+        // [BUG]: access tokens cannot be passed from client, skip verification here.
+        // if (!httpContext.User.IsInRole("Administrator") &&
+        //     trail.Owner != null && !trail.Owner.Equals(httpContext.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
         // {
         //     return Results.Unauthorized();
         // }

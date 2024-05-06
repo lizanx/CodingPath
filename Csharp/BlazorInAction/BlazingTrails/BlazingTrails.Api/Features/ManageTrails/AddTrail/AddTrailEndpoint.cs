@@ -16,9 +16,7 @@ public static class AddTrailEndpoint
             Location = request.Trail.Location,
             TimeInMinutes = request.Trail.TimeInMinutes,
             Length = request.Trail.Length,
-            // TODO: cannot get httpContext.User.Identity?.Name, temporarily use Trail.Owner instead
-            // Owner = httpContext.User.Identity!.Name!,
-            Owner = request.Trail.Owner,
+            Owner = httpContext.User.Identity!.Name ?? "",
             Waypoints = request.Trail.Waypoints.Select(wp =>
                 new Waypoint{
                     Latitude = wp.Latitude,

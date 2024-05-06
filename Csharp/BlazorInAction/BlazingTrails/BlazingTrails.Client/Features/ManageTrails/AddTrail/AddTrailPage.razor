@@ -27,9 +27,6 @@ else if (_errorMessage != null)
 }
 
 <AuthorizeView>
-    @{
-        _owner = context.User.Identity?.Name ?? "Anonymous";
-    }
     <TrailForm @ref="_trailForm" OnSubmit="SubmitNewTrail" />
 </AuthorizeView>
 
@@ -37,12 +34,9 @@ else if (_errorMessage != null)
     private bool _submitSuccessful;
     private string? _errorMessage;
     private TrailForm _trailForm = default!;
-    // TODO: cannot get httpContext.User.Identity?.Name, temporarily set Onwer using this.
-    private string _owner = default!;
 
     private async Task SubmitNewTrail(TrailDto trail, IBrowserFile? image)
     {
-        trail.Owner = _owner;
         var response = await Mediator.Send(new AddTrailRequest(trail));
         if (response == null || response?.TrailId == -1)
         {

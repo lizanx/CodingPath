@@ -17,6 +17,10 @@ else
     {
         <AuthorizeView>
             <Authorized>
+                @{
+                    Console.WriteLine("##### [HomePage]: Owner = {0}, IsAdmin = {1}",
+                        context.User.Identity?.Name ?? "None", context.User.IsInRole("Administrator"));
+                }
                 <div class="mb-4">
                     <p class="font-italic text-center">
                         Do you have an awesome trail you'd like to shared? <a href="add-trail">Add it here</a>.
@@ -52,7 +56,8 @@ else
                 <td>@trail.TimeFormatted</td>
                 <td class="text-right">
                     <AuthorizeView>
-                        @if (trail.Owner.Equals(context.User.Identity?.Name, StringComparison.OrdinalIgnoreCase))
+                        @if (trail.Owner.Equals(context.User.Identity?.Name, StringComparison.OrdinalIgnoreCase) ||
+                            context.User.IsInRole("Administrator"))
                         {
                             <button @onclick="@(() => NavManager.NavigateTo($"/edit-trail/{trail.Id}"))" title="Edit"
                                 class="btn btn-outline-secondary">
@@ -85,7 +90,6 @@ else
 @code {
     private IEnumerable<Trail>? _trails;
     private Trail? _selectedTrail;
-    
     protected override async Task OnInitializedAsync()
     {
         try

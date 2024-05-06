@@ -19,8 +19,6 @@ public class TrailDto
     public int Length { get; set; }
     public string? Image { get; set; }
     public ImageAction ImageAction { get; set; }
-    // TODO: cannot get httpContext.User.Identity?.Name, temporarily add property here.
-    public string Owner { get; set; } = default!;
     public List<WaypointDto> Waypoints { get; set; } = [];
     public record WaypointDto(decimal Latitude, decimal Longitude);
 }
