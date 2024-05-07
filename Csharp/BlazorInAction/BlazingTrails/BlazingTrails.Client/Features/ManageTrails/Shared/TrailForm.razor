@@ -1,6 +1,8 @@
 @using BlazingTrails.ComponentLibrary.Map
+@using BlazingTrails.Client.Features.State
 @using MediatR
 @inject IMediator Mediator
+@inject AppState AppState
 
 <EditForm EditContext="_editContext" OnValidSubmit="SubmitForm">
     <FluentValidationValidator />
@@ -84,7 +86,7 @@
         <div class="row">
             <div class="offset-4 col-8 text-right">
                 <button class="btn btn-outline-secondary" type="button"
-                    @onclick="@(() => _trail = new())">
+                    @onclick="@(() => ResetForm())">
                     Reset
                 </button>
                 <button class="btn btn-primary" type="submit">
@@ -107,9 +109,6 @@
 
     protected override void OnParametersSet()
     {
-        _editContext = new(_trail);
-        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
-
         if (Trail != null)
         {
             _trail.Id = Trail.Id;
@@ -125,6 +124,13 @@
             _trail.Waypoints.AddRange(Trail.Waypoints.Select(wp =>
                 new TrailDto.WaypointDto(wp.Latitude, wp.Longitude)));
         }
+        else
+        {
+            _trail = AppState.GetTrail();
+        }
+
+        _editContext = new(_trail);
+        _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
     }
 
     private void LoadTrailImage(InputFileChangeEventArgs args)
@@ -138,6 +144,7 @@
 
     public void ResetForm()
     {
+        AppState.ClearTrail();
         _trail = new();
         _editContext = new(_trail);
         _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());

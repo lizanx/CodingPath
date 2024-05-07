@@ -20,11 +20,13 @@ public class FormStateTracker : ComponentBase
             throw new InvalidOperationException(
                 $"{nameof(FormStateTracker)} requires a cascading parameter of type {nameof(EditContext)}");
         }
+
+        CascadedEditContext.OnFieldChanged += CascadedEditContext_OnFieldChanged;
         
         base.OnInitialized();
     }
 
-    private void CascadedEditContext_OnFieldChanged(object sender, FieldChangedEventArgs e)
+    private void CascadedEditContext_OnFieldChanged(object? sender, FieldChangedEventArgs e)
     {
         var trail = (TrailDto)e.FieldIdentifier.Model;
         if (trail?.Id == 0)
