@@ -4,6 +4,7 @@ using BlazingTrails.Client;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using BlazingTrails.Client.Features.Auth;
 using BlazingTrails.Client.Features.State;
+using Blazored.LocalStorage;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -24,5 +25,6 @@ builder.Services.AddHttpClient("SecureAPIClient", client =>
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddScoped<AppState>();
+builder.Services.AddBlazoredLocalStorage();
 
 await builder.Build().RunAsync();

@@ -23,6 +23,7 @@
         <button class="btn btn-primary" title="View" @onclick="@(async () => await OnSelected.InvokeAsync(Trail))">
             <i class="bi bi-binoculars"></i>
         </button>
+        <FavoriteButton Trail="Trail" />
         
         <AuthorizeView>
             @if (Trail.Owner.Equals(context.User.Identity?.Name, StringComparison.OrdinalIgnoreCase) ||
