@@ -21,21 +21,13 @@ All my coding-related readings and exercises.
 4. [Apps and Services with .NET 7](https://www.goodreads.com/book/show/63336482-apps-and-services-with-net-7) [Finished]
 5. [C# in Depth, 4th Edition](https://www.goodreads.com/book/show/58359576-c-in-depth) [Finished]
 6. [Web Development with Blazor](https://www.goodreads.com/book/show/120781374-web-development-with-blazor) [Finished]
-7. [Blazor In Action](https://www.goodreads.com/book/show/58882047-blazor-in-action) [In Progress]
+7. [Blazor In Action](https://www.goodreads.com/book/show/58882047-blazor-in-action) [Finished]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
 2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [Finished]
 3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [Finished]
 4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/) [In Progress]
-
-## Go
-1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
-2. [Go Web Programming](https://book.douban.com/subject/27204133/)
-3. [Go语言核心36讲](https://time.geekbang.org/column/intro/112)
-
-## Lua
-1. [Programming In Lua 4th Edition](https://book.douban.com/subject/30262035/)
 
 ## OS
 1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [Finished]
@@ -45,3 +37,11 @@ All my coding-related readings and exercises.
 ## Algorithm
 1. [Grokking Algorithms(算法图解)](https://book.douban.com/subject/26979890/) | [《算法图解》读书笔记与课后练习](https://book.douban.com/review/9372724/) [Finished]
 2. [Algorithms 4th Edition(算法 第4版)](https://book.douban.com/subject/19952400/)
+
+## Go
+1. [The Way to Go](https://book.douban.com/subject/10558892/) | [Github Online CN version(Go入门指南)](https://github.com/unknwon/the-way-to-go_ZH_CN)
+2. [Go Web Programming](https://book.douban.com/subject/27204133/)
+3. [Go语言核心36讲](https://time.geekbang.org/column/intro/112)
+
+## Lua
+1. [Programming In Lua 4th Edition](https://book.douban.com/subject/30262035/)
