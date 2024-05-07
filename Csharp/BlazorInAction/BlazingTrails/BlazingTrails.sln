@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Shared", "Bla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.ComponentLibrary", "BlazingTrails.ComponentLibrary\BlazingTrails.ComponentLibrary.csproj", "{C1B62813-A5ED-4EAB-9C13-ADBBF2B3EC6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Tests", "BlazingTrails.Tests\BlazingTrails.Tests.csproj", "{040DF895-610D-4050-BD8C-74B7F4CE00FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{C1B62813-A5ED-4EAB-9C13-ADBBF2B3EC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1B62813-A5ED-4EAB-9C13-ADBBF2B3EC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1B62813-A5ED-4EAB-9C13-ADBBF2B3EC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{040DF895-610D-4050-BD8C-74B7F4CE00FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{040DF895-610D-4050-BD8C-74B7F4CE00FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{040DF895-610D-4050-BD8C-74B7F4CE00FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{040DF895-610D-4050-BD8C-74B7F4CE00FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
