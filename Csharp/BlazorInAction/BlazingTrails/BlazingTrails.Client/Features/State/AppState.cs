@@ -4,9 +4,10 @@ namespace BlazingTrails.Client.Features.State;
 
 public class AppState
 {
-    private TrailDto _unsavedNewTrail = new();
+    public NewTrailState NewTrailState { get; }
 
-    public TrailDto GetTrail() => _unsavedNewTrail;
-    public void SaveTrail(TrailDto newTrail) => _unsavedNewTrail = newTrail;
-    public void ClearTrail() => _unsavedNewTrail = new();
+    public AppState()
+    {
+        NewTrailState = new();
+    }
 }

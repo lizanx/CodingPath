@@ -126,7 +126,7 @@
         }
         else
         {
-            _trail = AppState.GetTrail();
+            _trail = AppState.NewTrailState.GetTrail();
         }
 
         _editContext = new(_trail);
@@ -144,7 +144,7 @@
 
     public void ResetForm()
     {
-        AppState.ClearTrail();
+        AppState.NewTrailState.ClearTrail();
         _trail = new();
         _editContext = new(_trail);
         _editContext.SetFieldCssClassProvider(new BootstrapCssClassProvider());
