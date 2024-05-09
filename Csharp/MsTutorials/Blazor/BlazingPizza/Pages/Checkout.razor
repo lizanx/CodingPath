@@ -1,11 +1,11 @@
 @page "/checkout"
-@implements IDisposable
 @inject OrderState OrderState
 @inject HttpClient HttpClient
 @inject NavigationManager NavigationManager
+@implements IDisposable
 
 <div class="main">
-    <EditForm EditContext="editContext" OnValidSubmit="PlaceOrder">
+    <EditForm EditContext=editContext OnValidSubmit=PlaceOrder>
         <div class="checkout-cols">
             <div class="checkout-order-details">
                 <h4>Review order</h4>
@@ -16,14 +16,14 @@
                 <h4>Deliver to...</h4>
                 @if (isError)
                 {
-                    <div class="alert alert-danger">Please enter a name and address.</div>
+                    <div class="alert alert-danger">Please enter a vaild name and address.</div>
                 }
                 <AddressEditor Address="Order.DeliveryAddress" />
             </div>
         </div>
 
-        <button class="checkout-button btn btn-warning" type="submit" disabled=@isError>
-        Place order
+        <button class="checkout-button btn btn-warning" type="Submit" disabled=@isError>
+            Place order
         </button>
 
         <DataAnnotationsValidator />
@@ -32,13 +32,9 @@
 
 @code {
     Order Order => OrderState.Order;
-    EditContext editContext;
-    bool isError = false;
 
-    void IDisposable.Dispose()
-    {
-        editContext.OnFieldChanged -= HandleFieldChanged;
-    }
+    bool isError = true;
+    EditContext? editContext;
 
     protected override void OnInitialized()
     {
@@ -46,17 +42,25 @@
         editContext.OnFieldChanged += HandleFieldChanged;
     }
 
-    private void HandleFieldChanged(object sender, FieldChangedEventArgs e)
+    async Task PlaceOrder()
     {
-        isError = !editContext.Validate();
+        var response = await HttpClient.PostAsJsonAsync(
+            $"{NavigationManager.BaseUri}orders", OrderState.Order);
+        var newOrderId = await response.Content.ReadFromJsonAsync<int>();
+
+        OrderState.ResetOrder();
+        NavigationManager.NavigateTo($"myorders/{newOrderId}");
+    }
+
+    void HandleFieldChanged(object? sender, FieldChangedEventArgs e)
+    {
+        isError = editContext?.Validate() is false;
         StateHasChanged();
     }
 
-    async Task PlaceOrder()
+    public void Dispose()
     {
-        var response = await HttpClient.PostAsJsonAsync(NavigationManager.BaseUri + "orders", OrderState.Order);
-        var newOrderId= await response.Content.ReadFromJsonAsync<int>();
-        OrderState.ResetOrder();
-        NavigationManager.NavigateTo($"myorders/{newOrderId}");
+        if (editContext is null) return;
+        editContext.OnFieldChanged -= HandleFieldChanged;
     }
 }
