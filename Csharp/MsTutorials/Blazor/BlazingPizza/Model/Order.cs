@@ -8,7 +8,7 @@ namespace BlazingPizza
     {
         public int OrderId { get; set; }
 
-        public string UserId { get; set; } = default!;
+        public string UserId { get; set; }
 
         public DateTime CreatedTime { get; set; }
 

@@ -1,20 +1,21 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+
 namespace BlazingPizza
 {
     public class Address
     {
         public int Id { get; set; }
-
-        public string Name { get; set; } = default!;
-
-        public string Line1 { get; set; } = default!;
-
-        public string Line2 { get; set; } = default!;
-
-        public string City { get; set; } = default!;
-
-        public string Region { get; set; } = default!;
-
-        public string PostalCode { get; set; } = default!;
+        [Required, MinLength(3, ErrorMessage = "Please use a Name bigger than 3 letters."), MaxLength(100)]
+        public string Name { get; set; }
+        [Required, MinLength(5, ErrorMessage = "Please use an Address bigger than 5 letters."), MaxLength(100)]
+        public string Line1 { get; set; }
+        [MaxLength(100)]
+        public string Line2 { get; set; }
+        [Required, MinLength(3, ErrorMessage = "Please use a City bigger than 3 letters."), MaxLength(50)]
+        public string City { get; set; }
+        [Required, MinLength(3, ErrorMessage = "Please use a Region bigger than 3 letters."), MaxLength(20)]
+        public string Region { get; set; }
+        [Required, RegularExpression(@"^([0-9]{5})$", ErrorMessage = "Please use a valid Postal Code with five numbers.")]
+        public string PostalCode { get; set; }
     }
 }

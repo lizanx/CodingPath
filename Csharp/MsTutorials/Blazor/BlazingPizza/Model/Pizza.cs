@@ -16,13 +16,13 @@ namespace BlazingPizza
 
         public int OrderId { get; set; }
 
-        public PizzaSpecial Special { get; set; } = default!;
+        public PizzaSpecial Special { get; set; }
 
         public int SpecialId { get; set; }
 
         public int Size { get; set; }
 
-        public List<PizzaTopping> Toppings { get; set; } = [];
+        public List<PizzaTopping> Toppings { get; set; }
 
         public decimal GetBasePrice()
         {
@@ -31,7 +31,7 @@ namespace BlazingPizza
 
         public decimal GetTotalPrice()
         {
-            return GetBasePrice();
+            return GetBasePrice(); 
         }
 
         public string GetFormattedTotalPrice()
