@@ -1,0 +1,64 @@
+@page "/todo"
+@using BlazorHybridApp.Data
+@using Microsoft.Maui.Storage
+@using System.IO
+@using System.Text.Json
+
+<h3>Todo: @(_todos.Count(it => !it.IsDone)) not finished</h3>
+
+<button @onclick="Save">Save</button>
+<button @onclick="Load">Load</button>
+
+<ul class="list-unstyled">
+    @foreach (var todo in _todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.IsDone" />
+            <input type="text" @bind="todo.Title" />
+        </li>
+    }
+</ul>
+
+<label for="addTodo">
+    Add new To-Do Item: 
+</label>
+<input id="addTodo" type="text" @bind="newTodo" placeholder="Add a new Todo here." />
+<button @onclick="AddTodoItem">Add</button>
+
+@code {
+    private List<TodoItem> _todos = [];
+    
+    private string? newTodo;
+    
+    private void AddTodoItem()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            _todos.Add(new(){ Title = newTodo, IsDone = false });
+            newTodo = string.Empty;
+        }
+    }
+
+    private async Task Save()
+    {
+        var contents = JsonSerializer.Serialize(_todos);
+        // FileSystem.AppDataDirectory throws an exception, use user document path here instead.
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "todos.json");
+        await File.WriteAllTextAsync(path, contents);
+        await App.Current!.MainPage!.DisplayAlert("List Saved", $"List has been saved to {path}.", "OK");
+    }
+
+    private async Task Load()
+    {
+        var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "todos.json");
+        if (!File.Exists(path)) return;
+
+        using var jsonFile = File.OpenRead(path);
+        var loadedItems = await JsonSerializer.DeserializeAsync<List<TodoItem>>(jsonFile);
+        if (loadedItems?.Any() ?? false)
+        {
+            _todos.Clear();
+            _todos.AddRange(loadedItems);
+        }
+    }
+}
