@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using RazorIdentity.Auth.Handler;
+using RazorIdentity.Auth.Requirement;
 using RazorIdentity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +12,16 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("HasName", policy => policy.RequireClaim("FullName"));
+        options.AddPolicy("NameLength>4", policy => policy.AddRequirements(new NameLengthRequirement(5)));
+        options.AddPolicy("Gmail", policy => policy.AddRequirements(new EmailProviderRequirement("gmail")));
+        options.AddPolicy("Outlook", policy => policy.AddRequirements(new EmailProviderRequirement("outlook")));
+    });
+builder.Services.AddSingleton<IAuthorizationHandler, NameLengthHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, EmailProviderHandler>();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => 
     {
