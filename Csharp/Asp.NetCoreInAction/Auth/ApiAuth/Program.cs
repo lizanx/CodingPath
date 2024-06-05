@@ -1,4 +1,6 @@
+using ApiAuth.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
@@ -30,7 +32,16 @@ builder.Services.AddSwaggerGen(options =>
 
 // Config auth.
 builder.Services.AddAuthentication().AddJwtBearer();
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Adult", policyBuilder =>
+    {
+        policyBuilder.AddRequirements(new AgeRequirement(18, int.MaxValue));
+    });
+});
+
+// Add requirement handlers
+builder.Services.AddSingleton<IAuthorizationHandler, AgeHandler>();
 
 var app = builder.Build();
 
@@ -64,7 +75,7 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return forecast;
 })
-.RequireAuthorization()
+.RequireAuthorization("Adult")
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
