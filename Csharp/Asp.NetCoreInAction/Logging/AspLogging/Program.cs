@@ -2,6 +2,9 @@ using NetEscapades.Extensions.Logging.RollingFile;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Config host listening urls: this will override environment variables or cmd line parameters.
+builder.WebHost.UseUrls("https://localhost:8081;http://*:8082");
+
 // builder.Logging.AddJsonConsole();
 builder.Logging.AddConsole();
 builder.Logging.AddFile(options =>
