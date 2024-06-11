@@ -1,0 +1,43 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <div>
+        The got name is: <span id="name"></span>
+    </div>
+    <div>
+        The got age is: <span id="age"></span>
+    </div>
+</div>
+
+<script>
+    var url = 'https://localhost:7126/person';
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the data returned from the server
+            console.log(data);
+            const name = document.getElementById("name");
+            name.textContent = data.name;
+            const age = document.getElementById("age");
+            age.textContent = data.age;
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+</script>
