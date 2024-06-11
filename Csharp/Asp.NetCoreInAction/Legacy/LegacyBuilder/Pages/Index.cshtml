@@ -1,0 +1,14 @@
+@page "/"
+@using LegacyBuilder.Pages
+@model IndexPageModel
+
+<h1>Home Page</h1>
+
+<p>Your random languages:</p>
+
+<ul>
+    @foreach (var language in Model.GetLanguages(5))
+    {
+        <li>@language</li>
+    }
+</ul>
