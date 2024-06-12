@@ -1,0 +1,6 @@
+@ConfigWithDI_HostAddress = http://localhost:5121
+
+GET {{ConfigWithDI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

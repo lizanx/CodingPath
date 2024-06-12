@@ -29,6 +29,9 @@ All my coding-related readings and exercises.
 3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [Finished]
 4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/) [In Progress]
 
+## C
+1. [Modern C](https://www.goodreads.com/book/show/25097722-modern-c) [In Progress]
+
 ## OS
 1. [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/) [Finished]
 2. [Linux C编程一站式学习](https://book.douban.com/subject/4141733/) [Finished]
