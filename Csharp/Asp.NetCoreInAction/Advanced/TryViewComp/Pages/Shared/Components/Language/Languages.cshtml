@@ -1,0 +1,9 @@
+@model IEnumerable<string>
+
+Programming languages selcted for you:
+<ul>
+    @foreach (string lang in Model)
+    {
+        <li>@lang</li>
+    }
+</ul>
