@@ -13,6 +13,7 @@
 
 <form asp-action="post">
     <input type="text" asp-for="Input.Language" placeholder="Enter your selected language here" />
+    <span asp-validation-for="Input.Language"></span>
     <button type="submit">Submit</button>
 </form>
 
