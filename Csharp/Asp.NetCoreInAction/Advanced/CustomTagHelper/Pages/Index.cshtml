@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<h2>System Info TagHelper</h2>
+<system-info add-os="true" add-machine="true"></system-info>
+
+<h2>Hide TagHelper</h2>
+<div>This is the div element without "hide" attribute.</div>
+<div hide="true">This is the div element with "hide" attribute.</div>
+
+<h2>Markdown TagHelper</h2>
+<markdown>
+> This is a reference block.
+
+*Below is a list*
+
+- item 1
+- item 2
+- item 3
+
+</markdown>
