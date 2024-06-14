@@ -1,4 +1,5 @@
 using ApiClient;
+using Polly;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +10,15 @@ builder.Services.AddHttpClient("weatherforecast", client =>
     client.BaseAddress = new Uri("https://localhost:7222/weatherforecast/");
     client.DefaultRequestHeaders.Add("WeatherForecastCount", "2");
 });
-builder.Services.AddHttpClient<VehicleClient>();
+builder.Services.AddHttpClient<VehicleClient>()
+    .AddHttpMessageHandler<ClientNameMessageHandler>()
+    .AddTransientHttpErrorPolicy(policy =>
+        policy.WaitAndRetryAsync([
+            TimeSpan.FromMilliseconds(100),
+            TimeSpan.FromMilliseconds(200),
+            TimeSpan.FromMilliseconds(500),
+        ]));
+builder.Services.AddTransient<ClientNameMessageHandler>();
 
 var app = builder.Build();
 

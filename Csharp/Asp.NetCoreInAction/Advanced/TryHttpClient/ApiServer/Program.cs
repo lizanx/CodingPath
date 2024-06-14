@@ -48,9 +48,10 @@ var vehicles = new Vehicle[]
     new("Train", 200),
     new("Plane", 350)
 };
-app.MapGet("/vehicle", async ([FromHeader] int vehicleCount) =>
+app.MapGet("/vehicle", async ([FromHeader] int vehicleCount, [FromHeader] string clientName) =>
 {
-    await Task.Delay(100);
+    await Task.Delay(200);
+    Console.WriteLine("Client Name: {0}", clientName);
     return Enumerable.Range(0, vehicleCount).Select(_ => vehicles[Random.Shared.Next(vehicles.Length)]);
 });
 
