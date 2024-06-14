@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@if (Model.WeatherForecasts is not null)
+{
+    <h3>Weather Forecasts</h3>
+    <ul>
+        @foreach (var weatherforecast in Model.WeatherForecasts)
+        {
+            <li>@weatherforecast</li>
+        }
+    </ul>
+}
+
+@if (@Model.Vehicles is not null)
+{
+    <h3>Vehicles</h3>
+    <ul>
+        @foreach (var vehicle in Model.Vehicles)
+        {
+            <li>@vehicle</li>
+        }
+    </ul>
+}
