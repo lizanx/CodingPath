@@ -20,6 +20,9 @@ builder.Services.AddHttpClient<VehicleClient>()
         ]));
 builder.Services.AddTransient<ClientNameMessageHandler>();
 
+builder.Services.AddSingleton<VehicleCacheService>();
+builder.Services.AddHostedService<VehicleHostedService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

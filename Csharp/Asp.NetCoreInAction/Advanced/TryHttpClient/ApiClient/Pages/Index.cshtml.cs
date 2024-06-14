@@ -18,14 +18,16 @@ public class IndexModel : PageModel
     }
 
     public async Task<IActionResult> OnGet([FromServices] IHttpClientFactory factory,
-        [FromServices] VehicleClient vehicleClient)
+        // [FromServices] VehicleClient vehicleClient)
+        [FromServices] VehicleCacheService vehicleCacheService)
     {
         HttpClient weatherClient = factory.CreateClient("weatherforecast")
             ?? throw new InvalidOperationException("Cannot get weatherforecast client");
         
         WeatherForecasts = await weatherClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("");
 
-        Vehicles = await vehicleClient.GetVehiclesAsync(4);
+        // Vehicles = await vehicleClient.GetVehiclesAsync(4);
+        Vehicles = vehicleCacheService.Vehicles;
 
         return Page();
     }
