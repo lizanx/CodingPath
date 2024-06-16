@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMiddleware", "CustomMiddleware\CustomMiddleware.csproj", "{48EED613-D1A0-4C1D-8B07-A9AD9077567F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMiddleware.Test", "CustomMiddleware.Test\CustomMiddleware.Test.csproj", "{B503A944-8176-4789-98E7-BA97E9782F51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48EED613-D1A0-4C1D-8B07-A9AD9077567F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EED613-D1A0-4C1D-8B07-A9AD9077567F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EED613-D1A0-4C1D-8B07-A9AD9077567F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EED613-D1A0-4C1D-8B07-A9AD9077567F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B503A944-8176-4789-98E7-BA97E9782F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B503A944-8176-4789-98E7-BA97E9782F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B503A944-8176-4789-98E7-BA97E9782F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B503A944-8176-4789-98E7-BA97E9782F51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
