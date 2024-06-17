@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMiddleware.Test", "Cu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMiddleware.IntegrationTest", "CustomMiddleware.IntegrationTest\CustomMiddleware.IntegrationTest.csproj", "{66C6B029-309E-481A-9736-0673F5DE6CBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomMiddleware.IntegrationTest.WebApplicationFactory", "CustomMiddleware.IntegrationTest.WebApplicationFactory\CustomMiddleware.IntegrationTest.WebApplicationFactory.csproj", "{63C239C0-3FBA-4412-A2BC-3DE58061F0CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{66C6B029-309E-481A-9736-0673F5DE6CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66C6B029-309E-481A-9736-0673F5DE6CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66C6B029-309E-481A-9736-0673F5DE6CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C239C0-3FBA-4412-A2BC-3DE58061F0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C239C0-3FBA-4412-A2BC-3DE58061F0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C239C0-3FBA-4412-A2BC-3DE58061F0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C239C0-3FBA-4412-A2BC-3DE58061F0CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -27,3 +27,6 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+// Change the visibility of the Program class
+public partial class Program { }
