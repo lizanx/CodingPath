@@ -1,0 +1,35 @@
+﻿@if (Show)
+{
+    <div class="dialog-container">
+        <div class="dialog">
+            <div class="dialog-title">
+                @Title
+            </div>
+            <div class="dialog-body">
+            </div>
+            <button class="dialog-buttons" @onclick="OnOk">
+                OK
+            </button>
+            <button class="dialog-buttons" @onclick="OnCancel">
+                Cancel
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool Show { get; set; } = false;
+    [Parameter]
+    public RenderFragment Title { get; set; } = default!;
+    [Parameter]
+    public RenderFragment Content { get; set; } = default!;
+    [Parameter]
+    public string OkContent { get; set; } = "OK";
+    [Parameter]
+    public string CancelContent { get; set; } = "Cancel";
+    [Parameter]
+    public EventCallback OnOk { get; set; }
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+}

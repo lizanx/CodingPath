@@ -1,0 +1,39 @@
+﻿@page "/"
+
+<PageTitle>Customized Components</PageTitle>
+
+<MyAlert Show="_show" OnOk="OnOk" OnCancel="OnCancel">
+    <Title>
+        Test Alert Component
+    </Title>
+    <Content>
+        Click either button to close the dialog.
+    </Content>
+</MyAlert>
+
+@if (!_show)
+{
+    <button @onclick="@(() => _show = !_show)">Show Alert</button>
+}
+
+@if (!string.IsNullOrEmpty(message) && !_show)
+{
+    <div>@message</div>
+}
+
+@code {
+    private bool _show = false;
+    private string message = string.Empty;
+
+    private void OnOk()
+    {
+        _show = false;
+        message = "You have clicked OK!";
+    }
+
+    private void OnCancel()
+    {
+        _show = false;
+        message = "You've clicked Cancel!";
+    }
+}
