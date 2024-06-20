@@ -1,0 +1,19 @@
+@inject IJSRuntime js
+@inject ILogger<SetTitle> logger
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string Title { get; set; } = default!;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        IJSObjectReference jsObjRef = await js.InvokeAsync<IJSObjectReference>("import", "./Pages/SetTitle.razor.js");
+        if (jsObjRef is null)
+        {
+            logger.LogError("Failed to get js module reference.");
+            return;
+        }
+
+        await jsObjRef.InvokeVoidAsync("setDocumentTitle", Title);
+    }
+}

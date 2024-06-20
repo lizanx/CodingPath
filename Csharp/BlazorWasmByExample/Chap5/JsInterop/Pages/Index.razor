@@ -1,0 +1,45 @@
+﻿@page "/"
+@inject IJSRuntime js
+@inject ILogger<Index> logger
+
+<SetTitle Title="Try Js Interop" />
+
+@if (windowSize is not null)
+{
+    <h2>Window Size</h2>
+    <p>
+        Width: @windowSize.Width
+        <br/>
+        Height: @windowSize.Height
+    </p>
+}
+
+@code {
+    private WindowSize? windowSize;
+    private DotNetObjectReference<Index> dotNetObjRef = default!;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            IJSObjectReference jsObjRef = await js.InvokeAsync<IJSObjectReference>("import", "/js_interop.js");
+            @* windowSize = await jsObjRef.InvokeAsync<WindowSize>("getWindowSize");
+            if (windowSize != null) {
+                logger.LogInformation("width: {Width}, height: {Height}", windowSize.Width, windowSize.Height);
+                StateHasChanged();
+            } else {
+                logger.LogError("Failed to get initial window size.");
+            } *@
+
+            dotNetObjRef = DotNetObjectReference.Create<Index>(this);
+            await jsObjRef.InvokeVoidAsync("jsInterop.registerResizeHandler", dotNetObjRef);
+        }
+    }
+
+    [JSInvokable]
+    public void GetWindowSize(WindowSize size)
+    {
+        windowSize = size;
+        StateHasChanged();
+    }
+}
