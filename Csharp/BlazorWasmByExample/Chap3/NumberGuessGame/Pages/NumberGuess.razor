@@ -1,0 +1,102 @@
+@page "/"
+@page "/game"
+
+<h2>Guess the Number</h2>
+
+<p class="match-pos">Correct digit with correct position will be green.</p>
+<p class="match-val">Correct digit but wrong position will be orange.</p>
+
+<div>
+    <p>Digits count: @_digitCount</p>
+    <label for="digit-cnt-input">Enter the number of digits you'd like to guess: </label>
+    <input type="number" @bind="_digitCount" id="digit-cnt-input"/>
+    <button @onclick="OnClick_UpdateDigitCount">Confirm</button>
+    <hr/>
+    <ul>
+        Guesses:
+        @foreach (string guess in _guesses)
+        {
+            <li>
+                @for (int i = 0; i < guess.Length; ++i)
+                {
+                    <span class="@GetDigitStyle(i, guess[i])">@guess[i]</span>
+                }
+            </li>
+        }
+    </ul>
+</div>
+
+@if (_correctGuess)
+{
+    <p>You have guessed the number correctly!</p>
+    <button class="btn btn-primary" @onclick="OnClick_StartGain">Start again</button>
+}
+else
+{
+    <input type="text" @bind="_guessNumber" inputmode="numeric" maxlength="@_digitCount" />
+    <button @onclick="OnClick_Guess">Guess</button>
+}
+
+@code {
+    private int _digitCount = 4;
+    private List<string> _guesses = [];
+    private bool _correctGuess = false;
+    private string _guessNumber = string.Empty;
+    private string _answer = string.Empty;
+
+    protected override void OnParametersSet()
+    {
+        CalculateAnswer();
+    }
+
+    private void CalculateAnswer()
+    {
+        _answer = string.Concat( Enumerable.Range(0, _digitCount).Select(_ => Random.Shared.Next(0, 10).ToString()) );
+        Console.WriteLine("Answer = {0}", _answer);
+    }
+
+    private void OnClick_StartGain()
+    {
+        _correctGuess = false;
+        _guesses.Clear();
+        CalculateAnswer();
+    }
+
+    private void OnClick_Guess()
+    {
+        _guesses.Add(_guessNumber);
+        CheckAnswer();
+    }
+
+    private void CheckAnswer()
+    {
+        if (_guessNumber == _answer)
+        {
+            _correctGuess = true;
+            return;
+        }
+        StateHasChanged();
+    }
+
+    private string GetDigitStyle(int pos, char digit)
+    {
+        Console.WriteLine($"pos-{pos}, digit-{digit}, answer-{_answer[pos]}");
+        if (_answer[pos] == digit)
+        {
+            return "match-pos";
+        }
+        else if (_answer.Contains(digit))
+        {
+            return "match-val";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
+    private void OnClick_UpdateDigitCount()
+    {
+        OnClick_StartGain();
+    }
+}
