@@ -22,6 +22,7 @@ All my coding-related readings and exercises.
 5. [C# in Depth, 4th Edition](https://www.goodreads.com/book/show/58359576-c-in-depth) [Finished]
 6. [Web Development with Blazor](https://www.goodreads.com/book/show/120781374-web-development-with-blazor) [Finished]
 7. [Blazor In Action](https://www.goodreads.com/book/show/58882047-blazor-in-action) [Finished]
+8. [Blazor WebAssembly by Example, 2nd Edition](https://www.goodreads.com/book/show/122337852-blazor-webassembly-by-example---second-edition) [In Progress]
 
 ## C++
 1. [A Tour of C++ 2nd Edition(C++语言导学)](https://book.douban.com/subject/34809273/) [Finished]
