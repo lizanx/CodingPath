@@ -10,6 +10,9 @@
     
     <!-- If you add any scoped CSS files, uncomment the following to load them
     <link href="WeatherForecast.styles.css" rel="stylesheet" /> -->
+
+    <link href="manifest.json" rel="manifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="images/Sun-512.png" />
 </head>
 
 <body>
@@ -22,6 +25,9 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="scripts/interop.js"></script>
+    <script>
+        navigator.serviceWorker.register("service-worker.js");
+    </script>
 </body>
 
 </html>
