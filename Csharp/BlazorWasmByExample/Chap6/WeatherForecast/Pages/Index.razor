@@ -1,0 +1,61 @@
+﻿@page "/"
+@inject IJSRuntime js
+@inject HttpClient httpClient
+
+<PageTitle>Weather Forecast</PageTitle>
+
+@if (position is null)
+{
+    <p>j<em>@message</em></p>
+}
+else
+{
+    <div class="card-group">
+        @foreach (var item in weather!.Daily.Take(5))
+        {
+            <DailyForecast
+               Seconds="@item.Dt"
+               LowTemp="@item.Temp.Min"
+               HighTemp="@item.Temp.Max"
+               Description="@item.Weather[0].Description"
+               Icon="@item.Weather[0].Icon" />
+        }
+    </div>
+}
+
+@code {
+    private string message = "Loading...";
+    private Position? position;
+    private OpenWeather? weather;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await GetPositionAsync();
+        }
+        catch (Exception e)
+        {
+            message = $"Failed to get position: {e.Message}";
+        }
+        try
+        {
+            await GetForecastAsync();
+        }
+        catch (Exception e)
+        {
+            message = $"Failed to get weather forecast: {e.Message}";
+        }
+    }
+
+    private async Task GetPositionAsync()
+    {
+        position = await js.InvokeAsync<Position>("jsInterop.getPosition");
+    }
+
+    private async Task GetForecastAsync()
+    {
+        if (position is not null)
+            weather = await httpClient.GetFromJsonAsync<OpenWeather>("sample-data/weather.json");
+    }
+}
