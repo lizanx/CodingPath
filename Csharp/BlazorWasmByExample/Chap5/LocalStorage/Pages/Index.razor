@@ -1,0 +1,61 @@
+﻿@page "/"
+@using LocalStorage.DataModel
+@using LocalStorage.Services
+@using System.Text.Json
+@inject ILocalStorage storageService
+@inject ILogger<Index> logger
+@inject IJSRuntime jsRuntime
+
+<div>
+    <h1>Test Local Storage</h1>
+    <label for="data-to-store">Enter text you'd like to store: </label>
+    <input type="text" id="data-to-store" @bind-value="data" />
+    <button @onclick="OnClick_SaveToLocalAsync">Save</button>
+</div>
+
+<hr/>
+
+<div>
+    <button @onclick="OnClick_ShowLocalAsync">Read from local storage</button>
+</div>
+
+@code {
+    private string data = string.Empty;
+    private IJSObjectReference jsObjRef = default!;
+    private static readonly string storageKey = "localStorage";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            jsObjRef = await jsRuntime.InvokeAsync<IJSObjectReference>("import", "./Pages/Index.razor.js");
+            if (jsObjRef is null)
+            {
+                throw new Exception("Failed to get localStorage js module in Index.");
+            }
+        }
+    }
+
+    private async Task OnClick_SaveToLocalAsync()
+    {
+        if (string.IsNullOrEmpty(data))
+        {
+            return;
+        }
+
+        var model = new StorageModel()
+            {
+                Value = data,
+                Length = data!.Length,
+                CreatedAt = DateTime.Now
+            };
+        await storageService.SetItemAsync(storageKey, model);
+    }
+
+    private async Task OnClick_ShowLocalAsync()
+    {
+        var savedData = await storageService.GetItemAsync<StorageModel>(storageKey);
+        string result = $"Local storage data: {savedData?.Value}";
+        await jsObjRef.InvokeVoidAsync("showLocalStorage", result);
+    }
+}
