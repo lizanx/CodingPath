@@ -1,0 +1,91 @@
+@page "/store"
+@using ShoppingCart.Models
+@inject HttpClient client
+
+<PageTitle>Store</PageTitle>
+
+<ol class="breadcrumb bg-light">
+    <li class="breadcrumb-item">
+        <a href="#">Home</a>
+    </li>
+    <li class="breadcrumb-item active">
+        Store
+    </li>
+</ol>
+
+@if (products is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h1 class="display-3">Products</h1>
+    <div class="row">
+        <div id="products" class="col-xl-4 col-lg-6">
+            <table width="100%">
+                @foreach (Product item in products)
+                {
+                    <tr>
+                        <td>
+                            <img src="images/@item.Image" />
+                        </td>
+                        <td class="align-middle">
+                            @item.ProductName
+                        </td>
+                        <td class="align-middle">
+                            $@item.Price
+                        </td>
+                        <td class="align-middle">
+                            <button type="button" class="btn btn-danger" @onclick="@(() => OnClick_AddProduct(item))">
+                                Add to cart
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="cart" class="col-xl-3 col-lg-4">
+            @if (cart.Any())
+            {
+                <h2>You Cart</h2>
+                <ul class="list-group">
+                    @foreach (Product item in cart)
+                    {
+                        <li class="list-group-item p-2">
+                            <button type="button" class="btn btn-sm btn-danger me-2" @onclick="(() => OnClick_DeleteProduct(item))">
+                                Delete
+                            </button>
+                            @item.ProductName - $@item.Price
+                        </li>
+                    }
+                </ul>
+                <div class="p-2">
+                    <h3>Total: $@total</h3>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private IList<Product>? products;
+    private IList<Product> cart = [];
+    private int total;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await client.GetFromJsonAsync<IList<Product>>("sample-data/products.json");
+    }
+
+    private void OnClick_AddProduct(Product product)
+    {
+        cart.Add(product);
+        total += product.Price;
+    }
+
+    private void OnClick_DeleteProduct(Product product)
+    {
+        cart.Remove(product);
+        total -= product.Price;
+    }
+}
