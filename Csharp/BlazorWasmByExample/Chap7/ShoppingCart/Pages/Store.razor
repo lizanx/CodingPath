@@ -1,6 +1,8 @@
 @page "/store"
 @using ShoppingCart.Models
+@using ShoppingCart.Services
 @inject HttpClient client
+@inject ICartService cartService
 
 <PageTitle>Store</PageTitle>
 
@@ -36,7 +38,7 @@ else
                             $@item.Price
                         </td>
                         <td class="align-middle">
-                            <button type="button" class="btn btn-danger" @onclick="@(() => OnClick_AddProduct(item))">
+                            <button type="button" class="btn btn-danger" @onclick="@(() => cartService.AddProduct(item))">
                                 Add to cart
                             </button>
                         </td>
@@ -45,14 +47,14 @@ else
             </table>
         </div>
         <div id="cart" class="col-xl-3 col-lg-4">
-            @if (cart.Any())
+            @if (cartService.Cart.Any())
             {
-                <h2>You Cart</h2>
+                <h2>Your Cart</h2>
                 <ul class="list-group">
-                    @foreach (Product item in cart)
+                    @foreach (Product item in cartService.Cart)
                     {
                         <li class="list-group-item p-2">
-                            <button type="button" class="btn btn-sm btn-danger me-2" @onclick="(() => OnClick_DeleteProduct(item))">
+                            <button type="button" class="btn btn-sm btn-danger me-2" @onclick="(() => cartService.DeleteProduct(item))">
                                 Delete
                             </button>
                             @item.ProductName - $@item.Price
@@ -60,7 +62,7 @@ else
                     }
                 </ul>
                 <div class="p-2">
-                    <h3>Total: $@total</h3>
+                    <h3>Total: $@cartService.Total</h3>
                 </div>
             }
         </div>
@@ -69,23 +71,9 @@ else
 
 @code {
     private IList<Product>? products;
-    private IList<Product> cart = [];
-    private int total;
 
     protected override async Task OnInitializedAsync()
     {
         products = await client.GetFromJsonAsync<IList<Product>>("sample-data/products.json");
-    }
-
-    private void OnClick_AddProduct(Product product)
-    {
-        cart.Add(product);
-        total += product.Price;
-    }
-
-    private void OnClick_DeleteProduct(Product product)
-    {
-        cart.Remove(product);
-        total -= product.Price;
     }
 }
