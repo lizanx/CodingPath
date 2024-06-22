@@ -1,0 +1,37 @@
+<div class="col">
+    <h2 style="">
+        @Priority.ToString() Priority
+    </h2>
+    <div class="dropzone" ondragover="event.preventDefault();" @ondrop="OnDropHandler">
+        @foreach (TaskItem item in TaskItems.Where(t => t.Priority == Priority))
+        {
+            <div class="draggable" draggable="true" @ondragstart="@(() => OnDragStartHandler(item))">
+                @item.Name
+                <span class="badge text-bg-secondary">
+                    @item.Priority
+                </span>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public List<TaskItem> TaskItems { get; set; } = [];
+    [Parameter]
+    public TaskPriority Priority { get; set; }
+    [Parameter]
+    public EventCallback<TaskItem> OnStartDrag { get; set; }
+    [Parameter]
+    public EventCallback<TaskPriority> OnDrop { get; set; }
+    
+    private void OnDropHandler()
+    {
+        OnDrop.InvokeAsync(Priority);
+    }
+
+    private void OnDragStartHandler(TaskItem taskItem)
+    {
+        OnStartDrag.InvokeAsync(taskItem);
+    }
+}
