@@ -2,6 +2,9 @@
 @using DocumentFormat.OpenXml
 @using DocumentFormat.OpenXml.Packaging
 @using DocumentFormat.OpenXml.Spreadsheet
+@using ExcelReader.Models
+@using System.Collections.ObjectModel
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 
 <PageTitle>Excel Reader</PageTitle>
 
@@ -32,6 +35,32 @@
         else
         {
             <p>Rows: @rowCount</p>
+
+            <div style="height: 200px;overflow-y: scroll" tabindex="-1">
+                <table width="250">
+                    <thead style="position: sticky; top: 0; background-color: silver">
+                        <tr>
+                            <th>Year</th>
+                            <th width="255">Country</th>
+                            <th>Gold</th>
+                            <th>Silver</th>
+                            <th>Bronze</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <Virtualize Items="@allMedals" SpacerElement="tr">
+                            <tr>
+                                <td align="center">@context.Year</td>
+                                <td>@context.Country</td>
+                                <td align="center">@context.Gold</td>
+                                <td align="center">@context.Silver</td>
+                                <td align="center">@context.Bronze</td>
+                            </tr>
+                        </Virtualize>
+                    </tbody>
+                </table>
+            </div>
         }
     }
     else
@@ -46,6 +75,7 @@
     private const int MAX_FILE_SIZE = 50_000;
     private bool loaded;
     private int rowCount;
+    private Collection<Medals> allMedals = [];
 
     private void SelectFile(InputFileChangeEventArgs args)
     {
@@ -81,6 +111,57 @@
             rowCount = sheetData.Elements<Row>().Count();
             
             loaded = true;
+
+            var stringTable = wbPart.GetPartsOfType<SharedStringTablePart>().FirstOrDefault();
+            
+            foreach (Row r in sheetData.Elements<Row>())
+            {
+                if (r.RowIndex! == 1)
+                {
+                    continue;
+                }
+
+                int col = 1;
+                var medals = new Medals();
+
+                foreach (Cell c in r.Elements<Cell>())
+                {
+                    string value = c.InnerText;
+
+                    if (c.DataType != null)
+                    {
+                        if (c.DataType.Value == CellValues.SharedString)
+                        {
+                            value = stringTable!.SharedStringTable.ElementAt(int.Parse(value)).InnerText;
+                        }
+                    }
+
+                    switch (col)
+                    {
+                        case 1:
+                            medals.Year = int.Parse(value);
+                            break;
+                        case 2:
+                            medals.Country = value;
+                            break;
+                        case 3:
+                            medals.Gold = int.Parse(value);
+                            break;
+                        case 4:
+                            medals.Silver = int.Parse(value);
+                            break;
+                        case 5:
+                            medals.Bronze = int.Parse(value);
+                            break;
+                        default:
+                            break;
+                    }
+
+                    col += 1;
+                }
+
+                allMedals.Add(medals);
+            }
         }
         catch (Exception e)
         {
