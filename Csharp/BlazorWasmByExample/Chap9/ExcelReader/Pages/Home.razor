@@ -1,0 +1,48 @@
+﻿@page "/"
+
+<PageTitle>Excel Reader</PageTitle>
+
+<InputFile accept=".xlsx" OnChange="@SelectFile" />
+
+@if (file is not null)
+{
+    if (errorMessage is null)
+    {
+        <p>
+            <div>
+                File Name: @file.Name
+            </div>
+            <div>
+                File Size: @file.Size.ToString("N0") bytes
+            </div>
+            <div>
+                Content Type: @file.ContentType
+            </div>
+        </p>
+
+        <button type="button">Read File</button>
+    }
+    else
+    {
+        <p><em>@errorMessage</em></p>
+    }
+}
+
+@code {
+    private IBrowserFile? file;
+    private string? errorMessage;
+    private const int MAX_FILE_SIZE = 50_000;
+
+    private void SelectFile(InputFileChangeEventArgs args)
+    {
+        file = args.File;
+        errorMessage = null;
+
+        if (file.Size > MAX_FILE_SIZE
+            || file.ContentType != "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        {
+            errorMessage = $"Invalid file: size = {file.Size}, type = {file.ContentType}";
+        }
+    }
+    
+}
