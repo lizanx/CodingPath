@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using DocumentFormat.OpenXml
+@using DocumentFormat.OpenXml.Packaging
+@using DocumentFormat.OpenXml.Spreadsheet
 
 <PageTitle>Excel Reader</PageTitle>
 
@@ -20,7 +23,16 @@
             </div>
         </p>
 
-        <button type="button">Read File</button>
+        <button type="button" @onclick="ReadFileAsync">Read File</button>
+
+        @if (!loaded)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <p>Rows: @rowCount</p>
+        }
     }
     else
     {
@@ -32,6 +44,8 @@
     private IBrowserFile? file;
     private string? errorMessage;
     private const int MAX_FILE_SIZE = 50_000;
+    private bool loaded;
+    private int rowCount;
 
     private void SelectFile(InputFileChangeEventArgs args)
     {
@@ -44,5 +58,33 @@
             errorMessage = $"Invalid file: size = {file.Size}, type = {file.ContentType}";
         }
     }
-    
+
+    private async Task ReadFileAsync()
+    {
+        try
+        {
+            using var stream = new MemoryStream();
+            await file!.OpenReadStream(MAX_FILE_SIZE).CopyToAsync(stream);
+
+            SpreadsheetDocument doc = SpreadsheetDocument.Open(stream, false);
+            WorkbookPart wbPart = doc.WorkbookPart!;
+
+            var sheet = wbPart.Workbook
+                .Descendants<Sheet>()
+                .Where(s => s.Name == "olympic_medals")
+                .FirstOrDefault()!;
+            
+            WorksheetPart wsPart = (WorksheetPart)(wbPart.GetPartById(sheet.Id!));
+
+            SheetData sheetData = wsPart.Worksheet.Elements<SheetData>().First();
+            
+            rowCount = sheetData.Elements<Row>().Count();
+            
+            loaded = true;
+        }
+        catch (Exception e)
+        {
+            errorMessage = $"Invalid Excel file: {e.Message}";
+        }
+    }
 }
