@@ -1,0 +1,54 @@
+@page "/whoami"
+@using System.Security.Claims
+
+<h1>Who am I?</h1>
+
+<AuthorizeView>
+    <Authorized>
+        I am @myName
+    </Authorized>
+    <NotAuthorized>
+        <div>
+            <b>WARNING: you're not authenticated!</b>
+            You must login to Claims Viewer.
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+<h2>My Claims</h2>
+
+<AuthorizeView>
+    <Authorized>
+        <ul>
+            @foreach (Claim claim in myClaims!)
+            {
+                <li>@claim.Type: @claim.Value</li>   
+            }
+        </ul>
+    </Authorized>
+    <NotAuthorized>
+        <div>
+            <b>WARNING: you're not authorized!</b>
+            You must be a member of the ViewAll group.
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    public Task<AuthenticationState>? authStateTask { get; set; }
+    private string? myName;
+    private List<Claim>? myClaims;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await authStateTask!;
+        var user = authState.User;
+        
+        if (user.Identity!.IsAuthenticated)
+        {
+            myName = user.Identity.Name;
+            myClaims = user.Claims.ToList();
+        }
+    }
+}
