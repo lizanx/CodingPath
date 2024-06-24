@@ -1,3 +1,103 @@
 ﻿@page "/"
+@inject HttpClient client
 
-<h1>Hello, world!</h1>
+@if (tasks is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="d-flex col-md-6 mx-auto py-2">
+        <input type="text" class="form-control m-1" placeholder="Enter Task" @bind="newTask" />
+        <button type="button" class="btn btn-success" @onclick="AddTask">
+                Add
+        </button>
+    </div>
+
+    @foreach (TaskItem task in tasks)
+    {
+        <div class="d-flex col-md-6 mx-auto border-bottom" @key="task">
+            <div class="p-2 flex-fill">
+                <input type="checkbox" checked="@task.IsCompleted" @onclick="@(() => CheckBoxChecked(task))" />
+                <span class="@(task.IsCompleted ? "completed-task" : "")">
+                    @task.TaskName
+                </span>
+            </div>
+            <div class="p-1">
+                <button type="button" class="btn btn-outline-danger btn-sm" title="Delete task"
+                        @onclick="@(() => DeleteTask(task))">
+                    <span class="bi bi-trash"></span>
+                </button>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private IList<TaskItem>? tasks;
+    private string? newTask;
+    private string? error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var requestUri = "api/TaskItems";
+            tasks = await client.GetFromJsonAsync<IList<TaskItem>>(requestUri);
+        }
+        catch (Exception e)
+        {
+            error = $"Error encountered: {e.Message}";
+        }
+    }
+
+    private async Task CheckBoxChecked(TaskItem task)
+    {
+        task.IsCompleted = !task.IsCompleted;
+
+        string requestUri = $"api/TaskItems/{task.Id}";
+        var response = await client.PutAsJsonAsync<TaskItem>(requestUri, task);
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            error = response.ReasonPhrase;
+        }
+    }
+
+    private async Task DeleteTask(TaskItem task)
+    {
+        tasks?.Remove(task);
+        StateHasChanged();
+
+        string requestUri = $"api/TaskItems/{task.Id}";
+        var response = await client.DeleteAsync(requestUri);
+        if (!response.IsSuccessStatusCode)
+        {
+            error = response.ReasonPhrase;
+        }
+    }
+
+    private async Task AddTask()
+    {
+        if (string.IsNullOrWhiteSpace(newTask))
+        {
+            error = "You must enter a valid task.";
+            return;
+        }
+
+        var task = new TaskItem() { TaskName = newTask, IsCompleted = false };
+        tasks?.Add(task);
+
+        string requestUri = $"api/TaskItems";
+        var response = await client.PostAsJsonAsync<TaskItem>(requestUri, task);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            newTask = string.Empty;
+        }
+        else
+        {
+            error = response.ReasonPhrase;
+        }
+    }
+}
