@@ -1,0 +1,29 @@
+<h2>Engine</h2>
+<p>
+    Mode: @EngineMode
+</p>
+<p>
+    Temperature: @Temperature
+</p>
+<button @onclick="ChangeTemperature" type="button">
+    Change Engine Temperature
+</button>
+
+<FuelPump />
+
+@code {
+    [CascadingParameter]
+    public EngineMode EngineMode { get; set; }
+
+    [Parameter]
+    public int Temperature { get; set; } = 16;
+
+    [Parameter]
+    public EventCallback<int> TemperatureChanged{ get; set; }
+
+    private async Task ChangeTemperature()
+    {
+        Temperature = Random.Shared.Next(30, 100);
+        await TemperatureChanged.InvokeAsync(Temperature);
+    }
+}

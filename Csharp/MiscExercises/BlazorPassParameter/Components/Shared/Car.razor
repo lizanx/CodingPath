@@ -1,0 +1,25 @@
+<h2>Car</h2>
+Enginer Temp: @EngineTemp
+
+<CascadingValue Value="@InitEngineMode()">
+    @* <Engine TemperatureChanged="OnTempChanged" /> *@
+    <Engine @bind-Temperature="EngineTemp" />
+</CascadingValue>
+
+@code {
+    private int EngineTemp;
+
+    @* private void OnTempChanged(int changedTemp)
+    {
+        EngineTemp = changedTemp;
+    } *@
+
+    private EngineMode InitEngineMode() =>
+        Random.Shared.Next(0, 3) switch
+        {
+            0 => EngineMode.Eco,
+            1 => EngineMode.Cruise,
+            2 => EngineMode.Sport,
+            _ => throw new Exception("Failed to determine engine mode")
+        };
+}
