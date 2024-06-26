@@ -1,0 +1,40 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <div>
+        <p>Name: @Model.Input.Name</p>
+        <p>Age: @Model.Input.Age</p>
+        <p>PhoneNumber: @Model.Input.PhoneNumber</p>
+    </div>
+    <div>
+        <form asp-page="Index">
+            <div>
+                <label asp-for="Input.Name">Name</label>
+                <input type="text" asp-for="Input.Name" />
+                <span asp-validation-for="Input.Name"></span>
+            </div>
+            <div>
+                <label asp-for="Input.Name">Age</label>
+                <input type="number" asp-for="Input.Age" />
+                <span asp-validation-for="Input.Age"></span>
+            </div>
+            <div>
+                <label asp-for="Input.Name">PhoneNumber</label>
+                <input type="text" asp-for="Input.PhoneNumber" />
+                <span asp-validation-for="Input.PhoneNumber"></span>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
