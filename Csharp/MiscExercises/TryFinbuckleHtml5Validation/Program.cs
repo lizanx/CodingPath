@@ -1,7 +1,12 @@
+using Finbuckle.Html5Validation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+// This still uses data annotation attributes for validation,
+// but no jQuery is involved.
+builder.Services.AddHtml5Validation();
 
 var app = builder.Build();
 

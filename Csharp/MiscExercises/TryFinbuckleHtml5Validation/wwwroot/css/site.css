@@ -22,5 +22,11 @@ body {
 }
 
 .field-validation-error {
-  color: red;
+  color: orange;
+}
+
+input:invalid {
+  border-color: red;
+  background-color: pink;
+  box-shadow: 0 0 5px 1px red;
 }
