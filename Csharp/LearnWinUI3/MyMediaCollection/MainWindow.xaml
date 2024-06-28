@@ -6,16 +6,64 @@
     xmlns:local="using:MyMediaCollection"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:MyMediaCollection.Model"
     mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" Text="Media" />
 
-        <ListView Grid.Row="1" x:Name="ItemList" Background="LightGoldenrodYellow" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Media Collection" Margin="4" FontWeight="Bold" VerticalAlignment="Center" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Media Type:" Margin="4" FontWeight="Bold" VerticalAlignment="Center" />
+                <ComboBox x:Name="ItemFilter" MinWidth="120" Margin="0,2,6,4" />
+            </StackPanel>
+        </Grid>
+        
+        <ListView Grid.Row="1" x:Name="ItemList" Background="LightGoldenrodYellow">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                            <TextBlock Text="Medium" Margin="5,0,0,0" FontWeight="Bold" />
+                        </Border>
+                        <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
+                            <TextBlock Text="Title" Margin="5,0,0,0" FontWeight="Bold" />
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:MediaItem">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Text="{x:Bind Path=MediaInfo.Name}" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind Path=Name}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+        <Button Grid.Row="2" x:Name="AddButton" Content="Add Item" HorizontalAlignment="Right" Margin="8" Click="AddButton_Click" />
     </Grid>
 </Window>
