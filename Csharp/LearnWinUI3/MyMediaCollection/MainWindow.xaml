@@ -30,8 +30,10 @@
             </StackPanel>
         </Grid>
 
-        <ListView ItemsSource="{x:Bind ViewModel.Items}" SelectedItem="{x:Bind ViewModel.SelectedMediumItem, Mode=TwoWay}"
-            Grid.Row="1" Background="LightGoldenrodYellow">
+        <ListView ItemsSource="{x:Bind ViewModel.Items}"
+                SelectedItem="{x:Bind ViewModel.SelectedMediumItem, Mode=TwoWay}"
+                DoubleTapped="{x:Bind ViewModel.ListViewDoubleTapped}"
+                Grid.Row="1" Background="LightGoldenrodYellow">
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <Grid>
@@ -52,7 +54,7 @@
             
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:MediaItem">
-                    <Grid>
+                    <Grid IsHitTestVisible="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />

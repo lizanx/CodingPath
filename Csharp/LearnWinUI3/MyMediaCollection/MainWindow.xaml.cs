@@ -15,6 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using MyMediaCollection.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -26,10 +27,11 @@ namespace MyMediaCollection
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainViewModel ViewModel => App.ViewModel;
+        public MainViewModel ViewModel;
 
         public MainWindow()
         {
+            ViewModel = App.HostContainer.Services.GetRequiredService<MainViewModel>();
             this.InitializeComponent();
         }
     }
