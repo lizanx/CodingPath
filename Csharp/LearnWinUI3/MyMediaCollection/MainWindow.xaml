@@ -29,8 +29,8 @@
                           MinWidth="120" Margin="0,2,6,4" />
             </StackPanel>
         </Grid>
-        
-        <ListView ItemsSource="{x:Bind ViewModel.Items}" SelectedItem="{x:Bind ViewModel.SelectedMediaItem, Mode=TwoWay}"
+
+        <ListView ItemsSource="{x:Bind ViewModel.Items}" SelectedItem="{x:Bind ViewModel.SelectedMediumItem, Mode=TwoWay}"
             Grid.Row="1" Background="LightGoldenrodYellow">
             <ListView.HeaderTemplate>
                 <DataTemplate>

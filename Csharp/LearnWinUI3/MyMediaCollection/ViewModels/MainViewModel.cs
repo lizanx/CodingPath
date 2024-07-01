@@ -1,4 +1,6 @@
-﻿using MyMediaCollection.Enums;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using MyMediaCollection.Enums;
 using MyMediaCollection.Model;
 using System;
 using System.Collections.Generic;
@@ -10,65 +12,42 @@ using System.Windows.Input;
 
 namespace MyMediaCollection.ViewModels
 {
-    public class MainViewModel : BindableBase
+    public partial class MainViewModel : ObservableObject
     {
+        [ObservableProperty]
         private string selectedMedium;
+
+        [ObservableProperty]
         private IList<string> mediums;
+
+        [ObservableProperty]
         private ObservableCollection<MediaItem> items;
+
         private ObservableCollection<MediaItem> allItems;
-        private MediaItem selecteMediumItem;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
+        private MediaItem selectedMediumItem;
+
         private int additionalItemCount = 1;
 
-        public ICommand AddEditCommand {  get; set; }
-        public ICommand DeleteCommand { get; set; }
-
-        public ObservableCollection<MediaItem> Items
+        partial void OnSelectedMediumChanged(string value)
         {
-            get { return items; }
-            set { SetProperty(ref items, value); }
-        }
-
-        public IList<string> Mediums
-        {
-            get { return mediums; }
-            set { SetProperty(ref mediums, value); }
-        }
-
-        public string SelectedMedium
-        {
-            get => selectedMedium;
-            set
+            Items.Clear();
+            foreach (var item in allItems)
             {
-                SetProperty(ref selectedMedium, value);
-                Items.Clear();
-                foreach (var item in allItems)
+                if (string.IsNullOrWhiteSpace(SelectedMedium)
+                    || SelectedMedium == "All"
+                    || value == item.MediaType.ToString())
                 {
-                    if (string.IsNullOrWhiteSpace(selectedMedium)
-                        || selectedMedium == "All"
-                        || selectedMedium == item.MediaType.ToString())
-                    {
-                        Items.Add(item);
-                    }
+                    Items.Add(item);
                 }
-            }
-        }
-
-        public MediaItem SelectedMediaItem
-        {
-            get => selecteMediumItem;
-            set
-            {
-                SetProperty(ref selecteMediumItem, value);
-                ((RelayCommand)DeleteCommand).RaiseCanExecuteChanged();
             }
         }
 
         public MainViewModel()
         {
             PopulateData();
-
-            DeleteCommand = new RelayCommand(DeleteItem, CanDeleteItem);
-            AddEditCommand = new RelayCommand(AddOrEditItem);
         }
 
         private void PopulateData()
@@ -97,7 +76,7 @@ namespace MyMediaCollection.ViewModels
                 MediaInfo = new Media { Id = 3, MediaType = ItemType.Video, Name = "Blu Ray" }
             };
 
-            items = new ObservableCollection<MediaItem>
+            Items = new ObservableCollection<MediaItem>
             {
                 cd,
                 book,
@@ -106,7 +85,7 @@ namespace MyMediaCollection.ViewModels
 
             allItems = new ObservableCollection<MediaItem>(Items);
 
-            mediums = new List<string>
+            Mediums = new List<string>
             {
                 "All",
                 nameof(ItemType.Book),
@@ -114,10 +93,11 @@ namespace MyMediaCollection.ViewModels
                 nameof(ItemType.Video)
             };
 
-            selectedMedium = Mediums[0];
+            SelectedMedium = Mediums[0];
         }
 
-        private void AddOrEditItem()
+        [RelayCommand]
+        private void AddEdit()
         {
             const int startingItemCount = 3;
             var newItem = new MediaItem
@@ -134,16 +114,17 @@ namespace MyMediaCollection.ViewModels
                 Name = $"CD {additionalItemCount}"
             };
             allItems.Add(newItem);
-            items.Add(newItem);
+            Items.Add(newItem);
             additionalItemCount++;
         }
 
-        private void DeleteItem()
+        [RelayCommand(CanExecute = nameof(CanDeleteItem))]
+        private void Delete()
         {
-            allItems.Remove(SelectedMediaItem);
-            items.Remove(SelectedMediaItem);
+            allItems.Remove(SelectedMediumItem);
+            Items.Remove(SelectedMediumItem);
         }
 
-        private bool CanDeleteItem() => SelectedMediaItem != null;
+        private bool CanDeleteItem() => SelectedMediumItem != null;
     }
 }
