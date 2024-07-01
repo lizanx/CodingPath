@@ -32,17 +32,5 @@ namespace MyMediaCollection
         {
             this.InitializeComponent();
         }
-
-        private async void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new ContentDialog
-            {
-                Title = "My Media Collection",
-                Content = "Adding items to the collection is not yet supported",
-                CloseButtonText = "OK",
-                XamlRoot = Content.XamlRoot
-            };
-            await dialog.ShowAsync();
-        }
     }
 }

@@ -30,7 +30,7 @@
             </StackPanel>
         </Grid>
         
-        <ListView ItemsSource="{x:Bind ViewModel.Items}"
+        <ListView ItemsSource="{x:Bind ViewModel.Items}" SelectedItem="{x:Bind ViewModel.SelectedMediaItem, Mode=TwoWay}"
             Grid.Row="1" Background="LightGoldenrodYellow">
             <ListView.HeaderTemplate>
                 <DataTemplate>
@@ -66,6 +66,9 @@
             
         </ListView>
 
-        <Button Grid.Row="2" x:Name="AddButton" Content="Add Item" HorizontalAlignment="Right" Margin="8" Click="AddButton_Click" />
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Content="Add Item" Command="{x:Bind ViewModel.AddEditCommand}" Margin="8,8,0,8" />
+            <Button Content="Delete Item" Command="{x:Bind ViewModel.DeleteCommand}" Margin="8" />
+        </StackPanel>
     </Grid>
 </Window>

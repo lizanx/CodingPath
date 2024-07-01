@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MyMediaCollection.ViewModels
 {
@@ -17,6 +18,9 @@ namespace MyMediaCollection.ViewModels
         private ObservableCollection<MediaItem> allItems;
         private MediaItem selecteMediumItem;
         private int additionalItemCount = 1;
+
+        public ICommand AddEditCommand {  get; set; }
+        public ICommand DeleteCommand { get; set; }
 
         public ObservableCollection<MediaItem> Items
         {
@@ -55,12 +59,16 @@ namespace MyMediaCollection.ViewModels
             set
             {
                 SetProperty(ref selecteMediumItem, value);
+                ((RelayCommand)DeleteCommand).RaiseCanExecuteChanged();
             }
         }
 
         public MainViewModel()
         {
             PopulateData();
+
+            DeleteCommand = new RelayCommand(DeleteItem, CanDeleteItem);
+            AddEditCommand = new RelayCommand(AddOrEditItem);
         }
 
         private void PopulateData()
@@ -108,5 +116,34 @@ namespace MyMediaCollection.ViewModels
 
             selectedMedium = Mediums[0];
         }
+
+        private void AddOrEditItem()
+        {
+            const int startingItemCount = 3;
+            var newItem = new MediaItem
+            {
+                Id = startingItemCount + additionalItemCount,
+                Location = LocationType.InCollection,
+                MediaType = ItemType.Music,
+                MediaInfo = new Media
+                {
+                    Id = 1,
+                    MediaType = ItemType.Music,
+                    Name = "CD"
+                },
+                Name = $"CD {additionalItemCount}"
+            };
+            allItems.Add(newItem);
+            items.Add(newItem);
+            additionalItemCount++;
+        }
+
+        private void DeleteItem()
+        {
+            allItems.Remove(SelectedMediaItem);
+            items.Remove(SelectedMediaItem);
+        }
+
+        private bool CanDeleteItem() => SelectedMediaItem != null;
     }
 }
