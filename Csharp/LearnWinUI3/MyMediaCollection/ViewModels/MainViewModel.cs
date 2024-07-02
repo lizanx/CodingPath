@@ -2,7 +2,9 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Input;
 using MyMediaCollection.Enums;
+using MyMediaCollection.Interfaces;
 using MyMediaCollection.Model;
+using MyMediaCollection.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +24,7 @@ namespace MyMediaCollection.ViewModels
         private IList<string> mediums;
 
         [ObservableProperty]
-        private ObservableCollection<MediaItem> items;
+        private ObservableCollection<MediaItem> items = [];
 
         private ObservableCollection<MediaItem> allItems;
 
@@ -30,7 +32,10 @@ namespace MyMediaCollection.ViewModels
         [NotifyCanExecuteChangedFor(nameof(DeleteCommand))]
         private MediaItem selectedMediumItem;
 
-        private int additionalItemCount = 1;
+        private const string AllMediums = "All";
+
+        private readonly INavigationService _navigationService;
+        private readonly IDataService _dataService;
 
         partial void OnSelectedMediumChanged(string value)
         {
@@ -46,53 +51,32 @@ namespace MyMediaCollection.ViewModels
             }
         }
 
-        public MainViewModel()
+        public MainViewModel(INavigationService navigationService, IDataService dataService)
         {
+            _navigationService = navigationService;
+            _dataService = dataService;
             PopulateData();
         }
 
         private void PopulateData()
         {
-            var cd = new MediaItem
+            Items.Clear();
+            foreach (var item in _dataService.GetItems())
             {
-                Id = 1,
-                Name = "Classical Favorites",
-                MediaType = ItemType.Music,
-                MediaInfo = new Media { Id = 1, MediaType = ItemType.Music, Name = "CD" }
-            };
-
-            var book = new MediaItem
-            {
-                Id = 2,
-                Name = "Classic Fairy Tales",
-                MediaType = ItemType.Book,
-                MediaInfo = new Media { Id = 2, MediaType = ItemType.Book, Name = "Book" }
-            };
-
-            var bluRay = new MediaItem
-            {
-                Id = 3,
-                Name = "The Mummy",
-                MediaType = ItemType.Video,
-                MediaInfo = new Media { Id = 3, MediaType = ItemType.Video, Name = "Blu Ray" }
-            };
-
-            Items = new ObservableCollection<MediaItem>
-            {
-                cd,
-                book,
-                bluRay
-            };
+                Items.Add(item);
+            }
 
             allItems = new ObservableCollection<MediaItem>(Items);
 
-            Mediums = new List<string>
+            Mediums = new ObservableCollection<string>
             {
-                "All",
-                nameof(ItemType.Book),
-                nameof(ItemType.Music),
-                nameof(ItemType.Video)
+                AllMediums
             };
+
+            foreach (var itemType in _dataService.GetItemTypes())
+            {
+                Mediums.Add(itemType.ToString());
+            }
 
             SelectedMedium = Mediums[0];
         }
@@ -100,23 +84,13 @@ namespace MyMediaCollection.ViewModels
         [RelayCommand]
         private void AddEdit()
         {
-            const int startingItemCount = 3;
-            var newItem = new MediaItem
+            var selectedItemId = -1;
+            if (SelectedMediumItem is not null)
             {
-                Id = startingItemCount + additionalItemCount,
-                Location = LocationType.InCollection,
-                MediaType = ItemType.Music,
-                MediaInfo = new Media
-                {
-                    Id = 1,
-                    MediaType = ItemType.Music,
-                    Name = "CD"
-                },
-                Name = $"CD {additionalItemCount}"
-            };
-            allItems.Add(newItem);
-            Items.Add(newItem);
-            additionalItemCount++;
+                selectedItemId = SelectedMediumItem.Id;
+            }
+
+            _navigationService.NavigateTo(nameof(ItemDetailsPage), selectedItemId);
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteItem))]

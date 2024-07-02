@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyMediaCollection.Model
 {
-    public class Media
+    public class Medium
     {
         public int Id { get; set; }
 

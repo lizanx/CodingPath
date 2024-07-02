@@ -15,7 +15,7 @@ namespace MyMediaCollection.Model
 
         public ItemType MediaType { get; set; }
 
-        public Media MediaInfo { get; set; }
+        public Medium MediumInfo { get; set; }
 
         public LocationType Location {  get; set; }
     }

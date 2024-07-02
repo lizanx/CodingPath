@@ -8,6 +8,8 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using MyMediaCollection.Interfaces;
+using MyMediaCollection.Services;
 using MyMediaCollection.ViewModels;
 using MyMediaCollection.Views;
 using System;
@@ -48,9 +50,9 @@ namespace MyMediaCollection
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            RegisterComponents();
             m_window = new MainWindow();
             var rootFrame = new Frame();
+            RegisterComponents(rootFrame);
             rootFrame.NavigationFailed += RootFrame_NavigationFailed;
             rootFrame.Navigate(typeof(MainPage), args);
             m_window.Content = rootFrame;
@@ -62,12 +64,19 @@ namespace MyMediaCollection
             throw new Exception($"Error loading page {e.SourcePageType.FullName}");
         }
 
-        private void RegisterComponents()
+        private void RegisterComponents(Frame rootFrame)
         {
+            var navigationService = new NavigationService(rootFrame);
+            navigationService.Configure(nameof(MainPage), typeof(MainPage));
+            navigationService.Configure(nameof(ItemDetailsPage), typeof(ItemDetailsPage));
+
             HostContainer = Host.CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
+                    services.AddSingleton<INavigationService>(navigationService);
+                    services.AddSingleton<IDataService, DataService>();
                     services.AddTransient<MainViewModel>();
+                    services.AddTransient<ItemDetailsViewModel>();
                 })
                 .Build();
         }

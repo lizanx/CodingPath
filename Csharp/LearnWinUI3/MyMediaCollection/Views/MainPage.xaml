@@ -61,7 +61,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{x:Bind Path=MediaInfo.Name}" />
+                        <TextBlock Grid.Column="0" Text="{x:Bind Path=MediumInfo.Name}" />
                         <TextBlock Grid.Column="1" Text="{x:Bind Path=Name}" />
                     </Grid>
                 </DataTemplate>
@@ -70,7 +70,7 @@
         </ListView>
 
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="Add Item" Command="{x:Bind ViewModel.AddEditCommand}" Margin="8,8,0,8" />
+            <Button Content="Add/Edit Item" Command="{x:Bind ViewModel.AddEditCommand}" Margin="8,8,0,8" />
             <Button Content="Delete Item" Command="{x:Bind ViewModel.DeleteCommand}" Margin="8" />
         </StackPanel>
     </Grid>
