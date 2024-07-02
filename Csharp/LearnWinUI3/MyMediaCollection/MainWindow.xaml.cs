@@ -27,11 +27,9 @@ namespace MyMediaCollection
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        public MainViewModel ViewModel;
 
         public MainWindow()
         {
-            ViewModel = App.HostContainer.Services.GetRequiredService<MainViewModel>();
             this.InitializeComponent();
         }
     }

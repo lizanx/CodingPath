@@ -9,6 +9,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using MyMediaCollection.ViewModels;
+using MyMediaCollection.Views;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -49,7 +50,16 @@ namespace MyMediaCollection
         {
             RegisterComponents();
             m_window = new MainWindow();
+            var rootFrame = new Frame();
+            rootFrame.NavigationFailed += RootFrame_NavigationFailed;
+            rootFrame.Navigate(typeof(MainPage), args);
+            m_window.Content = rootFrame;
             m_window.Activate();
+        }
+
+        private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            throw new Exception($"Error loading page {e.SourcePageType.FullName}");
         }
 
         private void RegisterComponents()
