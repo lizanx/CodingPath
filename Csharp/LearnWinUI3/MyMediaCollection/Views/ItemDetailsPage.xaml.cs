@@ -30,7 +30,17 @@ namespace MyMediaCollection.Views
         public ItemDetailsPage()
         {
             ViewModel = App.HostContainer.Services.GetRequiredService<ItemDetailsViewModel>();
+
             this.InitializeComponent();
+
+            Windows.Storage.ApplicationDataContainer localSettings =
+                Windows.Storage.ApplicationData.Current.LocalSettings;
+            string haveExplainedSaveSetting = localSettings.Values[nameof(SavingTip)] as string;
+            if (!bool.TryParse(haveExplainedSaveSetting, out bool result) || !result)
+            {
+                SavingTip.IsOpen = true;
+                localSettings.Values[nameof(SavingTip)] = "true";
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
