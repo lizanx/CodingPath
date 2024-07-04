@@ -17,37 +17,37 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock Grid.Column="0" Text="Media Collection" Margin="4" FontWeight="Bold" VerticalAlignment="Center" />
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBlock Text="Media Type:" Margin="4" FontWeight="Bold" VerticalAlignment="Center" />
-                <ComboBox ItemsSource="{x:Bind ViewModel.Mediums, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedMedium, Mode=TwoWay}"
-                          MinWidth="120" Margin="0,2,6,4" />
+        <StackPanel Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <SymbolIcon Symbol="Home" Margin="8"/>
+                <TextBlock Text="Home" Style="{StaticResource SubtitleTextBlockStyle}" Margin="8" />
             </StackPanel>
-        </Grid>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="Media Type:" Margin="4" Style="{StaticResource SubtitleTextBlockStyle}" VerticalAlignment="Bottom" />
+                <ComboBox ItemsSource="{x:Bind ViewModel.Mediums, Mode=OneWay}"
+                          SelectedItem="{x:Bind ViewModel.SelectedMedium, Mode=TwoWay}"
+                          MinWidth="120" Margin="0,2,6,4" VerticalAlignment="Bottom" />
+            </StackPanel>
+        </StackPanel>
 
         <ListView ItemsSource="{x:Bind ViewModel.Items}"
                 SelectedItem="{x:Bind ViewModel.SelectedMediumItem, Mode=TwoWay}"
                 DoubleTapped="{x:Bind ViewModel.ListViewDoubleTapped}"
-                Grid.Row="1" Background="LightGoldenrodYellow">
+                Grid.Row="1">
             <ListView.HeaderTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid Margin="4,0,4,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="120" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                            <TextBlock Text="Medium" Margin="5,0,0,0" FontWeight="Bold" />
+                        <Border Grid.Column="0" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="0,0,0,1">
+                            <TextBlock Text="Medium" Margin="4,0,0,0" Style="{StaticResource TitleTextBlockStyle}" />
                         </Border>
-                        <Border Grid.Column="1" BorderBrush="BlueViolet" BorderThickness="0,0,0,1">
-                            <TextBlock Text="Title" Margin="5,0,0,0" FontWeight="Bold" />
+                        <Border Grid.Column="1" BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="0,0,0,1">
+                            <TextBlock Text="Title" Margin="4,0,0,0" Style="{StaticResource TitleTextBlockStyle}" />
                         </Border>
                     </Grid>
                 </DataTemplate>
@@ -57,7 +57,7 @@
                 <DataTemplate x:DataType="model:MediaItem">
                     <Grid IsHitTestVisible="False">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="120" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
@@ -69,9 +69,14 @@
 
         </ListView>
 
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="Add/Edit Item" Command="{x:Bind ViewModel.AddEditCommand}" Margin="8,8,0,8" />
-            <Button Content="Delete Item" Command="{x:Bind ViewModel.DeleteCommand}" Margin="8" />
-        </StackPanel>
+        <Border Grid.Row="2"
+                BorderBrush="{ThemeResource SystemAccentColor}"
+                BorderThickness="0,1,0,0"
+                Margin="4,0">
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Content="Add/Edit Item" Command="{x:Bind ViewModel.AddEditCommand}" Margin="8,8,0,8" />
+                <Button Content="Delete Item" Command="{x:Bind ViewModel.DeleteCommand}" Margin="8" />
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>
