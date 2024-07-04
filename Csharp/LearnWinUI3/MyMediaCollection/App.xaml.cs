@@ -17,10 +17,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Security.EnterpriseData;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -48,11 +50,11 @@ namespace MyMediaCollection
         /// Invoked when the application is launched.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             m_window = new MainWindow();
             var rootFrame = new Frame();
-            RegisterComponents(rootFrame);
+            await RegisterComponentsAsync(rootFrame);
             rootFrame.NavigationFailed += RootFrame_NavigationFailed;
             rootFrame.Navigate(typeof(MainPage), args);
             m_window.Content = rootFrame;
@@ -64,17 +66,20 @@ namespace MyMediaCollection
             throw new Exception($"Error loading page {e.SourcePageType.FullName}");
         }
 
-        private void RegisterComponents(Frame rootFrame)
+        private async Task RegisterComponentsAsync(Frame rootFrame)
         {
             var navigationService = new NavigationService(rootFrame);
             navigationService.Configure(nameof(MainPage), typeof(MainPage));
             navigationService.Configure(nameof(ItemDetailsPage), typeof(ItemDetailsPage));
 
+            var dataService = new SqliteDataService();
+            await dataService.InitializeDataAsync();
+
             HostContainer = Host.CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
                     services.AddSingleton<INavigationService>(navigationService);
-                    services.AddSingleton<IDataService, DataService>();
+                    services.AddSingleton<IDataService>(dataService);
                     services.AddTransient<MainViewModel>();
                     services.AddTransient<ItemDetailsViewModel>();
                 })

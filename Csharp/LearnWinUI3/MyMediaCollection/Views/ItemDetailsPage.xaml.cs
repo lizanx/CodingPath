@@ -43,13 +43,13 @@ namespace MyMediaCollection.Views
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             var itemId = (int)e.Parameter;
             if (itemId > 0)
             {
-                ViewModel.InitializeItemDetailData(itemId);
+                await ViewModel.InitializeItemDetailData(itemId);
             }
         }
     }

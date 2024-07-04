@@ -70,17 +70,17 @@
                     Command="{x:Bind ViewModel.SaveCommand}"/>-->
             <SplitButton Content="Save and Return" Margin="8,8,0,8"
                          x:Name="SaveButton"
-                         Click="{x:Bind ViewModel.SaveItemAndReturn}"
+                         Click="{x:Bind ViewModel.SaveItemAndReturnAsync}"
                          IsEnabled="{x:Bind ViewModel.IsDirty, Mode=OneWay}">
                 <SplitButton.Flyout>
                     <Flyout>
                         <StackPanel>
                             <Button Content="Save and Create New"
-                                    Click="{x:Bind ViewModel.SaveItemAndContinue}"
+                                    Click="{x:Bind ViewModel.SaveItemAndContinueAsync}"
                                     IsEnabled="{x:Bind ViewModel.IsDirty, Mode=OneWay}"
                                     Background="Transparent"/>
                             <Button Content="Save and Return"
-                                    Click="{x:Bind ViewModel.SaveItemAndReturn}"
+                                    Click="{x:Bind ViewModel.SaveItemAndReturnAsync}"
                                     IsEnabled="{x:Bind ViewModel.IsDirty, Mode=OneWay}"
                                     Background="Transparent"/>
                         </StackPanel>

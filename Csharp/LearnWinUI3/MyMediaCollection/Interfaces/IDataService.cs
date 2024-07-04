@@ -10,19 +10,16 @@ namespace MyMediaCollection.Interfaces
 {
     public interface IDataService
     {
-        IList<MediaItem> GetItems();
-        MediaItem GetItem(int id);
-        int AddItem(MediaItem item);
-        void UpdateItem(MediaItem item);
-
+        Task<IList<MediaItem>> GetItemsAsync();
+        Task<MediaItem> GetItemAsync(int id);
+        Task<int> AddItemAsync(MediaItem item);
+        Task UpdateItemAsync(MediaItem item);
+        Task DeleteItemAsync(MediaItem item);
         IList<ItemType> GetItemTypes();
-
         Medium GetMedium(string name);
         IList<Medium> GetMediums();
         IList<Medium> GetMediums(ItemType itemType);
-
         IList<LocationType> GetLocationTypes();
-
-        int SelectedItemId { get; set; }
+        Task InitializeDataAsync();
     }
 }
