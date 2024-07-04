@@ -36,6 +36,7 @@ namespace MyMediaCollection
     {
         //public static MainViewModel ViewModel { get; } = new MainViewModel();
         public static IHost HostContainer { get; private set; }
+        internal Window Window => m_window;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

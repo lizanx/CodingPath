@@ -16,6 +16,9 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using MyMediaCollection.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Windowing;
+using WinRT.Interop;
+using Microsoft.UI;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -27,10 +30,32 @@ namespace MyMediaCollection
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        private AppWindow _appWindow;
+        private const string AppTitle = "My Media Collection";
 
         public MainWindow()
         {
             this.InitializeComponent();
+
+            _appWindow = GetCurrentAppWindow();
+            _appWindow.Title = AppTitle;
+        }
+
+        private AppWindow GetCurrentAppWindow()
+        {
+            IntPtr handle = WindowNative.GetWindowHandle(this);
+            WindowId windowId = Win32Interop.GetWindowIdFromWindow(handle);
+            return AppWindow.GetFromWindowId(windowId);
+        }
+
+        internal void SetPageTitle(string title)
+        {
+            if (_appWindow == null)
+            {
+                _appWindow = GetCurrentAppWindow();
+            }
+
+            _appWindow.Title = $"{AppTitle} - {title}";
         }
     }
 }

@@ -41,6 +41,17 @@ namespace MyMediaCollection.Views
                 SavingTip.IsOpen = true;
                 localSettings.Values[nameof(SavingTip)] = "true";
             }
+
+            Loaded += ItemDetailsPage_Loaded;
+        }
+
+        private void ItemDetailsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = (App.Current as App)?.Window as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.SetPageTitle("Details");
+            }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
