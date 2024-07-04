@@ -19,6 +19,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Windowing;
 using WinRT.Interop;
 using Microsoft.UI;
+using Microsoft.UI.Composition.SystemBackdrops;
+using WinRT;
+using Microsoft.UI.Composition;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -32,10 +35,13 @@ namespace MyMediaCollection
     {
         private AppWindow _appWindow;
         private const string AppTitle = "My Media Collection";
+        private DesktopAcrylicController desktopAcrylicController;
 
         public MainWindow()
         {
             this.InitializeComponent();
+
+            //SystemBackdrop = new DesktopAcrylicBackdrop();
 
             _appWindow = GetCurrentAppWindow();
             _appWindow.Title = AppTitle;
