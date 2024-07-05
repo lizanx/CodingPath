@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using MyMediaCollection.Helpers;
 using MyMediaCollection.Interfaces;
 using MyMediaCollection.Services;
 using MyMediaCollection.ViewModels;
@@ -16,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
@@ -23,6 +25,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Security.EnterpriseData;
+using Microsoft.Windows.AppLifecycle;
+using Microsoft.Windows.AppNotifications;
+using WinRT.Interop;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -37,6 +42,12 @@ namespace MyMediaCollection
         //public static MainViewModel ViewModel { get; } = new MainViewModel();
         public static IHost HostContainer { get; private set; }
         internal Window Window => m_window;
+        private static Window m_window;
+        private NotificationManager notificationManager;
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
+
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -45,6 +56,38 @@ namespace MyMediaCollection
         public App()
         {
             this.InitializeComponent();
+            notificationManager = new();
+            notificationManager.Init();
+            AppDomain.CurrentDomain.ProcessExit += CurrentDomain_ProcessExit;
+        }
+
+        public static void ToForeground()
+        {
+            if (m_window != null)
+            {
+                IntPtr handle = WindowNative.GetWindowHandle(m_window);
+                if (handle != IntPtr.Zero)
+                {
+                    SwitchToThisWindow(handle, true);
+                }
+            }
+        }
+
+        public static string GetFullPathToExe()
+        {
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+            var pos = path.LastIndexOf('\\');
+            return path.Substring(0, pos);
+        }
+
+        public static string GetFullPathToAsset(string assetName)
+        {
+            return $"{GetFullPathToExe()}\\Assets\\{assetName}";
+        }
+
+        private void CurrentDomain_ProcessExit(object sender, EventArgs e)
+        {
+            notificationManager.Unregister();
         }
 
         /// <summary>
@@ -59,6 +102,23 @@ namespace MyMediaCollection
             rootFrame.NavigationFailed += RootFrame_NavigationFailed;
             rootFrame.Navigate(typeof(MainPage), args);
             m_window.Content = rootFrame;
+
+            var currentInstance = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent();
+            if (currentInstance.IsCurrent)
+            {
+                AppActivationArguments activationArguments = currentInstance.GetActivatedEventArgs();
+                if (activationArguments != null)
+                {
+                    ExtendedActivationKind kind = activationArguments.Kind;
+                    if (kind == ExtendedActivationKind.AppNotification)
+                    {
+                        AppNotificationActivatedEventArgs notificationActivatedEventArgs =
+                            (AppNotificationActivatedEventArgs)activationArguments.Data;
+                        notificationManager.ProcessLaunchActivationArgs(notificationActivatedEventArgs);
+                    }
+                }
+            }
+
             m_window.Activate();
         }
 
@@ -86,7 +146,5 @@ namespace MyMediaCollection
                 })
                 .Build();
         }
-
-        private Window m_window;
     }
 }

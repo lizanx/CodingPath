@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using MyMediaCollection.Enums;
+using MyMediaCollection.Helpers;
 using MyMediaCollection.Interfaces;
 using MyMediaCollection.Model;
 using MyMediaCollection.Views;
@@ -108,6 +109,32 @@ namespace MyMediaCollection.ViewModels
         public void ListViewDoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             AddEdit();
+        }
+
+        [RelayCommand]
+        private void SendToast()
+        {
+            if (ToastWithAvatar.SendToast())
+            {
+                NotificationShared.ToastSentSuccessfully();
+            }
+            else
+            {
+                NotificationShared.CouldNotSendToast();
+            }
+        }
+
+        [RelayCommand]
+        private void SendToastWithText()
+        {
+            if (ToastWithText.SendToast())
+            {
+                NotificationShared.ToastSentSuccessfully();
+            }
+            else
+            {
+                NotificationShared.CouldNotSendToast();
+            }
         }
     }
 }
