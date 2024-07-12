@@ -1,0 +1,31 @@
+@page "/tasks"
+
+<h3>Tasks - @(taskList.Count(t => !t.IsCompleted)) Incomplete</h3>
+
+<ul>
+    @foreach (var task in taskList)
+    {
+        <li>
+            <input type="checkbox" @bind="task.IsCompleted"/>
+            <input type="text" @bind="task.Name"/>
+        </li>
+    }
+</ul>
+
+<input @bind="newTask" placeholder="Enter new task"/>
+<button @onclick="AddTask">Add Task</button>
+
+@code {
+    private IList<TaskItem> taskList = [];
+    
+    private string newTask = string.Empty;
+
+    private void AddTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask))
+        {
+            taskList.Add(new TaskItem{ Name = newTask, IsCompleted = false });
+            newTask = string.Empty;
+        }
+    }
+}
