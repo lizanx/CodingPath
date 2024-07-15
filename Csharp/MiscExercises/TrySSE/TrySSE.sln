@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrySSE.Server", "TrySSE.Server\TrySSE.Server.csproj", "{C3E8041C-C60F-4557-8E19-72ADBEA949BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrySSE.Client", "TrySSE.Client\TrySSE.Client.csproj", "{A344ACD8-F313-4A45-BD98-C4D0712708B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrySSE.Shared", "TrySSE.Shared\TrySSE.Shared.csproj", "{C678BD37-FE58-4049-90FD-B9B92873FA48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3E8041C-C60F-4557-8E19-72ADBEA949BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E8041C-C60F-4557-8E19-72ADBEA949BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E8041C-C60F-4557-8E19-72ADBEA949BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E8041C-C60F-4557-8E19-72ADBEA949BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A344ACD8-F313-4A45-BD98-C4D0712708B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A344ACD8-F313-4A45-BD98-C4D0712708B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A344ACD8-F313-4A45-BD98-C4D0712708B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A344ACD8-F313-4A45-BD98-C4D0712708B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C678BD37-FE58-4049-90FD-B9B92873FA48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C678BD37-FE58-4049-90FD-B9B92873FA48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C678BD37-FE58-4049-90FD-B9B92873FA48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C678BD37-FE58-4049-90FD-B9B92873FA48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
