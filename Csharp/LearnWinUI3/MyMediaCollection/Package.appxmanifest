@@ -12,7 +12,7 @@
   <Identity
     Name="9972830a-7da3-4270-a9bb-a15b086f8335"
     Publisher="CN=lizan"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="9972830a-7da3-4270-a9bb-a15b086f8335" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
