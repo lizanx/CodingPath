@@ -1,0 +1,55 @@
+﻿@page "/"
+@inject LanguageService LangService
+@inject PersistentComponentState AppState
+@implements IDisposable
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<h2>Programming Languages</h2>
+<ul>
+    @foreach (string language in _languages)
+    {
+        <li>@language</li>
+    }
+</ul>
+
+
+@code {
+    private IEnumerable<string> _languages = [];
+    private const string LANG_KEY = "ProgrammingLanguages";
+    private PersistingComponentStateSubscription persistingSubscription;
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Calling OnInitializedAsync!");
+
+        persistingSubscription = AppState.RegisterOnPersisting(PersistData);
+
+        if (AppState.TryTakeFromJson<IEnumerable<string>>(LANG_KEY, out var languages))
+        {
+            _languages = languages!;
+            Console.WriteLine("Retrieve persisted data!");
+        }
+        else
+        {
+            _languages = LangService.GetLanguages(4);
+            Console.WriteLine("Get data from service!");
+        }
+    }
+
+    private Task PersistData()
+    {
+        AppState.PersistAsJson<IEnumerable<string>>(LANG_KEY, _languages);
+        Console.WriteLine("Persisting data...");
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        persistingSubscription.Dispose();
+    }
+}
