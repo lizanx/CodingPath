@@ -1,0 +1,13 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<HeadContent>
+    <meta name="author" content="Normal homepage" />
+    <SectionOutlet SectionName="DescriptionUsingSection"></SectionOutlet>
+</HeadContent>
+
+<h1>This page uses SectionOutlet and SectionContent, thus metainfo in children components can be normally included in
+    head tag</h1>
+
+<ChildWithSection Description="Child using SectionContent" />
