@@ -309,4 +309,33 @@ It offers additional information about an HTML element.
 ### How many characters should the subject line of your commit message be?
 72.
 
+## Intro to CSS
+### What is the syntax for class and ID selectors?
+- class selector: `.[class]`
+- id selector: `#[id]`
 
+### How would you apply a single rule to two different selectors?
+Use grouping selectors:
+```css
+.class-1,
+.class-2
+{
+    /* properties here */
+}
+```
+
+### Given an element that has an id of title and a class of primary, how would you use both attributes for a single rule?
+`#title, .primary {}`
+
+### What does the descendant combinator do?
+It matches a certain child whose parent/ancestor must match preceding requirements.
+
+### What are the names of the three ways to add CSS to HTML?
+1. External link
+2. Embedded in HTML
+3. Inline in HTML element
+
+### What are the main differences between the three ways of adding CSS to HTML?
+External link offers good separation and better universality.  
+Embedded styles can be file-scope only thus won't affect styles of other HTML.  
+Inline styles apply to a certain unique element but may cause maintainability and readability issue if used too much.
