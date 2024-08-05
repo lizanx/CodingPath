@@ -339,3 +339,7 @@ It matches a certain child whose parent/ancestor must match preceding requiremen
 External link offers good separation and better universality.  
 Embedded styles can be file-scope only thus won't affect styles of other HTML.  
 Inline styles apply to a certain unique element but may cause maintainability and readability issue if used too much.
+
+## The Cascade
+### Between a rule that uses one class selector and a rule that uses three type selectors, which rule has the higher specificity?
+Class selector.

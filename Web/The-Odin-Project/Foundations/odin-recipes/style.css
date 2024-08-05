@@ -1,0 +1,21 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+    font-family: Brush Script MT, serif;
+}
+
+h2 {
+    font-family: 'Times New Roman', serif;
+}
+
+ul li {
+    background-color: azure;
+    color: chocolate;
+}
+
+ol li {
+    font-weight: 600;
+    color: coral;
+}
