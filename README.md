@@ -50,3 +50,6 @@ All my coding-related readings and exercises.
 
 ## Lua
 1. [Programming In Lua 4th Edition](https://book.douban.com/subject/30262035/)
+
+## Web
+1. [The Odin Project](https://www.theodinproject.com) [In Progress]
