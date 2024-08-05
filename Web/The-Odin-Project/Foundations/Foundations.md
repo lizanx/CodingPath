@@ -343,3 +343,13 @@ Inline styles apply to a certain unique element but may cause maintainability an
 ## The Cascade
 ### Between a rule that uses one class selector and a rule that uses three type selectors, which rule has the higher specificity?
 Class selector.
+
+## Inspecting HTML and CSS
+### How do you select a specific element on your page with your browser’s developer tools?
+Select the element, right click and select "inspect" in menu.
+
+### What does a strike-through in a CSS declaration mean in your browser’s developer tools?
+The overridden CSS.
+
+### How do you change CSS in real time on specific elements of a web page with your browser’s developer tools?
+When inspecting an element, edit its style in style editor window.
