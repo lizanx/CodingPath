@@ -8,11 +8,11 @@ He/She should always offer the background of the problem and clearly state the p
 
 ### Name the 5 things your question should include
 1. The link to the chapter you're reading.
-2. The problem you want to solve and diffculties you meet.
+2. The problem you want to solve and difficulties you meet.
 3. The link to source code repo or online editor.
 4. The expected results and actual results.
 5. The methods you've tried.
-6. The devolopment setup/environment.
+6. The development setup/environment.
 
 ## Join the Odin Community
 ### How do you join The Odin Project’s Discord server?
@@ -31,7 +31,7 @@ Find the link on the website and get invited.
 3. Understand that different people have different knowledge level.
 4. Only answer it if you know how to solve it.
 5. Admit it if you're not sure about the answer as it goes deeper.
-6. Spare enought time for the answering.
+6. Spare enough time for the answering.
 
 ## Computer Basics
 ### Is Windows an operating system or an application?
@@ -69,7 +69,7 @@ The service provider which really connects the global internet, and offers inter
 
 ### What are packets and how are they used to transfer data?
 Packets are packages of data with additional information for transmission.  
-Data sent/received via internet are splitted into small packets for transmission and combined together at destination.
+Data sent/received via internet are split into small packets for transmission and combined together at destination.
 
 ### What is a client?
 A device which requests certain resources from the internet.
