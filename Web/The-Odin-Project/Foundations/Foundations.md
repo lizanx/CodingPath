@@ -353,3 +353,55 @@ The overridden CSS.
 
 ### How do you change CSS in real time on specific elements of a web page with your browser’s developer tools?
 When inspecting an element, edit its style in style editor window.
+
+## The Box Model
+### From inside to outside, what is the order of box-model properties?
+padding/border/margin
+
+### What does the box-sizing CSS property do?
+It defines whether the size of the box is affected only by its width/height or dependent on padding/border too.
+
+### What is the difference between the standard and alternative box model?
+- Standard box model: height/width is for the content, any padding/border will add extra space.
+- Alternative box model: height/width is for the whole box, not the content.
+
+### Would you use margin or padding to create more space between 2 elements?
+Margin.
+
+### Would you use margin or padding to create more space between the contents of an element and its border?
+Padding.
+
+### Would you use margin or padding if you wanted two elements to overlap each other?
+Margin.
+
+### How do you set the alternative box model for all of your elements?
+```css
+html {
+    box-sizing: border-box;
+}
+```
+
+### How do you center an element horizontally?
+Set its left and right margin to `auto`.
+
+## Block and Inline
+### What is the difference between a block element and an inline element?
+A block element will start a new line and stretch to its parent's width.  
+An inline element is adjacent to its neighbors in the same line.
+
+### What is the difference between an inline element and an inline-block element?
+Width/height properties of inline element won't take effect, and extra padding/border may overlap lines above or below the element.  
+Width/height properties of inline-block element take effect, and extra padding/border will not overlap other elements.
+
+### Is an h1 block or inline?
+Block.
+
+### Is button block or inline?
+Inline.
+
+### Is div block or inline?
+Block.
+
+### Is span block or inline?
+Inline.
+
