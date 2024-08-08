@@ -405,3 +405,46 @@ Block.
 ### Is span block or inline?
 Inline.
 
+## Introduction to Flexbox
+### What’s the difference between a flex container and a flex item?
+A flex container is an element with property `display: flex`, while a flex item is a direct child of flex container.
+
+### How do you create a flex item?
+Add this property: `display: flex`.
+
+## Growing and Shrinking
+### What are the 3 values defined in the shorthand flex property (e.g. flex: 1 1 auto)?
+`flex-grow` `flex-shrink` `flex-basis`
+
+### What are the 3 defined values for the flex shorthand flex:auto?
+`flex-grow: 1; flex-shrink: 1; flex-basis: auto`
+
+## Axes
+### How do you make flex items arrange themselves vertically instead of horizontally?
+`flex-direction: column;`
+
+### In a column flex-container, what does flex-basis refer to?
+`height`
+
+### In a row flex-container, what does flex-basis refer to?
+`width`
+
+### Why do the previous two questions have different answers?
+Because `flex-basis` always refer to the main axis which is horizontal for `row` while vertical for `column`.
+
+## Alignment
+### What is the difference between justify-content and align-items?
+The former is along the main axis while the latter is along the cross axis.
+
+### How do you use flexbox to completely center a div inside a flex container?
+```css
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+```
+
+### What’s the difference between justify-content: space-between and justify-content: space-around?
+The former only cares about space between two items, while the latter cares about the space against the container edge as well.
+
