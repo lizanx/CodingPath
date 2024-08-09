@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -75,6 +76,36 @@ body {
 
 .content-banner {
     flex: 1;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #3882f6;
+    margin: 70px 15%;
+    border-radius: 15px;
+}
+
+.banner-text-header {
+    color: #F9FAF8;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.banner-text-content {
+    font-size: 20px;
+    color: #E5E7EB;
+}
+
+.banner-btn {
+    background-color: #3882f6;
+    color: #F9FAF8;
+    font-size: 20px;
+    padding: 5px 20px;
+    border-radius: 12px;
+    border-style: solid;
+    border-color: #F9FAF8;
+    font-weight: 550;
+    text-align: center;
 }
 
 .footer {
