@@ -46,7 +46,50 @@ body {
 .content-header {
     flex: 1;
     background-color: #1F2937;
-    justify-content: flex-start;
+    display: flex;
+    justify-content: center;
+    /* align-items: stretch; */
+    padding: 130px 250px;
+    gap: 40px;
+}
+
+.img-placeholder {
+    background-color: #6D747D;
+    flex: 1 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #F9FAF8;
+}
+
+.header-left-container {
+    flex: 1 1 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.left-container-header {
+    font-size: 48px;
+    font-weight: bolder;
+    color: #F9FAF8;
+}
+
+.left-container-text {
+    font-size: 18px;
+    color: #E5E7EB;
+}
+
+.header-left-container>button {
+    background-color: #3882f6;
+    padding: 10px 15px;
+    color: #F9FAF8;
+    font-weight: bold;
+    font-size: 18px;
+    border-style: none;
+    border-radius: 8px;
 }
 
 .content-info {
