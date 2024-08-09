@@ -94,6 +94,48 @@ body {
 
 .content-info {
     flex: 1;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.content-info>p {
+    font-size: 36px;
+    font-weight: 900;
+    color: #1F2937;
+}
+
+.content-info>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    list-style-type: none;
+}
+
+.content-info>ul>li {
+    flex: 0 1 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.content-info>ul>li>p {
+    flex: 1 1 150px;
+    text-align: center;
+}
+
+.card-img-placeholder {
+    flex: 4 1 150px;
+    border: #3882f6;
+    border-style: solid;
+    border-radius: 15px;
+    width: 150px;
 }
 
 .content-quote {
