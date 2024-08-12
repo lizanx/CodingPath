@@ -2,19 +2,22 @@ using MyWeatherHub;
 using MyWeatherHub.Components;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.AddServiceDefaults();
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 
 builder.Services.AddHttpClient<NwsManager>(c =>
 {
-	var url = builder.Configuration["WeatherEndpoint"] ?? throw new InvalidOperationException("WeatherEndpoint is not set");
+    var url =
+        builder.Configuration["WeatherEndpoint"]
+        ?? throw new InvalidOperationException("WeatherEndpoint is not set");
 
-	c.BaseAddress = new(url);
+    c.BaseAddress = new(url);
 });
 
 var app = builder.Build();
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -29,7 +32,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 app.Run();
