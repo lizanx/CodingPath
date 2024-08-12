@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDefaults", "ServiceDefaults\ServiceDefaults.csproj", "{58566DF8-B32E-4B33-A3F9-AFA501E502C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppHost", "AppHost\AppHost.csproj", "{42AE5B01-12F0-4344-A4DD-F35BF3A0E453}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{58566DF8-B32E-4B33-A3F9-AFA501E502C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58566DF8-B32E-4B33-A3F9-AFA501E502C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58566DF8-B32E-4B33-A3F9-AFA501E502C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AE5B01-12F0-4344-A4DD-F35BF3A0E453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AE5B01-12F0-4344-A4DD-F35BF3A0E453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AE5B01-12F0-4344-A4DD-F35BF3A0E453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AE5B01-12F0-4344-A4DD-F35BF3A0E453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
