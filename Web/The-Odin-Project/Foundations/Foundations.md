@@ -448,3 +448,49 @@ The former is along the main axis while the latter is along the cross axis.
 ### What’s the difference between justify-content: space-between and justify-content: space-around?
 The former only cares about space between two items, while the latter cares about the space against the container edge as well.
 
+## Variables and Operators
+### Name the three ways to declare a variable
+```js
+let a;
+const b;
+var c;
+```
+
+### Which of the three variable declarations should you avoid and why?
+`var`, because vars declared this way has scope issues and redefinition issues.
+
+### What rules should you follow when naming variables?
+Use camel-case in general and make the name meaningful.
+
+### What happens when you add numbers and strings together?
+The numbers are converted to strings automatically and "add" becomes concatenation.
+
+### How does the Modulo (%), or Remainder, operator work?
+It returns the remainder.
+
+### Explain the difference between == and ===.
+`==` only compares values and ignores types, while `===` compared both types and values.
+
+### When would you receive a NaN result?
+When some value cannot be correctly converted to a number.
+
+### How do you increment and decrement a number?
+Prefix or postfix `++`/`--`
+
+### Explain the difference between prefixing and postfixing increment/decrement operators.
+Prefixing returns the number after increment/decrement, while postfixing return the number before increment/decrement.
+
+### What is operator precedence and how is it handled in JS?
+Different math operators have different priorities, operations with higher priorities are executed before lower ones.  
+For operations that have the same priorities, the execution order is left-to-right.
+
+### How do you access developer tools and the console?
+Press `F12` shortcut.
+
+### How do you log information to the console?
+`console.log`
+
+### What does unary plus operator do to string representations of integers? eg. +”10”
+Same as `Number("10")`, it converts the string to a number.
+
+
