@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Nuget manifest -->
+    <PackageId>TryNuget</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>GavinXu</Authors>
+    <Company>Pantum</Company>
+  </PropertyGroup>
+
+</Project>
