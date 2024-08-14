@@ -493,4 +493,88 @@ Press `F12` shortcut.
 ### What does unary plus operator do to string representations of integers? eg. +”10”
 Same as `Number("10")`, it converts the string to a number.
 
+## Data Types and Conditionals
+### What are the eight data types in JavaScript?
+- string
+- number
+- bigint
+- boolean
+- null
+- undefined
+- object
+- symbol
+
+### Which data type is NOT primitive?
+object
+
+### What is the relationship between null and undefined?
+- `null`: nothing, value unknown
+- `undefined`: value not assigned
+
+### What is the difference between single, double, and backtick quotes for strings?
+Single quotes and double quotes are barely the same,  
+while backtick quotes strings can contain string interpolation and multiple lines.
+
+### What is the term for joining strings together?
+Concatenation.
+
+### Which type of quote lets you embed variables/expressions in a string?
+Backtick quotes.
+
+### How do you embed variables/expressions in a string?
+```js
+`${Expression}`
+```
+
+### How do you use escape characters in a string?
+`"\n"`
+
+### What is the difference between the slice/substring/substr string methods?
+`slice` and `substring` accept start index and end index as parameters,  
+while `substr` accepts start index and length as parameters.  
+`slice` can accept negative indexes which means counting from end,  
+while `substring` doesn't support negative indexes.
+
+### What are the three logical operators, and what do they stand for?
+`&&` - and, `||` - or, `!` - not.
+
+### What are the comparison operators?
+`== > < >= <= ===`
+
+### What are truthy and falsy values?
+- falsy values: `null` `undefined` `false` `0` `""`
+- truthy values: all values other than falsy values
+
+### What are the falsy values in JavaScript?
+`null` `undefined` `false` `0` `""`
+
+### What are conditionals?
+Decisions to determine the code flow.
+
+### What is the syntax for an if/else conditional?
+```js
+if (condition) {
+    // statements
+} else {
+    // statements
+}
+```
+
+### What is the syntax for a switch statement?
+```js
+switch (variable) {
+    case condition:
+        // statement
+        break;
+    // case ...
+    default:
+        // statement
+}
+```
+
+### What is the syntax for a ternary operator?
+`(condition) ? action-when-tue : action-when-false`
+
+### What is nesting?
+A language structure for control flow can be nested in another one.
 
