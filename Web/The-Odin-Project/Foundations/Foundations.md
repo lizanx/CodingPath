@@ -578,3 +578,18 @@ switch (variable) {
 ### What is nesting?
 A language structure for control flow can be nested in another one.
 
+## JavaScript Developer Tools
+### How do you open developer tools?
+- Right click and select "Inspect".
+- Press shortcut key `F12`.
+
+### How do you change screen size of a website using developer tools?
+Go to the device panel and enter sizes or drag and drop the displayed screen.
+
+### What is a breakpoint?
+It's a debugging method which pauses the execution of codes at a certain point or when certain conditions are met.
+
+### How do you set a breakpoint?
+- Click the line number of code.
+- Call `debug(funcName)` in code.
+- Use other options in dev-tools panel like event breakpoints.
