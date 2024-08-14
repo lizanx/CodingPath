@@ -593,3 +593,23 @@ It's a debugging method which pauses the execution of codes at a certain point o
 - Click the line number of code.
 - Call `debug(funcName)` in code.
 - Use other options in dev-tools panel like event breakpoints.
+
+## Function Basics
+### What are functions useful for?
+To define a certain action and reuse code blocks.
+
+### How do you invoke a function?
+`funcName(parameters...)`
+
+### What are anonymous functions?
+Functions that are defined without a name, which can only be assigned to a variable or passed as arguments.
+
+### What is function scope?
+A function has its only scope starting from `{` and ending at `}`, the scope may influence variable definitions and references.
+
+### What are return values?
+Values returned from a function, namely after some actions the function can return a value.
+
+### What are arrow functions?
+A simplified way to define function expressions: `(params...) => { /* code blocks */ }`
+
