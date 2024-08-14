@@ -613,3 +613,31 @@ Values returned from a function, namely after some actions the function can retu
 ### What are arrow functions?
 A simplified way to define function expressions: `(params...) => { /* code blocks */ }`
 
+## Problem Solving
+### What are the three stages in the problem solving process?
+1. Understand the problem
+2. Plan the solution
+3. Divide the big problem into smaller ones and solve them one by one
+
+### Why is it important to clearly understand the problem first?
+If you don't truly understand a problem, you can't go in the right direction to solving it.
+
+### What can you do to help get a clearer understanding of the problem?
+Explain it in simple English by writing it down, speaking to someone else or a rubber duck.
+
+### What are some of the things you should do in the planning stage of the problem solving process?
+- Define initial inputs and final outputs
+- Divide the big problem into small ones
+- Write pseudocode if possible
+
+### What is an algorithm?
+It's just a group of steps to solve a particular problem.
+
+### What is pseudocode?
+It's a programming language independent representation of logical steps.
+
+### What are the advantages of breaking a problem down and solving the smaller problems?
+- Smaller problems are easier to understand and solve.
+- Solve one small problem will probably make solving another one easy.
+- Solution to each small problem will help determine if you're on the right way.
+
