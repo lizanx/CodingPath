@@ -641,3 +641,22 @@ It's a programming language independent representation of logical steps.
 - Solve one small problem will probably make solving another one easy.
 - Solution to each small problem will help determine if you're on the right way.
 
+## Understanding Errors
+### What are three reasons why you may see a TypeError?
+- Modify a variable which is unchangeable
+- Use a value in an inappropriate way
+- An operand or parameter passed to a function is incompatible with the expected type
+
+### What is the key difference between an error and a warning?
+An error will terminate the execution of the program unless you explicitly catch it,  
+while a warning only offers warning information about potential errors without terminating the execution.
+
+### What is one method you can use to resolve an error?
+```js
+try {
+    // something may cause error
+}
+catch (e) {
+    // handle the error
+}
+```
