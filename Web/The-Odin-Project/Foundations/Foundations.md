@@ -660,3 +660,18 @@ catch (e) {
     // handle the error
 }
 ```
+
+## Clean Code
+### Why is it important to write clean code?
+Because it's more readable for later readers(including yourself),  which improves maintainability.
+
+### Name 5 clean code principles previously mentioned
+- Revise idea before coding
+- Expose the structure of codes clearly
+- Write meaningful and clear comments
+- Use a good convention to name variables/functions
+- Don't write very large functions
+
+### What is the difference between good comments and bad comments?
+Good comments explains what the code does and why,  
+while bad comments only clutter the codes without useful information.
