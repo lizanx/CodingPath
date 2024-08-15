@@ -675,3 +675,35 @@ Because it's more readable for later readers(including yourself),  which improve
 ### What is the difference between good comments and bad comments?
 Good comments explains what the code does and why,  
 while bad comments only clutter the codes without useful information.
+
+## Arrays and Loops
+### What is an array?
+An array is a sequence of values where each one has an index starting from 0.
+
+### What are arrays useful for?
+For a collection of data.
+
+### How do you access an array element?
+`arr[index]` or `arr.at(index)`
+
+### How do you change an array element?
+`arr[index] = value;`
+
+### What are some useful array properties?
+- `arr.length` returns the length of the array
+
+### What are some useful array methods?
+- `arr.slice()` returns a new array containing the requested elements
+- `arr.forEach()` executes certain operation on each element
+
+### What are loops useful for?
+For executing certain operations repeatedly until the condition is broken.
+
+### What is the break statement?
+It stops the execution of the inner most loop immediately.
+
+### What is the continue statement?
+It skips the rest of loop for this round and immediately jumps to next round.
+
+### What is the advantage of writing automated tests?
+It simplifies verification process and help you make the logic of solution more clear.
