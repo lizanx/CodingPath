@@ -1,7 +1,14 @@
-const removeFromArray = function (arr, element) {
+const removeFromArray = function (arr, ...excludes) {
     let newArray = [];
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i] !== element) {
+        let isExcluded = false;
+        for (const exclude of excludes) {
+            if (arr[i] === exclude) {
+                isExcluded = true;
+                break;
+            }
+        }
+        if (!isExcluded) {
             newArray.push(arr[i]);
         }
     }
