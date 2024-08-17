@@ -707,3 +707,57 @@ It skips the rest of loop for this round and immediately jumps to next round.
 
 ### What is the advantage of writing automated tests?
 It simplifies verification process and help you make the logic of solution more clear.
+
+## DOM Manipulation and Events
+### What is the DOM?
+Document obj Model: a tree of nodes which each represents an HTML element.
+
+### How do you target the nodes you want to work with?
+`document.querySelector()`
+
+### How do you create an element in the DOM?
+`document.createElement()`
+
+### How do you add an element to the DOM?
+`parentNode.appendChild()`
+
+### How do you remove an element from the DOM?
+`parentNode.removeChild()`
+
+### How can you alter an element in the DOM?
+Firstly get the reference to the element, then modify its properties like styles and ids.
+
+### When adding text to a DOM element, should you use textContent or innerHTML? Why?
+`textContent` is better to prevent some attacks.
+
+### Where should you include your JavaScript tag in your HTML file when working with DOM nodes?
+1. Best way: inside the `head` element, with `defer` property
+2. At the end of `body` element
+
+### How do “events” and “listeners” work?
+Events are dispatched when certain actions are performed by user like click/press-keyboard,  
+then these events are handled by corresponding handlers which listen to them, namely listeners.
+
+### What are three ways to use events in your code?
+1. `addEventListener` method to add a listener for a certain event
+2. `on[Event]` property to add a listener for a certain event
+3. Similar to 2, but directly defines the listener in HTML tag properties
+
+### Why are event listeners the preferred way to handle events?
+Because they're more flexible as multiple listeners can be added, and they help decouple the codes.
+
+### What are the benefits of using named functions in your listeners?
+You can apply the same function to many listeners.
+
+### How do you attach listeners to groups of nodes?
+`elements.forEach((e) => e.addEventListener('Event', handler))`
+
+### What is the difference between the return values of querySelector and querySelectorAll?
+The former returns the first found element, while the latter returns all matched ones.
+
+### What does a “NodeList” contain?
+A collection of HTML nodes.
+
+### Explain the difference between “capture” and “bubbling”.
+- Capture: event instantiates from outmost root element and goes all the way down to the target element
+- Bubbling: event instantiates from the target element and progates all the way up the root element
