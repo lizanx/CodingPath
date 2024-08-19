@@ -761,3 +761,19 @@ A collection of HTML nodes.
 ### Explain the difference between “capture” and “bubbling”.
 - Capture: event instantiates from outmost root element and goes all the way down to the target element
 - Bubbling: event instantiates from the target element and progates all the way up the root element
+
+## Revisiting Rock Paper Scissors
+### What are branches in git?
+Like tree branches, git branches are records of your commits originating from a commit.  
+Branches are used to manage different development paths.
+
+### How do you create a new branch?
+`git branch [BranchName]` or `git checkout -b [BranchName]`
+
+### How do you merge a branch back into main?
+1. Checkout back to main branch
+2. `git merge [BranchName]`
+
+### What is one use case for branches?
+- To develop a feature without impacting the main branch
+- To temporarily store your new codes which may have bugs without impacting the main branch
