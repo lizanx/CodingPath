@@ -1,0 +1,15 @@
+button {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.container {
+    border: 2px solid olivedrab;
+    /* padding: 5px; */
+    width: 960px;
+    height: 960px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 5px; */
+}
