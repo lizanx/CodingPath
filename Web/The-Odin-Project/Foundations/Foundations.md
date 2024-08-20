@@ -777,3 +777,23 @@ Branches are used to manage different development paths.
 ### What is one use case for branches?
 - To develop a feature without impacting the main branch
 - To temporarily store your new codes which may have bugs without impacting the main branch
+
+## Object Basics
+### What is the difference between objects and arrays?
+Arrays are objects too, but they have their own methods.  
+Arrays are a list of data, while objects are a group of related data.
+
+### How do you access object properties?
+`obj.[prop]` or `obj[[prop]]`
+
+### How do primitives and object types differ when you assign them to other variables, or pass them into functions?
+Primitives are copied while objects are referenced.
+
+### What is Array.prototype.map() useful for?
+To get a new array of the same size within which each element is converted from the original array.
+
+### What is Array.prototype.filter() useful for?
+To get a new array whose elements are filtered by the supplied function from the original array.
+
+### What is Array.prototype.reduce() useful for?
+To get a final result which is calculated by repeatedly calling the supplied function with accumulator and elements.
