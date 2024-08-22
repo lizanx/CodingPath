@@ -5,5 +5,20 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.MainWindow"
         Title="GetStartedApp">
-    Welcome to Avalonia!
+        <StackPanel>
+            <Border Margin="5" CornerRadius="10" Background="LightBlue">
+                <TextBlock Margin="5" FontSize="24" HorizontalAlignment="Center">
+                    Temperature Converter
+                </TextBlock>
+            </Border>
+            <Grid ShowGridLines="False" Margin="5"
+                ColumnDefinitions="120, 100"
+                RowDefinitions="Auto, Auto, Auto">
+                <Label Grid.Row="0" Grid.Column="0" Margin="10">Celsius</Label>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Text="0" Name="celsius"/>
+                <Label Grid.Row="1" Grid.Column="0" Margin="10">Fahrenheit</Label>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5" Text="0" Name="fahrenheit" IsReadOnly="True"/>
+                <Button Grid.Row="2" Grid.Column="1" Margin="0 5" Click="Button_Clicked">Calculate</Button>
+            </Grid>
+        </StackPanel>
 </Window>
