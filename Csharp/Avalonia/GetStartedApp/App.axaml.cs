@@ -17,7 +17,8 @@ public partial class App : Application
         {
             // desktop.MainWindow = new MainWindow();
             // desktop.MainWindow = new CanvasWindow();
-            desktop.MainWindow = new DockPanelWindow();
+            // desktop.MainWindow = new DockPanelWindow();
+            desktop.MainWindow = new GridWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

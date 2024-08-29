@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.GridWindow"
+        Title="GetStartedApp-Grid">
+
+    <Grid Background="Gainsboro" HorizontalAlignment="Left" VerticalAlignment="Top" Width="425" Height="165"
+          ColumnDefinitions="Auto,*,*,*,*" RowDefinitions="Auto,Auto,*,Auto">
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4"
+                   Text="Type the name of a program, folder, document, or Internet resource, and Windows will open it for you."
+                   TextWrapping="Wrap" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Open:" />
+
+        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" />
+
+        <Button Grid.Row="3" Grid.Column="2" Content="OK" Margin="10,0,10,15" />
+
+        <Button Grid.Row="3" Grid.Column="3" Content="Cancel" Margin="10,0,10,15" />
+
+        <Button Grid.Row="3" Grid.Column="4" Content="Browse ..." Margin="10,0,10,15" />
+    </Grid>
+</Window>
