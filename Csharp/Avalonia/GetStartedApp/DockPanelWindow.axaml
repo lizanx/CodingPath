@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+    x:Class="GetStartedApp.DockPanelWindow"
+    Title="GetStartedApp-DockPanel">
+
+    <DockPanel LastChildFill="True">
+        <Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1"
+            DockPanel.Dock="Top">
+            <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
+        </Border>
+        <Border Height="25" Background="SkyBlue" BorderBrush="Black" BorderThickness="1"
+            DockPanel.Dock="Top">
+            <TextBlock Foreground="Black">Dock = "Top"</TextBlock>
+        </Border>
+        <Border Height="25" Background="LemonChiffon" BorderBrush="Black" BorderThickness="1"
+            DockPanel.Dock="Bottom">
+            <TextBlock Foreground="Black">Dock = "Bottom"</TextBlock>
+        </Border>
+        <Border Height="25" Background="PaleGreen" BorderBrush="Black" BorderThickness="1"
+            DockPanel.Dock="Left">
+            <TextBlock Foreground="Black">Dock = "Left"</TextBlock>
+        </Border>
+        <Border Height="25" Background="White" BorderBrush="Black" BorderThickness="1">
+            <TextBlock Foreground="Black">This content will "Fill" the remaining space</TextBlock>
+        </Border>
+    </DockPanel>
+</Window>
