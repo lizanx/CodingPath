@@ -5,9 +5,20 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.MainWindow"
         Title="GetStartedApp">
-        <StackPanel>
+    <Window.Styles>
+        <Style Selector="TextBlock.title">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            
+            <Style Selector="^:pointerover">
+                <Setter Property="Foreground" Value="DarkRed"></Setter>
+            </Style>
+        </Style>
+    </Window.Styles>
+    
+    <StackPanel>
             <Border Margin="5" CornerRadius="10" Background="LightBlue">
-                <TextBlock Margin="5" FontSize="24" HorizontalAlignment="Center">
+                <TextBlock Margin="5" FontSize="24" HorizontalAlignment="Center" Classes="title">
                     Temperature Converter
                 </TextBlock>
             </Border>

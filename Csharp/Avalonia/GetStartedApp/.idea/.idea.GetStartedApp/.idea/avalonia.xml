@@ -4,7 +4,9 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="GetStartedApp.csproj" />
+        <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="UniformGridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="WrapPanelWindow.axaml" value="GetStartedApp.csproj" />

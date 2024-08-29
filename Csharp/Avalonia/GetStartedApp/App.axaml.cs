@@ -15,13 +15,13 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // desktop.MainWindow = new MainWindow();
+            desktop.MainWindow = new MainWindow();
             // desktop.MainWindow = new CanvasWindow();
             // desktop.MainWindow = new DockPanelWindow();
             // desktop.MainWindow = new GridWindow();
             // desktop.MainWindow = new StackPanelWindow();
             // desktop.MainWindow = new WrapPanelWindow();
-            desktop.MainWindow = new UniformGridWindow();
+            // desktop.MainWindow = new UniformGridWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
