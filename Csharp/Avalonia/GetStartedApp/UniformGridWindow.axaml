@@ -1,0 +1,22 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.UniformGridWindow"
+        Title="UniformGridWindow">
+    <UniformGrid Rows="3" Columns="4">
+        <Rectangle Width="50" Height="50" Fill="#330000"/>
+        <Rectangle Width="50" Height="50" Fill="#660000"/>
+        <Rectangle Width="50" Height="50" Fill="#990000"/>
+        <Rectangle Width="50" Height="50" Fill="#CC0000"/>
+        <Rectangle Width="50" Height="50" Fill="#FF0000"/>
+        <Rectangle Width="50" Height="50" Fill="#FF3300"/>
+        <Rectangle Width="50" Height="50" Fill="#FF6600"/>
+        <Rectangle Width="50" Height="50" Fill="#FF9900"/>
+        <Rectangle Width="50" Height="50" Fill="#FFCC00"/>
+        <Rectangle Width="50" Height="50" Fill="#FFFF00"/>
+        <Rectangle Width="50" Height="50" Fill="#FFFF33"/>
+        <Rectangle Width="50" Height="50" Fill="#FFFF66"/>
+    </UniformGrid>
+</Window>
