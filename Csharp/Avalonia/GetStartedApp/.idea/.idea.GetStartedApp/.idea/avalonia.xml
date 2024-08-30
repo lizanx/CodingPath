@@ -9,6 +9,7 @@
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleThemeWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="ThemeVariantWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="UniformGridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="WrapPanelWindow.axaml" value="GetStartedApp.csproj" />
       </map>

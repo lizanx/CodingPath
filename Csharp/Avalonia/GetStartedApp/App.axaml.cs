@@ -22,7 +22,8 @@ public partial class App : Application
             // desktop.MainWindow = new StackPanelWindow();
             // desktop.MainWindow = new WrapPanelWindow();
             // desktop.MainWindow = new UniformGridWindow();
-            desktop.MainWindow = new StyleThemeWindow();
+            // desktop.MainWindow = new StyleThemeWindow();
+            desktop.MainWindow = new ThemeVariantWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
