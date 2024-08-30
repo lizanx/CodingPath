@@ -8,12 +8,5 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
-    
-    <Application.Resources>
-        <ControlTheme
-            x:Key="{x:Type local:AreaButton}"
-            BasedOn="{StaticResource {x:Type Button}}"
-            TargetType="local:AreaButton" />
-
-    </Application.Resources>
+             
 </Application>
