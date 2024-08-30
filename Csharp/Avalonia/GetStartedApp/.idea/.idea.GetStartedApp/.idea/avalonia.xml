@@ -6,6 +6,7 @@
         <entry key="App.axaml" value="GetStartedApp.csproj" />
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleThemeWindow.axaml" value="GetStartedApp.csproj" />
