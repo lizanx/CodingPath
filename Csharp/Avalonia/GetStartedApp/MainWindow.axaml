@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetStartedApp"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.MainWindow"
         Title="GetStartedApp">
@@ -14,6 +15,20 @@
                 <Setter Property="Foreground" Value="DarkRed"></Setter>
             </Style>
         </Style>
+        
+        <Style Selector="local|AreaButton">
+            <Setter Property="Content" Value="Test Area"></Setter>
+            <Setter Property="MinWidth" Value="200"></Setter>
+            <Style Selector="^:left">
+                <Setter Property="Content" Value="Left"></Setter>
+            </Style>
+            <Style Selector="^:middle">
+                <Setter Property="Content" Value="Middle"></Setter>
+            </Style>
+            <Style Selector="^:right">
+                <Setter Property="Content" Value="Right"></Setter>
+            </Style>
+        </Style>
     </Window.Styles>
     
     <StackPanel>
@@ -24,12 +39,13 @@
             </Border>
             <Grid ShowGridLines="False" Margin="5"
                 ColumnDefinitions="120, 100"
-                RowDefinitions="Auto, Auto, Auto">
+                RowDefinitions="Auto, Auto, Auto,Auto">
                 <Label Grid.Row="0" Grid.Column="0" Margin="10">Celsius</Label>
                 <TextBox Grid.Row="0" Grid.Column="1" Margin="0 5" Text="0" Name="celsius"/>
                 <Label Grid.Row="1" Grid.Column="0" Margin="10">Fahrenheit</Label>
                 <TextBox Grid.Row="1" Grid.Column="1" Margin="0 5" Text="0" Name="fahrenheit" IsReadOnly="True"/>
                 <Button Grid.Row="2" Grid.Column="1" Margin="0 5" Click="Button_Clicked">Calculate</Button>
+                <local:AreaButton Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"></local:AreaButton>
             </Grid>
         </StackPanel>
 </Window>
