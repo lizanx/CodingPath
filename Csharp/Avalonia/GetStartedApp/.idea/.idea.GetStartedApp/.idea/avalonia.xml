@@ -5,6 +5,7 @@
       <map>
         <entry key="App.axaml" value="GetStartedApp.csproj" />
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="FilePickerWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ImageAssetWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />

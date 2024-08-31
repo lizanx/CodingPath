@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:local="clr-namespace:GetStartedApp"
+        x:Class="GetStartedApp.FilePickerWindow"
+        x:DataType="local:FilePickerWindowViewModel"
+        Title="FilePickerWindow">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top" Spacing="5" Margin="10">
+        <TextBox Text="{Binding UserInputString, Mode=TwoWay}" Watermark="Enter your text here" />
+        <Button Click="SaveButton_OnClick">Save your input text</Button>
+        <TextBlock Text="{Binding FileContentString, Mode=TwoWay}"/>
+        <Button Click="LoadButton_OnClick">Open a text file</Button>
+    </StackPanel>
+</Window>
