@@ -24,10 +24,11 @@ public partial class App : Application
             // desktop.MainWindow = new UniformGridWindow();
             // desktop.MainWindow = new StyleThemeWindow();
             // desktop.MainWindow = new ThemeVariantWindow();
-            desktop.MainWindow = new InteractivityWindow()
-            {
-                DataContext = new InteractivityWindowViewModel()
-            };
+            // desktop.MainWindow = new InteractivityWindow()
+            // {
+            //     DataContext = new InteractivityWindowViewModel()
+            // };
+            desktop.MainWindow = new ImageAssetWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
