@@ -33,9 +33,13 @@ public partial class App : Application
             // {
             //     DataContext = new FilePickerWindowViewModel()
             // };
-            desktop.MainWindow = new CompileBindingWindow()
+            // desktop.MainWindow = new CompileBindingWindow()
+            // {
+            //     DataContext = new CompileBindingWindowViewModel()
+            // };
+            desktop.MainWindow = new DataTemplateWindow()
             {
-                DataContext = new CompileBindingWindowViewModel()
+                DataContext = new DataTemplateWindowViewModel()
             };
         }
 

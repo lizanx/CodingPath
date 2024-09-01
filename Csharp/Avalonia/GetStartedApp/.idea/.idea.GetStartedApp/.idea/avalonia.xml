@@ -6,6 +6,7 @@
         <entry key="App.axaml" value="GetStartedApp.csproj" />
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="CompileBindingWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="DataTemplateWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FilePickerWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ImageAssetWindow.axaml" value="GetStartedApp.csproj" />
