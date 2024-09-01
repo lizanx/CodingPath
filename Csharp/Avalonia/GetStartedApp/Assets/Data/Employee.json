@@ -1,0 +1,16 @@
+[
+  {
+    "FirstName": "Mike",
+    "LastName": "Gordon",
+    "Career": "Engineer",
+    "Age": 32,
+    "Salary": 120000
+  },
+  {
+    "FirstName": "Alice",
+    "LastName": "Munro",
+    "Career": "Writer",
+    "Age": 83,
+    "Salary": 330000
+  }
+]

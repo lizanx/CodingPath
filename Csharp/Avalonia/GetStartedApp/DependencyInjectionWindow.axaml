@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetStartedApp"
+        xmlns:models="clr-namespace:GetStartedApp.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.DependencyInjectionWindow"
+        x:DataType="local:DependencyInjectionWindowViewModel"
+        Title="DependencyInjectionWindow">
+    <ListBox ItemsSource="{Binding Employees}">
+        <ListBox.DataTemplates>
+            <DataTemplate x:DataType="local:EmployeeViewModel">
+                <StackPanel Orientation="Horizontal" Spacing="10" Margin="20" Background="Azure">
+                    <TextBlock Text="{Binding FirstName}"/>
+                    <TextBlock Text="{Binding LastName}"/>
+                    <TextBlock Text="{Binding Career}" Background="Aqua"/>
+                    <TextBlock Text="{Binding Age}" Background="Bisque"/>
+                    <TextBlock Text="{Binding Salary}" FontWeight="Bold" Background="Coral"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.DataTemplates>
+    </ListBox>
+</Window>
