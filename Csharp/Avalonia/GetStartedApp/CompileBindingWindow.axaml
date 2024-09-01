@@ -1,0 +1,20 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetStartedApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.CompileBindingWindow"
+        x:DataType="local:CompileBindingWindowViewModel"
+        Title="CompileBindingWindow">
+    <StackPanel Orientation="Vertical" Spacing="20" Margin="5">
+        <StackPanel Orientation="Horizontal" Spacing="10" Background="Aqua" x:CompileBindings="True"> <!-- This enables compile-binding for all its children -->
+            <TextBlock Text="{Binding Text1}"/> <!-- This uses compile-binding by default -->
+            <TextBlock Text="{ReflectionBinding Text2}"></TextBlock> <!-- This avoids compile-binding via ReflectionBinding -->
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="10" Background="Beige"> <!-- Whether compile-bingding is enabled by default depends on AvaloniaUseCompiledBindingsByDefault in csproj -->
+            <TextBlock Text="{Binding Text3}"/> <!-- This doesn't use compile-binding by default -->
+            <TextBlock Text="{CompiledBinding Text4}"></TextBlock> <!-- This explicitly uses compile-binding -->
+        </StackPanel>
+    </StackPanel>
+</Window>

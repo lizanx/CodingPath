@@ -29,9 +29,13 @@ public partial class App : Application
             //     DataContext = new InteractivityWindowViewModel()
             // };
             // desktop.MainWindow = new ImageAssetWindow();
-            desktop.MainWindow = new FilePickerWindow()
+            // desktop.MainWindow = new FilePickerWindow()
+            // {
+            //     DataContext = new FilePickerWindowViewModel()
+            // };
+            desktop.MainWindow = new CompileBindingWindow()
             {
-                DataContext = new FilePickerWindowViewModel()
+                DataContext = new CompileBindingWindowViewModel()
             };
         }
 
