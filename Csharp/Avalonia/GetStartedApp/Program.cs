@@ -1,5 +1,6 @@
 ﻿using Avalonia;
 using System;
+using Avalonia.Logging;
 
 namespace GetStartedApp;
 
@@ -18,4 +19,6 @@ class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+            // Define log level and log area:
+            // .LogToTrace(LogEventLevel.Debug, LogArea.Binding, LogArea.Control, LogArea.Property);
 }
