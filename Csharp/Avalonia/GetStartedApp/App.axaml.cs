@@ -29,6 +29,7 @@ public class App : Application
         servicesCollection.AddTransient<PropertyChangedWindowViewModel>();
         servicesCollection.AddTransient<BindToControlWindowViewModel>();
         servicesCollection.AddTransient<TableWindowViewModel>();
+        servicesCollection.AddTransient<ImageBindingWindowViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -80,8 +81,14 @@ public class App : Application
 
             // desktop.MainWindow = new MultiBindingWindow();
 
-            var vm = ServiceProvider.GetRequiredService<TableWindowViewModel>();
-            desktop.MainWindow = new TableWindow()
+            // var vm = ServiceProvider.GetRequiredService<TableWindowViewModel>();
+            // desktop.MainWindow = new TableWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            var vm = ServiceProvider.GetRequiredService<ImageBindingWindowViewModel>();
+            desktop.MainWindow = new ImageBindingWindow()
             {
                 DataContext = vm
             };
