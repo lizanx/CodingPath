@@ -13,6 +13,7 @@
         <entry key="ImageAssetWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="PropertyChangedWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleThemeWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ThemeVariantWindow.axaml" value="GetStartedApp.csproj" />
