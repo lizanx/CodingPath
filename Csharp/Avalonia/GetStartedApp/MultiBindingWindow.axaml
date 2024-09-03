@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cvt="clr-namespace:GetStartedApp.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.MultiBindingWindow"
+        Title="MultiBindingWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <cvt:RgbToBrushMultiConverter x:Key="ColorConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <NumericUpDown x:Name="Red" Minimum="0" Maximum="255" Increment="10" Foreground="Red" />
+        <NumericUpDown x:Name="Green" Minimum="0" Maximum="255" Increment="10" Foreground="Green" />
+        <NumericUpDown x:Name="Blue" Minimum="0" Maximum="255" Increment="10" Foreground="Blue" />
+        
+        <TextBlock Text="Multibinding Text Color" FontSize="24">
+            <TextBlock.Foreground>
+                <MultiBinding Converter="{StaticResource ColorConverter}">
+                    <Binding ElementName="Red" Path="Value"/>
+                    <Binding ElementName="Green" Path="Value"/>
+                    <Binding ElementName="Blue" Path="Value"/>
+                </MultiBinding>
+            </TextBlock.Foreground>
+        </TextBlock>
+    </StackPanel>
+</Window>
