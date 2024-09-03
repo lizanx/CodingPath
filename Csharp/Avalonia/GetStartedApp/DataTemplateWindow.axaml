@@ -3,10 +3,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetStartedApp"
+        xmlns:cvt="clr-namespace:GetStartedApp.Converters"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.DataTemplateWindow"
         x:DataType="local:DataTemplateWindowViewModel"
         Title="DataTemplateWindow">
+    <Window.Resources>
+        <cvt:ProgrammingLanguageIsNativeConverter x:Key="LangCvt"/>
+    </Window.Resources>
     <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
         <TextBlock Text="{Binding ListTitle}"></TextBlock>
         <ListBox ItemsSource="{Binding ProgrammingLanguages}">
@@ -22,11 +26,11 @@
                 <DataTemplate x:DataType="local:ProgrammingLanguageItemViewModel">
                     <StackPanel Orientation="Horizontal" Spacing="10" Background="Azure">
                         <TextBlock Text="{Binding LanguageName}"
-                                   Classes.IsNative="{Binding IsNative}"
-                                   Classes.IsNotNative="{Binding !IsNative}"/>
+                                   Classes.IsNative="{Binding LanguageType, Converter={StaticResource LangCvt}}"
+                                   Classes.IsNotNative="{Binding LanguageType, Converter={StaticResource LangCvt}, ConverterParameter='not'}"/>
                         <TextBlock Text="{Binding LanguageType}"
-                                   Classes.IsNative="{Binding IsNative}"
-                                   Classes.IsNotNative="{Binding !IsNative}"/>
+                                   Classes.IsNative="{Binding LanguageType, Converter={StaticResource LangCvt}}"
+                                   Classes.IsNotNative="{Binding LanguageType, Converter={StaticResource LangCvt}, ConverterParameter='not'}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.DataTemplates>

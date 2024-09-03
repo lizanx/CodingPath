@@ -35,5 +35,5 @@ public partial class ProgrammingLanguageItemViewModel : ObservableObject
     private string _languageName = string.Empty;
     [ObservableProperty]
     private ExecutionType _languageType = ExecutionType.NativeCompiled;
-    public bool IsNative => LanguageType == ExecutionType.NativeCompiled;
+    // public bool IsNative => LanguageType == ExecutionType.NativeCompiled;
 }
