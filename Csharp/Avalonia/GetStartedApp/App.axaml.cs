@@ -52,10 +52,10 @@ public partial class App : Application
             // {
             //     DataContext = new CompileBindingWindowViewModel()
             // };
-            // desktop.MainWindow = new DataTemplateWindow()
-            // {
-            //     DataContext = new DataTemplateWindowViewModel()
-            // };
+            desktop.MainWindow = new DataTemplateWindow()
+            {
+                DataContext = new DataTemplateWindowViewModel()
+            };
             
             // var vm = ServiceProvider.GetRequiredService<DependencyInjectionWindowViewModel>();
             // desktop.MainWindow = new DependencyInjectionWindow
@@ -63,11 +63,11 @@ public partial class App : Application
             //     DataContext = vm
             // };
 
-            var vm = ServiceProvider.GetRequiredService<PropertyChangedWindowViewModel>();
-            desktop.MainWindow = new PropertyChangedWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<PropertyChangedWindowViewModel>();
+            // desktop.MainWindow = new PropertyChangedWindow()
+            // {
+            //     DataContext = vm
+            // };
         }
 
         base.OnFrameworkInitializationCompleted();

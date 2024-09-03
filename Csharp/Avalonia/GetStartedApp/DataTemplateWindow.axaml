@@ -10,11 +10,23 @@
     <StackPanel Orientation="Vertical" Margin="10" Spacing="5">
         <TextBlock Text="{Binding ListTitle}"></TextBlock>
         <ListBox ItemsSource="{Binding ProgrammingLanguages}">
+            <ListBox.Styles>
+                <Style Selector="TextBlock.IsNative">
+                    <Setter Property="Background" Value="LawnGreen"/>
+                </Style>
+                <Style Selector="TextBlock.IsNotNative">
+                    <Setter Property="Background" Value="Yellow"/>
+                </Style>
+            </ListBox.Styles>
             <ListBox.DataTemplates>
                 <DataTemplate x:DataType="local:ProgrammingLanguageItemViewModel">
                     <StackPanel Orientation="Horizontal" Spacing="10" Background="Azure">
-                        <TextBlock Text="{Binding LanguageName}"></TextBlock>
-                        <TextBlock Text="{Binding LanguageType}"></TextBlock>
+                        <TextBlock Text="{Binding LanguageName}"
+                                   Classes.IsNative="{Binding IsNative}"
+                                   Classes.IsNotNative="{Binding !IsNative}"/>
+                        <TextBlock Text="{Binding LanguageType}"
+                                   Classes.IsNative="{Binding IsNative}"
+                                   Classes.IsNotNative="{Binding !IsNative}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.DataTemplates>
