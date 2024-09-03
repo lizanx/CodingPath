@@ -1,0 +1,51 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GetStartedApp.ViewModels"
+        xmlns:cvt="clr-namespace:GetStartedApp.Converters"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.TableWindow"
+        x:DataType="vm:TableWindowViewModel"
+        Title="TableWindow">
+    <Window.Resources>
+        <ResourceDictionary>
+            <cvt:FullNameMultiConverter x:Key="NameConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Background="Azure" Padding="10">
+        <TabControl ItemsSource="{Binding Employees}">
+            <TabControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:EmployeeViewModel">
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource NameConverter}">
+                                <Binding Path="FirstName" />
+                                <Binding Path="LastName" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate x:DataType="vm:EmployeeViewModel">
+                    <StackPanel Orientation="Vertical" Spacing="10" Margin="10">
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <TextBlock Text="Age: " />
+                            <TextBlock Text="{Binding Age}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <TextBlock Text="Career: " />
+                            <TextBlock Text="{Binding Career}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <TextBlock Text="Salary: " />
+                            <TextBlock Text="{Binding Salary}" />
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Border>
+</Window>

@@ -4,13 +4,14 @@ using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using GetStartedApp.Models;
 using GetStartedApp.Services;
+using GetStartedApp.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GetStartedApp;
 
-public partial class App : Application
+public class App : Application
 {
-    public static ServiceProvider ServiceProvider { get; private set; } = default!;
+    private static ServiceProvider ServiceProvider { get; set; } = default!;
     
     public override void Initialize()
     {
@@ -27,6 +28,7 @@ public partial class App : Application
         servicesCollection.AddTransient<DependencyInjectionWindowViewModel>();
         servicesCollection.AddTransient<PropertyChangedWindowViewModel>();
         servicesCollection.AddTransient<BindToControlWindowViewModel>();
+        servicesCollection.AddTransient<TableWindowViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -76,7 +78,13 @@ public partial class App : Application
             //     DataContext = vm
             // };
 
-            desktop.MainWindow = new MultiBindingWindow();
+            // desktop.MainWindow = new MultiBindingWindow();
+
+            var vm = ServiceProvider.GetRequiredService<TableWindowViewModel>();
+            desktop.MainWindow = new TableWindow()
+            {
+                DataContext = vm
+            };
         }
 
         base.OnFrameworkInitializationCompleted();

@@ -4,13 +4,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetStartedApp"
         xmlns:models="clr-namespace:GetStartedApp.Models"
+        xmlns:viewModels="clr-namespace:GetStartedApp.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="GetStartedApp.DependencyInjectionWindow"
         x:DataType="local:DependencyInjectionWindowViewModel"
         Title="DependencyInjectionWindow">
     <ListBox ItemsSource="{Binding Employees}">
         <ListBox.DataTemplates>
-            <DataTemplate x:DataType="local:EmployeeViewModel">
+            <DataTemplate x:DataType="viewModels:EmployeeViewModel">
                 <StackPanel Orientation="Horizontal" Spacing="10" Margin="20" Background="Azure">
                     <TextBlock Text="{Binding FirstName}"/>
                     <TextBlock Text="{Binding LastName}"/>
