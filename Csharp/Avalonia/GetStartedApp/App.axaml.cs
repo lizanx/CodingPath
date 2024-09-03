@@ -26,6 +26,7 @@ public partial class App : Application
         servicesCollection.AddTransient<IEmployeeService, EmployeeService>();
         servicesCollection.AddTransient<DependencyInjectionWindowViewModel>();
         servicesCollection.AddTransient<PropertyChangedWindowViewModel>();
+        servicesCollection.AddTransient<BindToControlWindowViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -52,10 +53,10 @@ public partial class App : Application
             // {
             //     DataContext = new CompileBindingWindowViewModel()
             // };
-            desktop.MainWindow = new DataTemplateWindow()
-            {
-                DataContext = new DataTemplateWindowViewModel()
-            };
+            // desktop.MainWindow = new DataTemplateWindow()
+            // {
+            //     DataContext = new DataTemplateWindowViewModel()
+            // };
             
             // var vm = ServiceProvider.GetRequiredService<DependencyInjectionWindowViewModel>();
             // desktop.MainWindow = new DependencyInjectionWindow
@@ -68,6 +69,12 @@ public partial class App : Application
             // {
             //     DataContext = vm
             // };
+            
+            var vm = ServiceProvider.GetRequiredService<BindToControlWindowViewModel>();
+            desktop.MainWindow = new BindToControlWindow()
+            {
+                DataContext = vm
+            };
         }
 
         base.OnFrameworkInitializationCompleted();

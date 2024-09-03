@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="GetStartedApp.csproj" />
+        <entry key="BindToControlWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="CompileBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DataTemplateWindow.axaml" value="GetStartedApp.csproj" />

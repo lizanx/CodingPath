@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetStartedApp"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.BindToControlWindow"
+        x:DataType="local:BindToControlWindowViewModel"
+        Title="BindToControlWindow">
+    <StackPanel Orientation="Vertical" Spacing="20" Margin="10">
+        <Border Padding="10" Background="Aqua">
+            <StackPanel Orientation="Vertical" Spacing="10">
+                <TextBox Name="UserInput"/>
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="User input: "/>
+                    <TextBlock Text="{Binding #UserInput.Text}"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <Border Padding="10" Background="Aquamarine" Tag="Root Border">
+            <Border Padding="10" Background="Azure" Tag="Second Border">
+                <Border Padding="10" Background="Beige" Tag="Third Border">
+                    <StackPanel Orientation="Vertical" Spacing="10" Margin="5" Tag="2">
+                        <StackPanel Orientation="Horizontal" Spacing="5" Tag="1">
+                            <TextBlock Text="Root Border Tag: "/>
+                            <TextBlock Text="{Binding $parent[Border;2].Tag}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="5" Tag="0">
+                            <TextBlock Text="Second Border Tag: "/>
+                            <TextBlock Text="{Binding $parent[Border;1].Tag}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="5">
+                            <TextBlock Text="Third Border Tag: "/>
+                            <TextBlock Text="{Binding $parent[Border].Tag}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Border>
+        </Border>
+        
+        <Border Padding="10" Background="Bisque">
+            <StackPanel Margin="5" Orientation="Vertical">
+                <TextBlock Text="{Binding CounterText}" Name="CounterTextBlock"/>
+                <Button Command="{Binding AddCounterCommand}">Increment</Button>
+                <TextBlock Text="{Binding Text, ElementName=CounterTextBlock}"/>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</Window>
