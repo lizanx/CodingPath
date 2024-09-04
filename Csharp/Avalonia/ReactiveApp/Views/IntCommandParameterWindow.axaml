@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ReactiveApp.Views.IntCommandParameterWindow"
+        x:DataType="vm:IntCommandParameterWindowViewModel"
+        Title="IntCommandParameterWindow">
+    <StackPanel Orientation="Vertical" Margin="20" Spacing="10">
+        <Button Command="{Binding ShowIntCommand}">
+            <Button.CommandParameter>
+                <sys:Int32>1024</sys:Int32>
+            </Button.CommandParameter>
+            Show passed-in int parameter
+        </Button>
+        <StackPanel Orientation="Horizontal" Spacing="5">
+            <TextBlock Text="Passed-in parameter: "/>
+            <TextBlock Text="{Binding PassedInValue}"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
