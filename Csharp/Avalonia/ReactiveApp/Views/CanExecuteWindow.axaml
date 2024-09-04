@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ReactiveApp.Views.CanExecuteWindow"
+        x:DataType="vm:CanExecuteWindowViewModel"
+        Title="CanExecuteWindow">
+    <StackPanel Margin="20">
+        <TextBox Margin="0 5" Text="{Binding Message}"
+                 Watermark="Add a message to enable the show button"/>
+        <Button Command="{Binding ShowOutputCommand}">
+            Show Message
+        </Button>
+        <TextBlock Margin="0 5" Text="{Binding Output}"/>
+    </StackPanel>
+</Window>
