@@ -1,0 +1,77 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.StyleSetterPrecedenceWindow"
+        Title="StyleSetterPrecedenceWindow">
+    <StackPanel Orientation="Vertical" Spacing="20" Margin="20">
+        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+            <StackPanel.Styles>
+                <Style Selector="Button.small">
+                    <Setter Property="FontSize" Value="12" />
+                </Style>
+                <Style Selector="Button.big">
+                    <Setter Property="FontSize" Value="24" />
+                </Style>
+            </StackPanel.Styles>
+            <TextBlock>Style Collection Order: </TextBlock>
+            <Button Classes="big small">This button has FontSize 24</Button>
+            <Button Classes="small big">This button also has FontSize 24</Button>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <StackPanel.Styles>
+                <Style Selector="Button">
+                    <Setter Property="FontSize" Value="24" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Style>
+            </StackPanel.Styles>
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <StackPanel.Styles>
+                    <Style Selector="Button">
+                        <Setter Property="Foreground" Value="Coral" />
+                    </Style>
+                </StackPanel.Styles>
+                <TextBlock>Visual Tree Locality: </TextBlock>
+                <Button>This button has Coral Foreground</Button>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Background="Green" Content="This button has no animation when hovering">
+                <Button.Styles>
+                    <Style Selector="Button">
+                        <Style.Animations>
+                            <Animation IterationCount="Infinite" Duration="0:0:2">
+                                <KeyFrame Cue="0%">
+                                    <Setter Property="Background" Value="Red"/>
+                                </KeyFrame>
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="Background" Value="Blue"/>
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
+                    </Style>
+                </Button.Styles>
+            </Button>
+
+            <Button Background="Green" Content="This button has animation when hovering">
+                <Button.Styles>
+                    <Style Selector="ContentPresenter#PART_ContentPresenter">
+                        <Style.Animations>
+                            <Animation IterationCount="Infinite" Duration="0:0:2">
+                                <KeyFrame Cue="0%">
+                                    <Setter Property="Background" Value="Red"/>
+                                </KeyFrame>
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="Background" Value="Blue"/>
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
+                    </Style>
+                </Button.Styles>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -87,11 +87,13 @@ public class App : Application
             //     DataContext = vm
             // };
 
-            var vm = ServiceProvider.GetRequiredService<ImageBindingWindowViewModel>();
-            desktop.MainWindow = new ImageBindingWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<ImageBindingWindowViewModel>();
+            // desktop.MainWindow = new ImageBindingWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            desktop.MainWindow = new StyleSetterPrecedenceWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
