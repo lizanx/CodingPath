@@ -1,0 +1,6 @@
+@TryGetUrlConfig_HostAddress = http://localhost:5193
+
+GET {{TryGetUrlConfig_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
