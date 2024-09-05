@@ -17,11 +17,16 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new IntCommandParameterWindow()
+            desktop.MainWindow = new DirectBindingWindow()
             {
-                DataContext = new IntCommandParameterWindowViewModel()
+                DataContext = new DirectBindingWindowViewModel()
             };
 
+            // desktop.MainWindow = new IntCommandParameterWindow()
+            // {
+            //     DataContext = new IntCommandParameterWindowViewModel()
+            // };
+            //
             // desktop.MainWindow = new CanExecuteWindow()
             // {
             //     DataContext = new CanExecuteWindowViewModel()

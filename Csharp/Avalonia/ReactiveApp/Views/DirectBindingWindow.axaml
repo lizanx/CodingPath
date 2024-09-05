@@ -1,0 +1,26 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ReactiveApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ReactiveApp.Views.DirectBindingWindow"
+        x:DataType="vm:DirectBindingWindowViewModel"
+        Title="DirectBindingWindow">
+    <StackPanel Orientation="Vertical" Spacing="50">
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button Command="{Binding DebugPrintMessage}"
+                    CommandParameter="Debug message from first button of fixed text!">
+                Print
+            </Button>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <TextBox x:Name="UserInput" Watermark="Add msg to enable button"/>
+            <Button Command="{Binding DebugPrintMessage}"
+                    CommandParameter="{Binding #UserInput.Text}">
+                Print
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
