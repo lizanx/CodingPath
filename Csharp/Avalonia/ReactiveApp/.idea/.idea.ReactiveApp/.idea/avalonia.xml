@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="ReactiveApp.csproj" />
+        <entry key="Views/BindingToTaskWindow.axaml" value="ReactiveApp.csproj" />
         <entry key="Views/CanExecuteWindow.axaml" value="ReactiveApp.csproj" />
         <entry key="Views/DirectBindingWindow.axaml" value="ReactiveApp.csproj" />
         <entry key="Views/IntCommandParameterWindow.axaml" value="ReactiveApp.csproj" />
