@@ -99,7 +99,9 @@ public class App : Application
             
             // desktop.MainWindow = new ResourceWindow();
             
-            desktop.MainWindow = new FontWindow();
+            // desktop.MainWindow = new FontWindow();
+
+            desktop.MainWindow = new MenuIconWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

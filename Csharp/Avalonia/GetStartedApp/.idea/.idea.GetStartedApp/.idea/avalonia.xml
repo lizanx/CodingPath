@@ -17,6 +17,7 @@
         <entry key="IncludedStyleWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="MenuIconWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="PropertyChangedWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ResourceWindow.axaml" value="GetStartedApp.csproj" />
