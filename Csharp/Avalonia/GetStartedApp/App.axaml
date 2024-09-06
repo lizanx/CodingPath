@@ -8,5 +8,9 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
-             
+    
+    <Application.Resources>
+        <FontFamily x:Key="NunitoFont">/Assets/Fonts#Nunito</FontFamily>
+    </Application.Resources>
+
 </Application>
