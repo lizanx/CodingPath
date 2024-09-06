@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.IncludedStyleWindow"
+        Title="IncludedStyleWindow">
+    <Window.Styles>
+        <StyleInclude Source="/Styles/IncludedStyles.axaml"/>
+    </Window.Styles>
+    
+    <StackPanel Orientation="Vertical">
+        <TextBlock Classes="h1">This is h1 header</TextBlock>
+        <TextBlock Classes="h2">This is h2 header</TextBlock>
+        <TextBlock Classes="h3">This is h3 header</TextBlock>
+    </StackPanel>
+</Window>

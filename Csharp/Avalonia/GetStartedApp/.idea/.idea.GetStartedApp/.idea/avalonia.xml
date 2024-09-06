@@ -13,6 +13,7 @@
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ImageAssetWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ImageBindingWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="IncludedStyleWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
@@ -20,6 +21,7 @@
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleSetterPrecedenceWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleThemeWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="Styles/IncludedStyles.axaml" value="GetStartedApp.csproj" />
         <entry key="TableWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ThemeVariantWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="UniformGridWindow.axaml" value="GetStartedApp.csproj" />

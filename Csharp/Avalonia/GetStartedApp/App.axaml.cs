@@ -93,7 +93,9 @@ public class App : Application
             //     DataContext = vm
             // };
 
-            desktop.MainWindow = new StyleSetterPrecedenceWindow();
+            // desktop.MainWindow = new StyleSetterPrecedenceWindow();
+            
+            desktop.MainWindow = new IncludedStyleWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
