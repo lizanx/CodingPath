@@ -95,7 +95,9 @@ public class App : Application
 
             // desktop.MainWindow = new StyleSetterPrecedenceWindow();
             
-            desktop.MainWindow = new IncludedStyleWindow();
+            // desktop.MainWindow = new IncludedStyleWindow();
+            
+            desktop.MainWindow = new ResourceWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

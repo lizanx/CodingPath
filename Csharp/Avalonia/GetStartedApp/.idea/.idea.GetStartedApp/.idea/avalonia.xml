@@ -18,6 +18,8 @@
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="PropertyChangedWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="ResourceWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="Resources/Resources.axaml" value="GetStartedApp.csproj" />
         <entry key="StackPanelWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleSetterPrecedenceWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="StyleThemeWindow.axaml" value="GetStartedApp.csproj" />
