@@ -29,6 +29,7 @@
         <entry key="Styles/IncludedStyles.axaml" value="GetStartedApp.csproj" />
         <entry key="TableWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ThemeVariantWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="TransitionAnimation.axaml" value="GetStartedApp.csproj" />
         <entry key="UniformGridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="WrapPanelWindow.axaml" value="GetStartedApp.csproj" />
       </map>

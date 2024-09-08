@@ -103,7 +103,9 @@ public class App : Application
 
             // desktop.MainWindow = new MenuIconWindow();
          
-            desktop.MainWindow = new KeyFrameAnimationWindow();
+            // desktop.MainWindow = new KeyFrameAnimationWindow();
+            
+            desktop.MainWindow = new TransitionAnimationWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
