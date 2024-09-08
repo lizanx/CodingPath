@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GetStartedApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.DataValidationWindow"
+        x:DataType="vm:DataValidationWindowViewModel"
+        Title="DataValidationWindow">
+    <StackPanel Orientation="Vertical" Spacing="10" Margin="50" HorizontalAlignment="Center">
+        <TextBlock>Enter your email:</TextBlock>
+        <TextBox Text="{Binding Email, Mode=TwoWay}" Watermark="Enter your email here" />
+        <DataValidationErrors />
+    </StackPanel>
+</Window>

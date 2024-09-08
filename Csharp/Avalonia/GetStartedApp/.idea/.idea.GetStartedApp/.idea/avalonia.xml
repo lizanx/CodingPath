@@ -9,6 +9,7 @@
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="CompileBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DataTemplateWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="DataValidationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DependencyInjectionWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FilePickerWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FontWindow.axaml" value="GetStartedApp.csproj" />

@@ -30,6 +30,7 @@ public class App : Application
         servicesCollection.AddTransient<BindToControlWindowViewModel>();
         servicesCollection.AddTransient<TableWindowViewModel>();
         servicesCollection.AddTransient<ImageBindingWindowViewModel>();
+        servicesCollection.AddTransient<DataValidationWindowViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -107,7 +108,13 @@ public class App : Application
             
             // desktop.MainWindow = new TransitionAnimationWindow();
 
-            desktop.MainWindow = new UIThreadWindow();
+            // desktop.MainWindow = new UIThreadWindow();
+
+            var vm = ServiceProvider.GetRequiredService<DataValidationWindowViewModel>();
+            desktop.MainWindow = new DataValidationWindow()
+            {
+                DataContext = vm
+            };
         }
 
         base.OnFrameworkInitializationCompleted();
