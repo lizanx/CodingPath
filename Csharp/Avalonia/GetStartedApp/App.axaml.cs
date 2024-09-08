@@ -110,11 +110,13 @@ public class App : Application
 
             // desktop.MainWindow = new UIThreadWindow();
 
-            var vm = ServiceProvider.GetRequiredService<DataValidationWindowViewModel>();
-            desktop.MainWindow = new DataValidationWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<DataValidationWindowViewModel>();
+            // desktop.MainWindow = new DataValidationWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            desktop.MainWindow = new PlatformSpecificWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

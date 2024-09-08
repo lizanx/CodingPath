@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.PlatformSpecificWindow"
+        Title="PlatformSpecificWindow">
+    <StackPanel Margin="50" Spacing="20" Orientation="Vertical" HorizontalAlignment="Center">
+        <TextBlock Text="{OnPlatform Default='Default text', Windows='Windows text', macOS='MacOS text'}" />
+        <StackPanel Orientation="Horizontal">
+            <OnPlatform>
+                <OnPlatform.Default>
+                    <Button>Button on default platform</Button>
+                </OnPlatform.Default>
+                <OnPlatform.Windows>
+                    <Button>Button on Windows platform</Button>
+                </OnPlatform.Windows>
+                <OnPlatform.macOS>
+                    <Button>Button on MacOS platform</Button>
+                </OnPlatform.macOS>
+            </OnPlatform>
+        </StackPanel>
+        <OnPlatform>
+            <On Options="Windows,Android">
+                <Rectangle Width="100" Height="100" Fill="Red" />
+            </On>
+            <On Options="macOS,iOS">
+                <Ellipse Width="100" Height="100" Fill="Cyan" />
+            </On>
+            <On Options="Default">
+                <Rectangle Height="50" Width="50" Fill="Black" />
+            </On>
+        </OnPlatform>
+    </StackPanel>
+</Window>
