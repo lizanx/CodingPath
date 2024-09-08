@@ -3,6 +3,7 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="AnimationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="App.axaml" value="GetStartedApp.csproj" />
         <entry key="BindToControlWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="CanvasWindow.axaml" value="GetStartedApp.csproj" />

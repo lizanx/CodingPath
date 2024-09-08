@@ -101,7 +101,9 @@ public class App : Application
             
             // desktop.MainWindow = new FontWindow();
 
-            desktop.MainWindow = new MenuIconWindow();
+            // desktop.MainWindow = new MenuIconWindow();
+         
+            desktop.MainWindow = new KeyFrameAnimationWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
