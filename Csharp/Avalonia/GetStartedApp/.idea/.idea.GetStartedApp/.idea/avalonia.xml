@@ -17,6 +17,7 @@
         <entry key="ImageBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="IncludedStyleWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="InteractivityWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="KeyFrameAnimationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MenuIconWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
@@ -30,6 +31,7 @@
         <entry key="TableWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ThemeVariantWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="TransitionAnimation.axaml" value="GetStartedApp.csproj" />
+        <entry key="UIThreadWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="UniformGridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="WrapPanelWindow.axaml" value="GetStartedApp.csproj" />
       </map>

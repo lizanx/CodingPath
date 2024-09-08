@@ -105,7 +105,9 @@ public class App : Application
          
             // desktop.MainWindow = new KeyFrameAnimationWindow();
             
-            desktop.MainWindow = new TransitionAnimationWindow();
+            // desktop.MainWindow = new TransitionAnimationWindow();
+
+            desktop.MainWindow = new UIThreadWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
