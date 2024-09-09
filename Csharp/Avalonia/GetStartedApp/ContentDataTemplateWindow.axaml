@@ -1,0 +1,25 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GetStartedApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.ContentDataTemplateWindow"
+        Title="ContentDataTemplateWindow">
+        
+    <Window.DataTemplates>
+        <DataTemplate DataType="{x:Type vm:CompilerViewModel}">
+            <Border Margin="10, 50" BorderBrush="Aqua" Padding="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>Compiler </TextBlock>
+                    <TextBlock Text="{Binding CompilerName}"/>
+                    <TextBlock> is a compiler of type </TextBlock>
+                    <TextBlock Text="{Binding CompilerType}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.DataTemplates>
+    
+    <vm:CompilerViewModel CompilerName="GCC" CompilerType="Compiler"/>
+        
+</Window>

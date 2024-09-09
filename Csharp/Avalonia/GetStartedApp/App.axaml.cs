@@ -119,11 +119,13 @@ public class App : Application
 
             // desktop.MainWindow = new PlatformSpecificWindow();
 
-            var vm = ServiceProvider.GetRequiredService<ItemsControlWindowViewModel>();
-            desktop.MainWindow = new ItemsControlWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<ItemsControlWindowViewModel>();
+            // desktop.MainWindow = new ItemsControlWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            desktop.MainWindow = new ContentDataTemplateWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
