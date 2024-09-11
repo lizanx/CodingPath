@@ -134,7 +134,9 @@ public class App : Application
             //     DataContext = vm
             // };
 
-            desktop.MainWindow = new PointerEventWindow();
+            // desktop.MainWindow = new PointerEventWindow();
+            
+            desktop.MainWindow = new DirectionalFocusNavigationWindow();
         }
 
         base.OnFrameworkInitializationCompleted();

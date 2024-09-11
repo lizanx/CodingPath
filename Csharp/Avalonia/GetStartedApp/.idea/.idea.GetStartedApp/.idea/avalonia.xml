@@ -12,6 +12,7 @@
         <entry key="DataTemplateWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DataValidationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DependencyInjectionWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="DirectionalFocusNavigationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FilePickerWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FontWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
