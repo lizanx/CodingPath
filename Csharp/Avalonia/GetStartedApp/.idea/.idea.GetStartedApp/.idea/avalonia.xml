@@ -23,6 +23,7 @@
         <entry key="ItemsControlWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="KeyFrameAnimationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MainWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="MarkupExtensionWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MenuIconWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MyDataTemplateWindow.axaml" value="GetStartedApp.csproj" />

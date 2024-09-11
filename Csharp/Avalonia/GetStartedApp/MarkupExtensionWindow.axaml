@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:GetStartedApp.ViewModels"
+        xmlns:me="clr-namespace:GetStartedApp.MarkupExtensions"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.MarkupExtensionWindow"
+        x:DataType="vm:MarkupExtensionWindowViewModel"
+        Title="MarkupExtensionWindow">
+    <StackPanel Margin="20" Spacing="50" Background="Azure" Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="The sum of 98 and 76 is: " />
+            <TextBlock Text="{me:AddLiteral 98, 76}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Spacing="5" Background="Beige">
+            <Slider Maximum="1000" Minimum="0" Name="LeftOperandSlider" />
+            <Slider Maximum="1000" Minimum="0" Name="RightOperandSlider" />
+            <TextBlock
+                Text="{me:AddBinding {Binding #LeftOperandSlider.Value},
+                {Binding #RightOperandSlider.Value}}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

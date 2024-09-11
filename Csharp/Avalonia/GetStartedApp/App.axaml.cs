@@ -33,6 +33,7 @@ public class App : Application
         servicesCollection.AddTransient<DataValidationWindowViewModel>();
         servicesCollection.AddTransient<ItemsControlWindowViewModel>();
         servicesCollection.AddTransient<MyDataTemplateWindowViewModel>();
+        servicesCollection.AddTransient<MarkupExtensionWindowViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -136,7 +137,13 @@ public class App : Application
 
             // desktop.MainWindow = new PointerEventWindow();
             
-            desktop.MainWindow = new DirectionalFocusNavigationWindow();
+            // desktop.MainWindow = new DirectionalFocusNavigationWindow();
+
+            var vm = ServiceProvider.GetRequiredService<MarkupExtensionWindowViewModel>();
+            desktop.MainWindow = new MarkupExtensionWindow()
+            {
+                DataContext = vm
+            };
         }
 
         base.OnFrameworkInitializationCompleted();
