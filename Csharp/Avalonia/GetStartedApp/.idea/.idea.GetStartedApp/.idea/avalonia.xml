@@ -26,6 +26,7 @@
         <entry key="MultiBindingWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="MyDataTemplateWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="PlatformSpecificWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="PointerEventWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="PropertyChangedWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ResourceWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="Resources/Resources.axaml" value="GetStartedApp.csproj" />

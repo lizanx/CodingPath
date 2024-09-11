@@ -128,11 +128,13 @@ public class App : Application
 
             // desktop.MainWindow = new ContentDataTemplateWindow();
 
-            var vm = ServiceProvider.GetRequiredService<MyDataTemplateWindowViewModel>();
-            desktop.MainWindow = new MyDataTemplateWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<MyDataTemplateWindowViewModel>();
+            // desktop.MainWindow = new MyDataTemplateWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            desktop.MainWindow = new PointerEventWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
