@@ -1,0 +1,39 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rxui="http://reactiveui.net"
+        xmlns:vm="clr-namespace:ReactiveRoutingApp.ViewModel"
+        xmlns:view="clr-namespace:ReactiveRoutingApp.View"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ReactiveRoutingApp.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="ReactiveRoutingApp">
+    <Grid RowDefinitions="*,Auto">
+        <rxui:RoutedViewHost Grid.Row="0" Router="{Binding Router}">
+            <rxui:RoutedViewHost.DefaultContent>
+                <TextBlock Text="Default Content"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+            </rxui:RoutedViewHost.DefaultContent>
+            <rxui:RoutedViewHost.ViewLocator>
+                <view:AppViewLocator />
+            </rxui:RoutedViewHost.ViewLocator>
+        </rxui:RoutedViewHost>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="15">
+            <StackPanel.Styles>
+                <Style Selector="StackPanel > :is(Control)">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
+                <Style Selector="StackPanel > TextBlock">
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                </Style>
+            </StackPanel.Styles>
+
+            <Button Content="Go Next" Command="{Binding GoNext}" />
+            <Button Content="Go Back" Command="{Binding GoBack}" />
+            <TextBlock Text="{Binding Router.NavigationStack.Count}" />
+        </StackPanel>
+    </Grid>
+</Window>

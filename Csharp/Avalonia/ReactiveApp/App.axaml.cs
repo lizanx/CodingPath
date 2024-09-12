@@ -17,10 +17,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new BindingToTaskWindow()
-            {
-                DataContext = new BindingToTaskWindowViewModel()
-            };
+            // desktop.MainWindow = new BindingToTaskWindow()
+            // {
+            //     DataContext = new BindingToTaskWindowViewModel()
+            // };
 
             // desktop.MainWindow = new DirectBindingWindow()
             // {
@@ -32,10 +32,10 @@ public partial class App : Application
             //     DataContext = new IntCommandParameterWindowViewModel()
             // };
             //
-            // desktop.MainWindow = new CanExecuteWindow()
-            // {
-            //     DataContext = new CanExecuteWindowViewModel()
-            // };
+            desktop.MainWindow = new CanExecuteWindow()
+            {
+                DataContext = new CanExecuteWindowViewModel()
+            };
 
             // desktop.MainWindow = new MainWindow
             // {
