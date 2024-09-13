@@ -20,16 +20,18 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var suspension = new AutoSuspendHelper(ApplicationLifetime);
-            RxApp.SuspensionHost.CreateNewAppState = () => new DataPersistenceWindowViewModel();
-            RxApp.SuspensionHost.SetupDefaultSuspendResume(new JsonSuspensionDriver("appstate.json"));
-            suspension.OnFrameworkInitializationCompleted();
-            var state = RxApp.SuspensionHost.GetAppState<DataPersistenceWindowViewModel>();
-            desktop.MainWindow = new DataPersistenceWindow()
-            {
-                DataContext = state
-            };
-            
+            desktop.MainWindow = new ClipboardWindow();
+
+            // var suspension = new AutoSuspendHelper(ApplicationLifetime);
+            // RxApp.SuspensionHost.CreateNewAppState = () => new DataPersistenceWindowViewModel();
+            // RxApp.SuspensionHost.SetupDefaultSuspendResume(new JsonSuspensionDriver("appstate.json"));
+            // suspension.OnFrameworkInitializationCompleted();
+            // var state = RxApp.SuspensionHost.GetAppState<DataPersistenceWindowViewModel>();
+            // desktop.MainWindow = new DataPersistenceWindow()
+            // {
+            //     DataContext = state
+            // };
+
             // desktop.MainWindow = new BindingToTaskWindow()
             // {
             //     DataContext = new BindingToTaskWindowViewModel()
