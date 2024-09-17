@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GetStartedApp.FocusManagerWindow"
+        Title="FocusManagerWindow">
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="20" Margin="20">
+        <TextBox Name="InputTextBox" Watermark="Enter your input here" />
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Spacing="5">
+            <Button Name="FocusButton1" Click="Focus_OnClick">Focus</Button>
+            <Button Name="FocusButton2" Click="Focus2_OnClick">Focus too</Button>
+            <Button Name="ClearFocusButton" Click="ClearFocus_OnClick">Clear Focus</Button>
+        </StackPanel>
+    </StackPanel>
+</Window>

@@ -14,6 +14,7 @@
         <entry key="DependencyInjectionWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="DirectionalFocusNavigationWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FilePickerWindow.axaml" value="GetStartedApp.csproj" />
+        <entry key="FocusManagerWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="FontWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="GridWindow.axaml" value="GetStartedApp.csproj" />
         <entry key="ImageAssetWindow.axaml" value="GetStartedApp.csproj" />

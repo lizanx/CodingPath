@@ -139,11 +139,13 @@ public class App : Application
             
             // desktop.MainWindow = new DirectionalFocusNavigationWindow();
 
-            var vm = ServiceProvider.GetRequiredService<MarkupExtensionWindowViewModel>();
-            desktop.MainWindow = new MarkupExtensionWindow()
-            {
-                DataContext = vm
-            };
+            // var vm = ServiceProvider.GetRequiredService<MarkupExtensionWindowViewModel>();
+            // desktop.MainWindow = new MarkupExtensionWindow()
+            // {
+            //     DataContext = vm
+            // };
+
+            desktop.MainWindow = new FocusManagerWindow();
         }
 
         base.OnFrameworkInitializationCompleted();
