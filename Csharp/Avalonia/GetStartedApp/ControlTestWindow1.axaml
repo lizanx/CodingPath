@@ -9,7 +9,10 @@
         Title="ControlTestWindow1">
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10"
                 Spacing="20">
-        <AutoCompleteBox ItemsSource="{Binding CommonLanguages}"
-                         FilterMode="StartsWith" Watermark="Enter your favorite programming language" />
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="3"
+                BoxShadow="5 5 10 0 Pink" Padding="10">
+            <AutoCompleteBox ItemsSource="{Binding CommonLanguages}"
+                             FilterMode="StartsWith" Watermark="Enter your favorite programming language" />
+        </Border>
     </StackPanel>
 </Window>
