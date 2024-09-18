@@ -34,6 +34,7 @@ public class App : Application
         servicesCollection.AddTransient<ItemsControlWindowViewModel>();
         servicesCollection.AddTransient<MyDataTemplateWindowViewModel>();
         servicesCollection.AddTransient<MarkupExtensionWindowViewModel>();
+        servicesCollection.AddTransient<ControlTestWindow1ViewModel>();
         ServiceProvider = servicesCollection.BuildServiceProvider();
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
@@ -145,7 +146,13 @@ public class App : Application
             //     DataContext = vm
             // };
 
-            desktop.MainWindow = new FocusManagerWindow();
+            // desktop.MainWindow = new FocusManagerWindow();
+
+            var vm = ServiceProvider.GetRequiredService<ControlTestWindow1ViewModel>();
+            desktop.MainWindow = new ControlTestWindow1()
+            {
+                DataContext = vm
+            };
         }
 
         base.OnFrameworkInitializationCompleted();
