@@ -31,6 +31,7 @@ All my coding-related readings and exercises.
 2. [C++ Crash Course](https://book.douban.com/subject/31522157/) [Finished]
 3. [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/) [Finished]
 4. [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/) [In Progress]
+4. Modern C++ Programming [In Progress]
 
 ## C
 1. [Modern C](https://www.goodreads.com/book/show/25097722-modern-c) [In Progress]
