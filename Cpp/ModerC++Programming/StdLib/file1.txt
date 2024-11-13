@@ -1,0 +1,3 @@
+Motivated by this POV-Ray issue I tried to find a reliable way to read a file line by line in C++ using std::ifstream in combination with std::getline().
+While doing so, the goal was to handle all underlying stream errors as well as file opening errors, and to emit as precise error messages as possible.
+In a high-level programming language such as Python this level of reliability and usability is not difficult to obtain. However, in C++ this turned out to be a rather complex topic.

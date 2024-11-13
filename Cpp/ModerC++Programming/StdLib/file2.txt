@@ -1,0 +1,2 @@
+Proper handling of the stream error bits eofbit, failbit, and badbit requires a tremendous amount of care, as discussed for example here, here, and here, and finally at cplusplus.com.
+It is worth mentioning that although cplusplus.com is a convenient reference, it does not provide us with a rock-solid solution for the above-stated problem and also does not mention all the important details.
