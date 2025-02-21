@@ -80,6 +80,7 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "span": "cpp"
+        "span": "cpp",
+        "ranges": "cpp"
     }
 }
