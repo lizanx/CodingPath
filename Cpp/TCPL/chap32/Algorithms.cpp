@@ -156,4 +156,68 @@ int main(int argc, char *argv[])
         PrintVector(std::vector<int>(intVec.begin(), p));
         PrintVector(std::vector<int>(p, intVec.end()));
     }
+
+    {
+        std::vector<int> intVec3(10);
+        std::cout << "intVec3: ";
+        PrintVector(intVec3);
+        std::fill(intVec3.begin(), intVec3.end(), 9);
+        PrintVector(intVec3);
+        std::generate(intVec3.begin(), intVec3.end(), []()
+                      { return 7; });
+        PrintVector(intVec3);
+    }
+
+    intVec = {3, 1, 2};
+    intVec2 = {7, 5, 6};
+    std::swap_ranges(intVec.begin(), intVec.end(), intVec2.begin());
+    PrintVector(intVec);
+    PrintVector(intVec2);
+
+    std::random_shuffle(intVec.begin(), intVec.end());
+    std::random_shuffle(intVec2.begin(), intVec2.end());
+    std::cout << "After shuffle, intVec: ";
+    PrintVector(intVec);
+    std::cout << "After shuffle, intVec2: ";
+    PrintVector(intVec2);
+
+    std::sort(intVec.begin(), intVec.end());
+    std::sort(intVec2.begin(), intVec2.end());
+    {
+        std::vector<int> intVec3{};
+        std::merge(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend(), std::back_inserter(intVec3));
+        PrintVector(intVec3);
+    }
+
+    intVec = {1, 3, 2, 4, 5, 6, 7, 8, 9, 0};
+    intVec2 = {3, 5, 8};
+    std::cout << "intVec includes intVec2: "
+              << std::includes(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend())
+              << "\n";
+    intVec2.insert(intVec2.cend(), {10, 7, 4});
+    std::cout << "intVec: ";
+    PrintVector(intVec);
+    std::cout << "intVec2: ";
+    PrintVector(intVec2);
+    {
+        std::vector<int> intVec3{};
+        std::cout << "Union: ";
+        std::set_union(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend(), std::back_inserter(intVec3));
+        PrintVector(intVec3);
+
+        intVec3.clear();
+        std::cout << "Intersection: ";
+        std::set_intersection(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend(), std::back_inserter(intVec3));
+        PrintVector(intVec3);
+
+        intVec3.clear();
+        std::cout << "Elements in intVec not in intVec2: ";
+        std::set_difference(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend(), std::back_inserter(intVec3));
+        PrintVector(intVec3);
+
+        intVec3.clear();
+        std::cout << "Symmetric difference: ";
+        std::set_symmetric_difference(intVec.cbegin(), intVec.cend(), intVec2.cbegin(), intVec2.cend(), std::back_inserter(intVec3));
+        PrintVector(intVec3);
+    }
 }
