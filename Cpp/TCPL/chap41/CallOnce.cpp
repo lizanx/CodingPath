@@ -2,6 +2,7 @@
 #include <memory>
 #include <mutex>
 #include <thread>
+#include <vector>
 
 namespace
 {
@@ -61,15 +62,31 @@ int main()
     auto fn = [](Singleton &s)
     { s.DoSomething(); };
 
-    std::thread t1{fn, std::ref(Singleton::GetInstance())};
-    std::thread t2{fn, std::ref(Singleton::GetInstance())};
-    std::thread t3{fn, std::ref(Singleton::GetInstance())};
-    std::thread t4{fn, std::ref(Singleton::GetInstance())};
-    std::thread t5{fn, std::ref(Singleton::GetInstance())};
+    // std::thread t1{fn, std::ref(Singleton::GetInstance())};
+    // std::thread t2{fn, std::ref(Singleton::GetInstance())};
+    // std::thread t3{fn, std::ref(Singleton::GetInstance())};
+    // std::thread t4{fn, std::ref(Singleton::GetInstance())};
+    // std::thread t5{fn, std::ref(Singleton::GetInstance())};
 
-    t1.join();
-    t2.join();
-    t3.join();
-    t4.join();
-    t5.join();
+    // t1.join();
+    // t2.join();
+    // t3.join();
+    // t4.join();
+    // t5.join();
+
+    // Args passed to ctor of std::thread is by value, thus you must use std::ref to wrap reference args.
+
+    // When constructing std::vector<std::thread>>, you cannot use initializer-list initialization, since
+    // initialize-list requires that elements must be copyable while std::thread is only movable.
+    // Therefore, you should use push_back or emplace_back function of std::vector to add std::thread elements
+    // combined with std::move.
+
+    std::vector<std::thread> vec{};
+    for (size_t i{}; i < 3; ++i)
+        vec.push_back(std::thread{fn, std::ref(Singleton::GetInstance())});
+    for (size_t i{}; i < 3; ++i)
+        vec.emplace_back(fn, std::ref(Singleton::GetInstance()));
+
+    for (auto &t : vec)
+        t.join();
 }
