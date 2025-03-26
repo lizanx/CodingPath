@@ -47,7 +47,19 @@ All my coding-related readings and exercises.
 
 
 ## Tooling
+### Git
 - [ ] [Pro Git](https://git-scm.com/book/en/v2) *Paused*
+### Make
+- [X] [跟我一起写Makefile](https://github.com/seisman/how-to-write-makefile)
+- [ ] [Learn Makefiles With the tastiest examples](https://makefiletutorial.com/#getting-started)
+- [ ] [GNU Make Manual](https://www.gnu.org/software/make/manual/)
+- [ ] [MAKEFILE TUTOR (GNU)](https://github.com/clementvidon/Makefile_tutor)
+
+### CMake
+- [ ] [An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/README.html)
+- [ ] [Modern CMake for C++](https://github.com/xiaoweiChen/Modern-CMake-for-Cpp-2ed)
+- [ ] [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
+- [ ] [CMake构建实战：项目开发卷](https://book.douban.com/subject/36787652/)
 
 ## Misc
 ## Web
