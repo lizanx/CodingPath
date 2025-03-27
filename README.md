@@ -62,7 +62,7 @@ All my coding-related readings and exercises.
 - [ ] [CMake构建实战：项目开发卷](https://book.douban.com/subject/36787652/)
 
 ## Misc
-## Web
+### Web
 - [ ] [The Odin Project](https://www.theodinproject.com) *Paused*
 
 ### Go
