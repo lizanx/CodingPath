@@ -1,0 +1,26 @@
+set(MY_VAR 1)
+
+if (${MY_VAR} LESS 2)
+    message("MY_VAR less than 2")
+else()
+    message("MY_VAR larger than 2")
+endif()
+
+if (DEFINED MY_VAR)
+    message("MY_VAR defined")
+else()
+    message("MY_VAR not defined")
+endif()
+
+if (1.2.0 VERSION_LESS_EQUAL 1.1.9)
+    message("Old version")
+else()
+    message("New version")
+endif()
+
+set(MY_TEXT "Hello")
+if (${MY_TEXT} STREQUAL "Hello")
+    message("MY_TEXT is Hello")
+else()
+    message("MY_TEXT is not Hello: " ${MY_TEXT})
+endif()
