@@ -1,0 +1,5 @@
+file(WRITE "${CMAKE_CURRENT_LIST_DIR}/1.txt" "Hello, world!")
+file(READ "${CMAKE_CURRENT_LIST_DIR}/1.txt" FIRST_TXT_CONTENT)
+file(READ "${CMAKE_CURRENT_LIST_DIR}/2.txt" SECOND_TXT_CONTENT)
+message("Content of 1.txt: ${FIRST_TXT_CONTENT}")
+message("Content of 2.txt: ${SECOND_TXT_CONTENT}")
