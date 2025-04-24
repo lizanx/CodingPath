@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20.0)
+project(CarRental)
+add_executable(CarRental main.cpp)
+add_subdirectory(cars)
+target_link_libraries(CarRental PRIVATE cars)
