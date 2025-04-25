@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION "3.20.0")
+project(AddTargetSource)
+
+add_executable(AddTargetSource main.cpp)
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    target_sources(AddTargetSource PRIVATE linux.cpp)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    target_sources(AddTargetSource PRIVATE windows.cpp)
+else()
+    message(FATAL_ERROR "Unsupported OS ${CMAKE_SYSTEM_NAME}")
+endif()

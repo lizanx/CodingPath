@@ -1,0 +1,4 @@
+#cmakedefine DEF_VAR_1
+#cmakedefine DEF_VAR_2 "${DEF_VAR_2}"
+#cmakedefine DEF_VAR_3 "@DEF_VAR_3@"
+#cmakedefine DEF_VAR_4 "${DEF_VAR_4}"
