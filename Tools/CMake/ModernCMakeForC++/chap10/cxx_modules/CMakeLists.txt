@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.28.0) # This version officially supports C++ modules
-set(CMAKE_CXX_COMPILER "clang++")
+# set(CMAKE_CXX_COMPILER "clang++")
 project(CXXModules CXX)
 
 # Libc++ has no support compiler extensions for modules.
