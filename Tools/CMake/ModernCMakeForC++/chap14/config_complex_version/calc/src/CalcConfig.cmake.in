@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+
+set_and_check(CALC_LIB_DIR @PACKAGE_LIB_INSTALL_DIR@)
+include("${CALC_LIB_DIR}/cmake/CalcTarget.cmake")
+
+check_required_components(calc)
