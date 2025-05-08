@@ -5,24 +5,33 @@
 namespace Car
 {
 
-enum class VolvoModel
-{
-    S60,
-    S90,
-    XC60,
-    XC90
-};
-
 class Volvo : public Vehicle
 {
   public:
-    Volvo(VolvoModel model);
+    ~Volvo() override = default;
     std::string Brand() const override;
-    VehicleType Type() const override;
-    std::string Description() const override;
+    std::string Model() const override;
+    double Price() const override;
+
+  protected:
+    Volvo(const std::string &model, double price);
 
   private:
-    VolvoModel _model;
+    const std::string _brand{"Volvo"};
+    const std::string _model;
+    const double _price;
+};
+
+class Volvo_S90 : public Volvo
+{
+  public:
+    Volvo_S90();
+};
+
+class Volvo_XC90 : public Volvo
+{
+  public:
+    Volvo_XC90();
 };
 
 } // namespace Car

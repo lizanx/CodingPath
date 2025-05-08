@@ -5,25 +5,33 @@
 namespace Car
 {
 
-enum class AudiModel
-{
-    A3,
-    A4,
-    A6,
-    S7,
-    A8
-};
-
 class Audi : public Vehicle
 {
   public:
-    Audi(AudiModel model);
+    ~Audi() override = default;
     std::string Brand() const override;
-    VehicleType Type() const override;
-    std::string Description() const override;
+    std::string Model() const override;
+    double Price() const override;
+
+  protected:
+    Audi(const std::string &model, double price);
 
   private:
-    AudiModel _model;
+    const std::string _brand{"Audi"};
+    const std::string _model;
+    const double _price;
+};
+
+class Audi_A6 : public Audi
+{
+  public:
+    Audi_A6();
+};
+
+class Audi_S7 : public Audi
+{
+  public:
+    Audi_S7();
 };
 
 } // namespace Car

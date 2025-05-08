@@ -2,18 +2,13 @@
 
 #include <string>
 
-enum class VehicleType
-{
-    Land,
-    Air,
-    Water
-};
-
 class Vehicle
 {
   public:
-    virtual std::string Brand() const = 0;
-    virtual VehicleType Type() const = 0;
-    virtual std::string Description() const = 0;
     virtual ~Vehicle() = default;
+    virtual std::string Brand() const = 0;
+    virtual std::string Model() const = 0;
+    virtual double Price() const = 0;
 };
+
+std::string Describe(const Vehicle &vehicle);
