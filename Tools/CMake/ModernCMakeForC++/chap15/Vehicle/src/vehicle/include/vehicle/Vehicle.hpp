@@ -10,5 +10,3 @@ class Vehicle
     virtual std::string Model() const = 0;
     virtual double Price() const = 0;
 };
-
-std::string Describe(const Vehicle &vehicle);
