@@ -56,7 +56,7 @@ All my coding-related readings and exercises.
 - [ ] [MAKEFILE TUTOR (GNU)](https://github.com/clementvidon/Makefile_tutor)
 
 ### CMake
-- [ ] [Modern CMake for C++](https://github.com/xiaoweiChen/Modern-CMake-for-Cpp-2ed) *In Progress*
+- [X] [Modern CMake for C++](https://github.com/xiaoweiChen/Modern-CMake-for-Cpp-2ed)
 - [ ] [An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/README.html) *Paused: not suitable for beginner*
 - [ ] [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
 - [ ] [CMake构建实战：项目开发卷](https://book.douban.com/subject/36787652/)
