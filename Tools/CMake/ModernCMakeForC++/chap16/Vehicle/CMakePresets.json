@@ -1,0 +1,156 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 26,
+        "patch": 0
+    },
+    "include": [],
+    "configurePresets": [
+        {
+            "name": "DebugConfig",
+            "displayName": "Debug configuration preset",
+            "description": "Debug configuration of Vehicle project",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/debug",
+            "installDir": "${sourceDir}/build/install/debug",
+            "environment": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "ReleaseConfig",
+            "displayName": "Release configuration preset",
+            "description": "Release configuration of Vehicle project",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/release",
+            "installDir": "${sourceDir}/build/install/release",
+            "environment": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "DebugBuild",
+            "displayName": "Debug build preset",
+            "description": "Debug build of Vehicle project",
+            "configurePreset": "DebugConfig",
+            "jobs": 4
+        },
+        {
+            "name": "ReleaseBuild",
+            "displayName": "Release build preset",
+            "description": "Release build of Vehicle project",
+            "configurePreset": "ReleaseConfig",
+            "jobs": 4
+        },
+        {
+            "name": "DebugInstall",
+            "displayName": "Debug build installation of Vehicle project",
+            "targets": "install",
+            "configurePreset": "DebugConfig"
+        },
+        {
+            "name": "ReleaseInstall",
+            "displayName": "Release build installation of Vehicle project",
+            "targets": "install",
+            "configurePreset": "ReleaseConfig"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "DebugTest",
+            "displayName": "Debug build test",
+            "description": "Test debug build of Vehicle project",
+            "configurePreset": "DebugConfig",
+            "output": {
+                "shortProgress": true,
+                "outputLogFile": "${sourceDir}/build/DebugTestResult.txt"
+            }
+        },
+        {
+            "name": "ReleaseTest",
+            "displayName": "Release build test",
+            "description": "Test release build of Vehicle project",
+            "configurePreset": "ReleaseConfig",
+            "output": {
+                "shortProgress": false,
+                "outputLogFile": "${sourceDir}/build/ReleaseTestResult.txt"
+            }
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "DebugPackage",
+            "displayName": "Debug packaging",
+            "description": "Package debug build of Vehicle project",
+            "configurePreset": "DebugConfig",
+            "generators": [
+                "ZIP",
+                "TGZ"
+            ]
+        },
+        {
+            "name": "ReleasePackage",
+            "displayName": "Release packaging",
+            "description": "Package release build of Vehicle project",
+            "configurePreset": "ReleaseConfig",
+            "generators": [
+                "TGZ"
+            ]
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "DebugWorkflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "DebugConfig"
+                },
+                {
+                    "type": "build",
+                    "name": "DebugBuild"
+                },
+                {
+                    "type": "test",
+                    "name": "DebugTest"
+                },
+                {
+                    "type": "package",
+                    "name": "DebugPackage"
+                },
+                {
+                    "type": "build",
+                    "name": "DebugInstall"
+                }
+            ]
+        },
+        {
+            "name": "ReleaseWorkflow",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "ReleaseConfig"
+                },
+                {
+                    "type": "build",
+                    "name": "ReleaseBuild"
+                },
+                {
+                    "type": "test",
+                    "name": "ReleaseTest"
+                },
+                {
+                    "type": "package",
+                    "name": "ReleasePackage"
+                },
+                {
+                    "type": "build",
+                    "name": "ReleaseInstall"
+                }
+            ]
+        }
+    ]
+}
