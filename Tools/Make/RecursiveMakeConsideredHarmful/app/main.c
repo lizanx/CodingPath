@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char argv[])
+int main(int argc, char *argv[])
 {
     car han;
     strncpy(han.brand, "BYD", sizeof(han.brand));
@@ -15,7 +15,7 @@ int main(int argc, char argv[])
     }
     else
     {
-        printf("Car: %s\n", han_description);
+        printf("Cars: %s\n", han_description);
         free(han_description);
         han_description = NULL;
     }

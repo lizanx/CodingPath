@@ -1,0 +1,2 @@
+To start a new makefile project, refer to directory "ImplementNonRecursiveMake" as a project template.  
+The template originates from [Implement Non-Recursive Make - Emile van Bergen](http://sites.e-advies.nl/nonrecursive-make.html).
