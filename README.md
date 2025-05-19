@@ -58,7 +58,7 @@ All my coding-related readings and exercises.
 ### CMake
 - [X] [Modern CMake for C++](https://github.com/xiaoweiChen/Modern-CMake-for-Cpp-2ed)
 - [ ] [An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/README.html) *Paused: not suitable for beginner*
-- [ ] [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html)
+- [ ] [CMake Tutorial](https://cmake.org/cmake/help/latest/guide/tutorial/index.html) *In Progress*
 - [ ] [CMake构建实战：项目开发卷](https://book.douban.com/subject/36787652/)
 
 ## Misc
