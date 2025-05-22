@@ -83,3 +83,24 @@ set(CPACK_PACKAGE_VERSION_MINOR "${Tutorial_VERSION_MINOR}")
 set(CPACK_GENERATOR "TGZ")
 set(CPACK_SOURCE_GENERATOR "TGZ")
 include(CPack)
+
+# packaging
+install(EXPORT MathFunctionsTargets
+  FILE MathFunctionsTargets.cmake
+  DESTINATION lib/cmake/MathFunctions)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/Config.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake
+  INSTALL_DESTINATION lib/cmake/MathFunctions
+  NO_SET_AND_CHECK_MACRO
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+write_basic_package_version_file(${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake
+  VERSION "${Tutorial_VERSION_MAJOR}.${Tutorial_VERSION_MINOR}"
+  COMPATIBILITY AnyNewerVersion)
+
+install(
+  FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/MathFunctionsConfigVersion.cmake
+  DESTINATION lib/cmake/MathFunctions)

@@ -16,10 +16,11 @@ if(USE_MYMATH)
   include(MakeTable.cmake) # generates Table.h
 
   # library that just does sqrt
-  add_library(SqrtLibrary STATIC
+  add_library(SqrtLibrary
               mysqrt.cxx
               ${CMAKE_CURRENT_BINARY_DIR}/Table.h
               )
+  set_target_properties(SqrtLibrary PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS})
 
   # state that we depend on our binary dir to find Table.h
   target_include_directories(SqrtLibrary PRIVATE

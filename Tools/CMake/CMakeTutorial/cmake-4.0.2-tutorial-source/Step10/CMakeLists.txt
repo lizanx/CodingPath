@@ -16,6 +16,12 @@ target_compile_options(tutorial_compiler_flags INTERFACE
   "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 
+# Set shared lib as default
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+
 # configure a header file to pass the version number only
 configure_file(TutorialConfig.h.in TutorialConfig.h)
 
