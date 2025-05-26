@@ -47,8 +47,10 @@ All my coding-related readings and exercises.
 
 
 ## Tooling
+
 ### Git
 - [ ] [Pro Git](https://git-scm.com/book/en/v2) *Paused*
+
 ### Make
 - [X] [跟我一起写Makefile](https://github.com/seisman/how-to-write-makefile)
 - [X] [Learn Makefiles With the tastiest examples](https://makefiletutorial.com/#getting-started)
@@ -61,7 +63,16 @@ All my coding-related readings and exercises.
 - [ ] [An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/README.html) *Paused: not suitable for beginner*
 - [ ] [CMake构建实战：项目开发卷](https://book.douban.com/subject/36787652/)
 
+### Buildroot
+- [ ] Bootlin Buildroot Training
+- [ ] Buildroot Manual
+
+### Docker
+- [ ] [Docker Official Documentation](https://docs.docker.com/get-started/) *In Progress*
+- [ ] [Docker Curriculum](https://docker-curriculum.com/#introduction)
+
 ## Misc
+
 ### Web
 - [ ] [The Odin Project](https://www.theodinproject.com) *Paused*
 
