@@ -1,7 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	fmt.Println("hello, world")
+	fmt.Println("Checking environment variables...")
+	home := os.Getenv("HOME")
+	fmt.Println("HOME:", home)
+	path := os.Getenv("PATH")
+	fmt.Println("PATH:", path)
+	env := os.Getenv("FOO")
+	fmt.Println("FOO:", env)
 }
