@@ -72,7 +72,8 @@ All my coding-related readings and exercises.
 - [ ] Buildroot Manual
 
 ### Docker
-- [ ] [Docker Official Documentation](https://docs.docker.com/get-started/) *In Progress*
+- [X] [Docker Official Tutorial](https://docs.docker.com/get-started/)
+- [ ] [每天5分钟玩转Docker容器技术](https://book.douban.com/subject/27593748/) *In Progress*
 - [ ] [Docker Curriculum](https://docker-curriculum.com/#introduction)
 
 ## Misc
