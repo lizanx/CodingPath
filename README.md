@@ -41,6 +41,10 @@ All my coding-related readings and exercises.
 - [X] [Linux C编程一站式学习](https://book.douban.com/subject/4141733/)
 - [ ] [Modern Operating Systems 4th Edition](https://book.douban.com/subject/25864553/) *Paused*
 
+## Compiling
+- [ ] [程序员的自我修养](https://book.douban.com/subject/3652388/) *In Progress*
+- [ ] [高级C/C++编译技术](https://book.douban.com/subject/36243071/)
+
 ## Algorithm
 - [X] [Grokking Algorithms(算法图解)](https://book.douban.com/subject/26979890/) | [《算法图解》读书笔记与课后练习](https://book.douban.com/review/9372724/)
 - [ ] [Algorithms 4th Edition(算法 第4版)](https://book.douban.com/subject/19952400/)
