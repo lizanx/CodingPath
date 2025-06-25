@@ -1,5 +1,6 @@
 # VScode
 .vscode/
+.config/
 
 # macOS
 .DS_Store
