@@ -42,7 +42,7 @@ All my coding-related readings and exercises.
 - [ ] [Modern Operating Systems 4th Edition](https://book.douban.com/subject/25864553/) *Paused*
 
 ## Compiling
-- [ ] [程序员的自我修养](https://book.douban.com/subject/3652388/) *In Progress*
+- [X] [程序员的自我修养](https://book.douban.com/subject/3652388/)
 - [ ] [高级C/C++编译技术](https://book.douban.com/subject/36243071/)
 
 ## Algorithm
