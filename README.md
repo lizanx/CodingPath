@@ -1,6 +1,9 @@
 # CodingPath
 All my coding-related readings and exercises.
 
+## Computer/Program Architecture
+- [X] [What Every Programmer Should Know About Memory](https://people.freebsd.org/~lstewart/articles/cpumemory.pdf)
+
 ## Python
 - [X] [Python Crash Course 2nd Edition(Python编程：从入门到实践)](https://book.douban.com/subject/31333701/)
 - [X] [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/)
