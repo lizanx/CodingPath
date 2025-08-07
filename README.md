@@ -89,7 +89,7 @@ All my coding-related readings and exercises.
 
 ### Docker
 - [X] [Docker Official Tutorial](https://docs.docker.com/get-started/)
-- [X] [每天5分钟玩转Docker容器技术](https://book.douban.com/subject/27593748/) *In Progress*
+- [X] [每天5分钟玩转Docker容器技术](https://book.douban.com/subject/27593748/)
 - [ ] [Docker Curriculum](https://docker-curriculum.com/#introduction)
 
 ## Misc
