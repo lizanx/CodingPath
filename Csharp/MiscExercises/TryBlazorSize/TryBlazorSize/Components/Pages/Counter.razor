@@ -1,0 +1,45 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+@using BlazorPro.BlazorSize
+@implements IDisposable
+@inject IResizeListener ResizeListener
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @_currentCount</p>
+<p role="status">Page height: @_browserWindowSize.Height</p>
+<p role="status">Page width: @_browserWindowSize.Width</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int _currentCount = 0;
+    BrowserWindowSize _browserWindowSize = new();
+
+    private void IncrementCount()
+    {
+        _currentCount++;
+    }
+
+    async void WindowResizeHandler(object? sender, BrowserWindowSize browserWindowSize)
+    {
+        _browserWindowSize = browserWindowSize;
+        StateHasChanged();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            ResizeListener.OnResized += WindowResizeHandler;
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+    public void Dispose()
+    {
+        ResizeListener.OnResized -= WindowResizeHandler;
+    }
+}
