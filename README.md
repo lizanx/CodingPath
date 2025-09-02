@@ -32,7 +32,7 @@ All my coding-related readings and exercises.
 - [X] [Think Python 2nd Edition(像计算机科学家一样思考Python)](https://book.douban.com/subject/26870407/)
 - [X] [Automate The Boring Stuff With Python](https://book.douban.com/subject/26836700/)
 - [X] [Python 工匠](https://book.douban.com/subject/35723705/)
-- [ ] [The Hitchhiker's Guide to Python](https://book.douban.com/subject/26791779/) *In Progress*
+- [X] [The Hitchhiker's Guide to Python](https://book.douban.com/subject/26791779/)
 - [ ] [The Big Book of Small Python Projects](https://inventwithpython.com/bigbookpython/)
 - [ ] [Fluent Python 2nd Edition(流畅的Python)](https://book.douban.com/subject/34990079/)
 - [ ] [Python Cookbook 3rd Edition](https://book.douban.com/subject/26381341/) | [Github Online CN Version](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
