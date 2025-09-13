@@ -18,7 +18,7 @@ All my coding-related readings and exercises.
 - [ ] [Algorithms 4th Edition(算法 第4版)](https://book.douban.com/subject/19952400/)
 
 ## Embedded System
-- [ ] [Mastering Embedded Linux Programming](https://www.goodreads.com/book/show/52792797-mastering-embedded-linux-programming) *In Progress*
+- [X] [Mastering Embedded Linux Programming](https://www.goodreads.com/book/show/52792797-mastering-embedded-linux-programming)
 
 ### Buildroot
 - [ ] Bootlin Buildroot Training
@@ -58,6 +58,7 @@ All my coding-related readings and exercises.
 - [X] [ Modern C++ Tutorial: C++ 11/14/17/20 On the Fly](https://changkun.de/modern-cpp/)
 - [X] Modern C++ Programming
 - [X] [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/)
+- [ ] [Programming - Principles and Practice Using C++ 3rd Edition](https://www.stroustrup.com/PPP3.html) *In Progress*
 
 ### C
 - [ ] [Modern C](https://www.goodreads.com/book/show/25097722-modern-c) *Paused*
