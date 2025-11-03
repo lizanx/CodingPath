@@ -170,68 +170,46 @@ int main(int argc, char *argv[])
         for (std::size_t i{}; i < DATA_COUNT; ++i)
         {
             q.Push(++cnt);
-            oSyncStream << "Produced\n";
             std::this_thread::sleep_for(5ms);
         }
         oSyncStream << "-> Producing done.\n";
     };
-    auto consumer1 = [&oSyncStream](ThreadSafeQueue<int> &q)
+    constexpr int MAX_MISS_CNT = 500;
+    auto consumer = [&oSyncStream](ThreadSafeQueue<int> &q, int id)
     {
+        int missCnt{};
         while (true)
         {
+            if (missCnt >= MAX_MISS_CNT)
+            {
+                oSyncStream << "->Exit consumer[" << id << "].\n";
+                break;
+            }
             auto data = q.TryPop();
             if (data)
-                oSyncStream << "Consumer[1]:\t" << *data << '\n';
+            {
+                oSyncStream << "Consumer[" << id << "]:\t" << *data << '\n';
+                missCnt = 0;
+            }
             else
+            {
+                ++missCnt;
                 std::this_thread::sleep_for(1ms);
-        }
-    };
-    auto consumer2 = [&oSyncStream](ThreadSafeQueue<int> &q)
-    {
-        int data{};
-        while (true)
-        {
-            if (q.TryPop(data))
-                oSyncStream << "Consumer[2]:\t" << data << '\n';
-            else
-                std::this_thread::sleep_for(1ms);
-        }
-    };
-    auto consumer3 = [&oSyncStream](ThreadSafeQueue<int> &q)
-    {
-        while (true)
-        {
-            auto data = q.WaitAndPop();
-            if (data)
-                oSyncStream << "Consumer[3]:\t" << *data << std::endl;
-            else
-                std::cerr << "Failed! nullptr returned after wait!\n";
-        }
-    };
-    auto consumer4 = [&oSyncStream](ThreadSafeQueue<int> &q)
-    {
-        int data{};
-        while (true)
-        {
-            q.WaitAndPop(data);
-            oSyncStream << "Consumer[4]:\t" << data << '\n';
+            }
         }
     };
 
     ThreadSafeQueue<int> q{};
     std::thread producerThread{producer, std::ref(q)};
-    // std::thread consumerThread1{consumer1, std::ref(q)};
-    // std::thread consumerThread2{consumer2, std::ref(q)};
-    std::thread consumerThread3{consumer3, std::ref(q)};
-    // std::thread consumerThread4{consumer4, std::ref(q)};
-    // consumerThread1.detach();
-    // consumerThread2.detach();
-    // consumerThread3.detach();
-    // consumerThread4.detach();
+    std::thread consumerThread1{consumer, std::ref(q), 1};
+    std::thread consumerThread2{consumer, std::ref(q), 2};
+    std::thread consumerThread3{consumer, std::ref(q), 3};
+    std::thread consumerThread4{consumer, std::ref(q), 4};
     producerThread.join();
+    consumerThread1.join();
+    consumerThread2.join();
     consumerThread3.join();
-    std::this_thread::sleep_for(100ms);
-    // consumerThread3.
+    consumerThread4.join();
     oSyncStream << "=== Exit main ===\n";
     return 0;
 }
