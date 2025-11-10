@@ -8,6 +8,7 @@ All my coding-related readings and exercises.
 - [X] [Operating System: Three Easy Pieces(操作系统导论)](https://book.douban.com/subject/33463930/)
 - [X] [Linux C编程一站式学习](https://book.douban.com/subject/4141733/)
 - [ ] [Modern Operating Systems 4th Edition](https://book.douban.com/subject/25864553/) *Paused*
+- [ ] [The Linux Programming Interface](https://book.douban.com/subject/25809330/) *In Progress*
 
 ## Compiling
 - [X] [程序员的自我修养](https://book.douban.com/subject/3652388/)
