@@ -60,7 +60,7 @@ All my coding-related readings and exercises.
 - [X] Modern C++ Programming
 - [X] [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/)
 - [X] [Programming - Principles and Practice Using C++ 3rd Edition](https://www.stroustrup.com/PPP3.html)
-- [ ] [C++ Concurrency in Action 2nd Edition](https://book.douban.com/subject/35653912/) *In Progress*
+- [X] [C++ Concurrency in Action 2nd Edition](https://book.douban.com/subject/35653912/)
 
 ### C
 - [ ] [Modern C](https://www.goodreads.com/book/show/25097722-modern-c) *Paused*
