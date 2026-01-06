@@ -7,7 +7,9 @@ run: bochsrc sys
 
 a.img:
 	rm -f a.img
-	bximage -q -func=create -hd=16M $@
+# 	bximage -q -func=create -hd=16M $@ # For 8086/80286
+	bximage -q -func=create -hd=4096M $@ # For IA-32
+
 
 sys: a.img mbr.bin kernel.bin
 	dd if=mbr.bin of=a.img conv=notrunc
