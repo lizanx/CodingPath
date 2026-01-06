@@ -12,4 +12,5 @@ mov [0x0007], byte 0x0f
 mov [0x0008], byte 'o'
 mov [0x0009], byte 0x0f
 hlt
-times 1024-($-$$) db 0 ; 由于begin已经在此文件中定投了，所以这里改成了$$
+
+times 1024-($-begin) db 0 ; 补满2个扇区
