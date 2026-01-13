@@ -10,6 +10,9 @@
 #include <elf.h>
 #include <errno.h>
 
+/* from https://elixir.bootlin.com/linux/v5.11.6/source/arch/x86/include/asm/elf.h#L51 */
+#define R_X86_64_PLT32 4
+
 typedef union
 {
     const Elf64_Ehdr *hdr;
@@ -90,6 +93,56 @@ static void *lookup_function(const char *name)
     return NULL;
 }
 
+static uint8_t *section_runtime_base(const Elf64_Shdr *section)
+{
+    const char *section_name = shstrtab + section->sh_name;
+    size_t section_name_len = strlen(section_name);
+
+    if (strlen(".text") == section_name_len && strcmp(section_name, ".text") == 0)
+        return text_runtime_base;
+
+    fprintf(stderr, "No runtime base address for %s\n", section_name);
+    exit(ENOENT);
+}
+
+static void do_text_relocations()
+{
+    // We actually cheat here - the name '.rela.text' is a convention, but not a rule:
+    // to figure out which section should be patched by these relocations, we would need
+    // to examine the rela_text_hdr, but we skip it for simplicity.
+    const Elf64_Shdr *rela_text_hdr = lookup_section(".rela.text");
+    if (!rela_text_hdr)
+    {
+        fputs("Failed to find '.rela.text' section.\n", stderr);
+        exit(ENOEXEC);
+    }
+
+    int num_relocations = rela_text_hdr->sh_size / rela_text_hdr->sh_entsize;
+    const Elf64_Rela *relocations = (Elf64_Rela *)(obj.base + rela_text_hdr->sh_offset);
+
+    for (int i = 0; i < num_relocations; ++i)
+    {
+        int symbol_idx = ELF64_R_SYM(relocations[i].r_info);
+        int type = ELF64_R_TYPE(relocations[i].r_info);
+
+        // Where to patch '.text'.
+        uint8_t *patch_offset = text_runtime_base + relocations[i].r_offset;
+        // Symbol, with respect to which the relocation is performed.
+        uint8_t *symbol_address = section_runtime_base(&sections[symbols[symbol_idx].st_shndx]) + symbols[symbol_idx].st_value;
+
+        switch (type)
+        {
+        case R_X86_64_PLT32:
+            // L + A - P, 32 bit output.
+            *((uint32_t *)patch_offset) = symbol_address + relocations[i].r_addend - patch_offset;
+            printf("Calculated relocation: 0x%08x\n", *((uint32_t *)patch_offset));
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 static void load_obj(void)
 {
     struct stat st;
@@ -164,6 +217,8 @@ static void parse_obj(void)
 
     // Copy contents of ".text" section from the ELF file.
     memcpy(text_runtime_base, obj.base + text_hdr->sh_offset, text_hdr->sh_size);
+
+    do_text_relocations();
 
     // Make the ".text" copy readonly and executable.
     if (mprotect(text_runtime_base, page_align(text_hdr->sh_size), PROT_READ | PROT_EXEC))
