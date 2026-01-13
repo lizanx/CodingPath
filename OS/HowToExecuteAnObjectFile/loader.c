@@ -11,7 +11,9 @@
 #include <errno.h>
 
 /* from https://elixir.bootlin.com/linux/v5.11.6/source/arch/x86/include/asm/elf.h#L51 */
+#define R_X86_64_PC32 2
 #define R_X86_64_PLT32 4
+#define R_X86_64_32 10
 
 typedef union
 {
@@ -36,6 +38,10 @@ static uint64_t page_size;
 
 /* runtime base address of the imported code */
 static uint8_t *text_runtime_base;
+/* runtime base address of the '.data' section */
+static uint8_t *data_runtime_base;
+/* runtime base address of the '.rodata' section */
+static uint8_t *rodata_runtime_base;
 
 static inline uint64_t page_align(uint64_t n)
 {
@@ -101,6 +107,12 @@ static uint8_t *section_runtime_base(const Elf64_Shdr *section)
     if (strlen(".text") == section_name_len && strcmp(section_name, ".text") == 0)
         return text_runtime_base;
 
+    if (strlen(".data") == section_name_len && strcmp(section_name, ".data") == 0)
+        return data_runtime_base;
+
+    if (strlen(".rodata") == section_name_len && strcmp(section_name, ".rodata") == 0)
+        return rodata_runtime_base;
+
     fprintf(stderr, "No runtime base address for %s\n", section_name);
     exit(ENOENT);
 }
@@ -132,6 +144,8 @@ static void do_text_relocations()
 
         switch (type)
         {
+        case R_X86_64_PC32:
+            // S + A - P, 32 bit output, S == L here
         case R_X86_64_PLT32:
             // L + A - P, 32 bit output.
             *((uint32_t *)patch_offset) = symbol_address + relocations[i].r_addend - patch_offset;
@@ -206,17 +220,41 @@ static void parse_obj(void)
         exit(ENOEXEC);
     }
 
-    // Allocate memory for '.text' copy(round it up to whole pages).
-    text_runtime_base = mmap(NULL, page_align(text_hdr->sh_size),
+    // Find the '.data' entry in the sections table.
+    const Elf64_Shdr *data_hdr = lookup_section(".data");
+    if (!data_hdr)
+    {
+        fputs("Failed to find '.data'\n", stderr);
+        exit(ENOEXEC);
+    }
+
+    // Find the '.rodata' entry in the sections table.
+    const Elf64_Shdr *rodata_hdr = lookup_section(".rodata");
+    if (!rodata_hdr)
+    {
+        fputs("Failed to find '.rodata'\n", stderr);
+        exit(ENOEXEC);
+    }
+
+    // Allocate memory for '.text' + '.data' + '.rodata' copies(round up each section to whole pages).
+    text_runtime_base = mmap(NULL, page_align(text_hdr->sh_size) + page_align(data_hdr->sh_size) + page_align(rodata_hdr->sh_size),
                              PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
     if (text_runtime_base == MAP_FAILED)
     {
-        perror("Failed to allocate memory for '.text'.\n");
+        perror("Failed to allocate memory for sections.\n");
         exit(errno);
     }
+    // '.data' will come right after '.text'.
+    data_runtime_base = text_runtime_base + page_align(text_hdr->sh_size);
+    // '.rodata' will come right after '.data'.
+    rodata_runtime_base = data_runtime_base + page_align(data_hdr->sh_size);
 
     // Copy contents of ".text" section from the ELF file.
     memcpy(text_runtime_base, obj.base + text_hdr->sh_offset, text_hdr->sh_size);
+    // Copy '.data'.
+    memcpy(data_runtime_base, obj.base + data_hdr->sh_offset, data_hdr->sh_size);
+    // Copy '.rodata'.
+    memcpy(rodata_runtime_base, obj.base + rodata_hdr->sh_offset, rodata_hdr->sh_size);
 
     do_text_relocations();
 
@@ -226,12 +264,22 @@ static void parse_obj(void)
         perror("Failed to make '.text' executable.\n");
         exit(errno);
     }
+    // '.data' remains readable + writable
+    // '.rodata' should be readonly.
+    if (mprotect(rodata_runtime_base, page_align(rodata_hdr->sh_size), PROT_READ))
+    {
+        perror("Failed to make '.rodata' readonly.\n");
+        exit(errno);
+    }
 }
 
 static void execute_funcs(void)
 {
     int (*add5)(int);
     int (*add10)(int);
+    const char *(*get_hello)(void);
+    int (*get_var)(void);
+    void (*set_var)(int);
 
     add5 = lookup_function("add5");
     if (!add5)
@@ -250,6 +298,36 @@ static void execute_funcs(void)
     }
     puts("Executing add10...");
     printf("add10(%d) = %d\n", 42, add10(42));
+
+    get_hello = lookup_function("get_hello");
+    if (!get_hello)
+    {
+        fputs("Failed to find get_hello function.\n", stderr);
+        exit(ENOENT);
+    }
+    puts("Executing get_hello...");
+    printf("get_hello() = %s\n", get_hello());
+
+    get_var = lookup_function("get_var");
+    if (!get_var)
+    {
+        fputs("Failed to find get_var function.\n", stderr);
+        exit(ENOENT);
+    }
+    puts("Executing get_var...");
+    printf("get_var() = %d\n", get_var());
+
+    set_var = lookup_function("set_var");
+    if (!set_var)
+    {
+        fputs("Failed to find set_var function.\n", stderr);
+        exit(ENOENT);
+    }
+    puts("Executing set_var...");
+    printf("set_var(42)\n");
+    set_var(42);
+    puts("Executing get_var again...");
+    printf("get_var() = %d\n", get_var());
 }
 
 int main(void)
