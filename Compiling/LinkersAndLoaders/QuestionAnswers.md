@@ -1,4 +1,4 @@
-# Questions and Answers
+# Liners and Loaders
 ## Chap1
 1. What is the advantage of separating a linker and loader into separate programs? Under what circumstances would a combined linking loader be useful?
 > 分离 linker/loader 的优点：
@@ -42,3 +42,29 @@
 
 5. How hard would it be to build a retargetable linker, that is, one that could be built to handle different target architectures by changing a few specific parts of the source code for the linker? How about a multi-target linker, that could handle code for a variety of different architectures (although not in the same linker job)?
 > linker/loader 的实现必须适配固有的不同硬件架构差异，包括不同的 ABI、不同的寻址方式等，还需要平衡通用性和性能，比较困难。
+
+## Chap4
+1. Why does a linker shuffle around segments to put segments of the same type next to each other? Wouldn’t it be easier to leave them in the original order?
+> - 将同类型的段组合有利于加载时一次性 `mmap` 一整个段而仅浪费最后一页内存的部分 padding，如果按照原样不进行组合，由于内存分页且访问权限仅可以以页为单位设置，就会浪费很多内存页；
+> - 可以减少 program header 数量，节省磁盘空间；
+> - 提升缓存和 TLB 命中率（空间局部性）；
+> - 减少 `mmap` 次数，提升加载效率。
+
+2. When, if ever, does it matter in what order a linker allocates storage for routines? In our example, what difference would it make if the linker allocated newyork, mass, calif, main rather than main, calif, mass, newyork. (We’ll ask this question again later when we discuss overlays and dynamic linking, so you can disregard those considerations.)
+> - 频繁调用的 caller/callee 如果相近可提高 cache hit rate，影响性能；
+> - 嵌入式系统中如果从 Flash 中读取代码，其分块读取特性可能影响性能；
+> - 对齐要求可能导致代码体积膨胀，重排可能优化代码体积；
+> - 安全敏感场景中，分离敏感函数和不可信代码可减少攻击可能性。
+
+3. In most cases a linker allocates similar sections sequentially, for example, the text of calif, mass, and newyork one after another. But it allocates all common sections with the same name on top of each other. Why?
+> - 语义不同：common sections 实质就是未初始化的全局变量，语义上同名的符号指向同一对象，所以要重叠覆盖并取最大空间（兼容）；
+> - 而不同的普通 sections 是良好定义的，合并即可。
+
+
+4. Is it a good idea to permit common blocks declared in different input files with the same name but different sizes? Why or why not?
+> 坏注意，现代 GCC/MSVC 上都默认启用 `-fno-common` 禁用 common section：
+> - 不同 size 的同名 common section 违反 ODR(One Definition Rule)；
+> - 语义不清晰，造成程序逻辑混乱；
+> - 难以调试和排查问题。
+> 但旧的 Unix linker 可能宽容这种行为。
+
