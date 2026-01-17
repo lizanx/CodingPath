@@ -68,3 +68,30 @@
 > - 难以调试和排查问题。
 > 但旧的 Unix linker 可能宽容这种行为。
 
+## Chap6
+1. What should a linker do if two modules in different libraries define the same symbol? Is it an error?
+> - 如果多个符号都是强符号，则报错；
+> - 如果是一个强符号和多个弱符号，则采用强符号；
+> - 如果是多个弱符号，采用第一个。
+
+2. Library symbol directories generally include only defined global symbols. Would it be useful to include undefined global symbols as well?
+> 有用，现在库的符号表已经包含了未定义的符号，用于后续的依赖查找。
+
+3. When sorting object files using `lorder` and `tsort`, it’s possible that `tsort` won’t be able to come up with a total order for the files. When will this happen, and is it a problem?
+> - 当有循环依赖时，`tsort` 可能无法正确输出依赖拓扑；
+> - 当依赖信息缺失、不完整时，`tsort` 可能输出一个偏序的拓扑（非唯一）。
+> 循环依赖是设计缺陷，应该予以解决，使依赖关系构成 DAG；
+> 偏序拓扑一般不是问题，仍可正常链接（常由弱符号导致）。
+
+4. Some library formats put the directory at the front of the library while others put it at the end. What practical difference does it make?
+> 将索引放在库的开头是更优的选择：
+> - 链接器可以首先读取索引，快速获取符号信息；
+> - 生成库时先输出索引再输出实际内容，有利于增量构建和并行构建（放在结尾必须等目标文件内容写入后才能写入索引）。
+
+5. Describe some other situations where weak externals and weak definitions are useful.
+> - 提供可选的默认实现：库可以提供一个弱符号的默认实现，而可以被用户自定义的强符号实现覆盖；
+> - 作为条件编译的替代手段：提供未定义的默认弱符号，如果链接了某个提供强符号的模块则开启对应功能，否则默认关闭；
+> - 跨平台库上提供默认的 fallback 实现：针对特定平台定义特定的强符号，在没有对应强符号的平台上 fallback 到弱符号使用；
+> - **C++ 中内联函数和模板实例化：这两者往往生成弱符号，允许多个编译单元重复定义，链接时仅保留一份，是 ODR 的实现基础之一；**
+> - 嵌入式中的中断向量表：启动的汇编代码中往往定义默认的弱符号中断处理函数，后续可由使用者覆写来更改默认行为（无需更改的部分使用默认实现，不必手动填充向量表）；
+> - 单测中动态插桩：生产代码中使用弱符号，单测代码中提供测试行为的强符号，那么链接单测模块时即可使用模拟实现，不链接时使用生产实现。
