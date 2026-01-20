@@ -95,3 +95,18 @@
 > - **C++ 中内联函数和模板实例化：这两者往往生成弱符号，允许多个编译单元重复定义，链接时仅保留一份，是 ODR 的实现基础之一；**
 > - 嵌入式中的中断向量表：启动的汇编代码中往往定义默认的弱符号中断处理函数，后续可由使用者覆写来更改默认行为（无需更改的部分使用默认实现，不必手动填充向量表）；
 > - 单测中动态插桩：生产代码中使用弱符号，单测代码中提供测试行为的强符号，那么链接单测模块时即可使用模拟实现，不链接时使用生产实现。
+
+## Chap7
+3. References to symbols that are pseudo-registers and thread local storage are resolved as offsets from the start of the segment, while normal symbol references are resolved as absolute addresses. Why?
+> 伪寄存器和 TLS 存储的地址都是编译时未知、运行时确定的，所以必须使用偏移地址；
+> 而普通全局变量的地址是全局唯一且编译时即可确定的，因此可用绝对地址。
+
+## Chap8
+1. Compile some small C routines with PIC and non-PIC code. How much slower is the PIC code than non-PIC? Is it enough slower to be worth having non-PIC versions of libraries for programmers in a hurry?
+> 现代硬件上 `PIC` 带来的性能影响通常在 1%~5%，可以忽略，不值得为维护两个版本的库付出额外的精力。
+> 除非在高实时性要求或极端高性能计算场景中，在评估确认 PIC 带来可观的影响后，可考虑提供静态非 PIC 版本。
+
+3. In the overlay segment table, there’s no explicit marking of conflicting segments. When the overlay manager loads a segment and the segment’s path, how does the manager determine what segments to mark as not present?
+> - 支持覆盖段的 linker 会在链接时分析路径调用，构建依赖关系；
+> - 运行时加载某个段时，会检查其所需的地址空间是否被其他段使用，如果被使用则相应卸载或根据依赖执行其他操作。
+
