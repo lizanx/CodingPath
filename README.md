@@ -12,6 +12,7 @@ All my coding-related readings and exercises.
 
 ## Compiling
 - [X] [程序员的自我修养](https://book.douban.com/subject/3652388/)
+- [X] [Linkers and Loaders 链接器和加载器](https://book.douban.com/subject/35871181/)
 - [ ] [高级C/C++编译技术](https://book.douban.com/subject/36243071/)
 
 ## Algorithm

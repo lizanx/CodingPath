@@ -110,3 +110,50 @@
 > - 支持覆盖段的 linker 会在链接时分析路径调用，构建依赖关系；
 > - 运行时加载某个段时，会检查其所需的地址空间是否被其他段使用，如果被使用则相应卸载或根据依赖执行其他操作。
 
+## Chap9
+1. If you look in a `/shlib` directory on a Unix system with shared libraries, you’ll usually see three or four versions of each library with names like `libc_s.2.0.1` and `libc_s.3.0.0`. Why not just have the most recent one?
+> 该目录是旧式 Unix 用来保存静态共享库(static shared lib)的目录：
+> 由于静态共享库中的符号地址都是固化到可执行程序中的，因此任何地址改动都导致与之前的程序不兼容，需要重新链接，故而保存多个版本以实现兼容性。
+
+## Chap10
+1. In ELF shared libraries, libraries are often linked so that calls from one routine to another within a single shared library go through the PLT and have their addresses bound at runtime. Is this useful? Why or why not?
+> 动态库内部的函数调用也统一使用 PLT 而不是相对地址调用的原因：
+> - 为了符号介入(Symbol Interposition)能力：
+动态链接器允许在运行时使用一个外部同名符号替换掉共享库中的全局函数，如果使用直接相对跳转，那么无法实现这种行为，而使用 PLT 很容易做到；
+> - 支持延迟绑定的一致性：
+如果共享库内函数调用使用直接相对跳转，那么就需要在库加载时即对相对跳转的指令进行重定位，违反延迟绑定；
+> - 统一的 PLT 实现让编译器、链接器可以简单直接地统一处理所有函数调用，而不用去分析调用是内部调用还是外部调用。
+
+2. Imagine that a program calls a library routine `plugh()` that is found in a shared library, and the programmer builds a dynamically linked program that uses that library. Later, the system manager notices that `plugh` is a silly name for a routine and installs a new version of the library that calls the routine `xsazq` instead. What happens when the next time the programmer runs the program?
+> 如果新的共享库中兼容地保留了 `plugh` 函数，那么程序还会继续调用该函数；
+> 而如果新的共享库中破坏性地删除了该函数，那么程序会因为找不到对应的符号而启动失败。
+
+3. If the runtime environment variable `LD_BIND_NOW` is set, the ELF dynamic loader binds all of the program’s PLT entries at load time. What would happen in the situtation in the previous problem if `LD_BIND_NOW` were set?
+> 程序依然启动失败，但失败的时间点提前——从初次调用 `plugh` 时失败变为初始化时即失败，无法进入到 `main()` 函数；
+> 因为 `LD_BIND_NOW` 告诉加载器在初始化加载时即解析所有符号，而不是延迟到初次使用时才绑定。
+
+4. Microsoft implemented lazy procedure binding without operating system assistance by adding some extra cleverness in the linker and using the existing facilities in the operating system. How hard would it be to provide transparent access to shared data, avoiding the extra level of pointers that the current scheme uses?
+> 非常困难，ASLR 的需求导致很难透明化，而且还要求 `.text` 段是只读的，此外数据段还需要是按需复制的；
+> 当前 x64/Arm 等架构生态下不会对 ABI 进行大改而实现问题中的需求，要解决需要 hardware + compiler + linker 协作处理。
+
+## Chap11
+2. Look at the generated code from a compiler for C++ or another object oriented language. How much better could a link time optimizer make it? What info could the compiler put in the object module to make it easier for the linker to do interesting optimizations? How badly do shared libraries mess up this plan?
+> 链接器可能的优化：
+> - 跨模块内联
+> - 过程间常量传播
+> - 死代码消除
+> - 全局指针分析
+> - 虚函数去虚拟化
+> - 代码布局优化
+> 编译器可能提供的辅助信息：
+> - 控制流程摘要
+> - 函数属性标记
+> - 内联候选提示
+> - 类型继承关系
+> - 指针逃逸分析结果
+> - PGO
+> 共享库可能造成的破坏：
+> - 动态绑定的硬边界，必须使用 PLT/GOT
+> - 地址空间随机化的代价
+> - 符号截断问题（不同库对同一符号可能有不同实现，必须确保一致）
+
