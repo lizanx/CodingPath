@@ -10,11 +10,17 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Wall -W -Wmissing-prototypes -Wno-sign-c
 
 add_executable(catch_rtsigs src/catch_rtsigs.c)
 add_executable(t_sigqueue src/t_sigqueue.c)
+add_executable(t_sigwaitinfo src/t_sigwaitinfo.c)
+add_executable(t_signalfd src/t_signalfd.c)
 
 # Include dir
 target_include_directories(catch_rtsigs PRIVATE "${CMAKE_SOURCE_DIR}/../../include")
 target_include_directories(t_sigqueue PRIVATE "${CMAKE_SOURCE_DIR}/../../include")
+target_include_directories(t_sigwaitinfo PRIVATE "${CMAKE_SOURCE_DIR}/../../include")
+target_include_directories(t_signalfd PRIVATE "${CMAKE_SOURCE_DIR}/../../include")
 
 # Libs
 target_link_libraries(catch_rtsigs PRIVATE "${CMAKE_SOURCE_DIR}/../../lib/libtlpi.a")
 target_link_libraries(t_sigqueue PRIVATE "${CMAKE_SOURCE_DIR}/../../lib/libtlpi.a")
+target_link_libraries(t_sigwaitinfo PRIVATE "${CMAKE_SOURCE_DIR}/../../lib/libtlpi.a")
+target_link_libraries(t_signalfd PRIVATE "${CMAKE_SOURCE_DIR}/../../lib/libtlpi.a")
