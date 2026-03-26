@@ -62,7 +62,7 @@ All my coding-related readings and exercises.
 - [X] [The C++ Programming Language 4th Edition](https://book.douban.com/subject/26857943/)
 - [X] [Programming - Principles and Practice Using C++ 3rd Edition](https://www.stroustrup.com/PPP3.html)
 - [X] [C++ Concurrency in Action 2nd Edition](https://book.douban.com/subject/35653912/)
-- [ ] [C++实战：核心技术与最佳实践](https://book.douban.com/subject/37152493/) *In Progress*
+- [X] [C++实战：核心技术与最佳实践](https://book.douban.com/subject/37152493/)
 
 ### C
 - [ ] [Modern C](https://www.goodreads.com/book/show/25097722-modern-c) *Paused*
