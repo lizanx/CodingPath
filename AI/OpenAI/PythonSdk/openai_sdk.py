@@ -1,12 +1,12 @@
 from openai import OpenAI
 from openai.types import ChatModel, Image
 
-client = OpenAI(base_url="https://ai.dooo.ng/v1")
+client = OpenAI(base_url="https://openrouter.ai/api/v1")
 
 
 def greet():
     response = client.responses.create(
-        model="gpt-5.2", input="你好呀，请介绍你的基本信息"
+        model="z-ai/glm-4.5-air:free", input="你好呀，请介绍你的基本信息"
     )
     print(f"greet: {response.output_text}\n\n")
 
@@ -14,7 +14,7 @@ def greet():
 def upload_img():
     file = client.files.create(file=open("fun_img.webp", "rb"), purpose="user_data")
     response = client.responses.create(
-        model="gpt-5.2",
+        model="z-ai/glm-4.5-air:free",
         input=[
             {
                 "role": "user",
@@ -33,7 +33,7 @@ def upload_img():
 
 def img_url():
     response = client.responses.create(
-        model="gpt-5.2",
+        model="z-ai/glm-4.5-air:free",
         input=[
             {
                 "role": "user",
@@ -52,7 +52,7 @@ def img_url():
 
 def web_search():
     response = client.responses.create(
-        model="gpt-5.2",
+        model="z-ai/glm-4.5-air:free",
         tools=[{"type": "web_search"}],
         input="今天有什么重大的国际新闻？",
     )
@@ -60,11 +60,25 @@ def web_search():
 
 
 def stream_response():
-    pass
+    stream = client.responses.create(
+        model="z-ai/glm-4.5-air:free",
+        input=[
+            {
+                "role": "user",
+                "content": "Say 'double bubble bath' ten times fast."
+            }
+        ],
+        stream=True
+    )
+    print("stream_response: ", end='')
+    for event in stream:
+        print(event)
 
 
 if __name__ == "__main__":
     # greet()
     # upload_img()
     # img_url()
-    web_search()
+    # web_search()
+    stream_response()
+    
