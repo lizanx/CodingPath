@@ -9,7 +9,12 @@ int main()
 
     for (int n : data | std::views::join)
         std::print("{} ", n);
+    // 1 2 3 4 5 6 7 8 9
+    std::println("\n\n");
 
+    for (int n : data | std::views::join_with(0))
+        std::print("{} ", n);
+    // 1 2 3 0 4 5 0 6 7 8 9
     std::println("\n\n");
 
     for (int n : data | std::views::filter([](const auto &rng)
