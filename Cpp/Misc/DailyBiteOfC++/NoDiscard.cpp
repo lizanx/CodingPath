@@ -1,3 +1,4 @@
+#include <print>
 #include <thread>
 
 namespace
@@ -19,6 +20,27 @@ namespace
             return false;
         }
     };
+
+    struct ResourceHandle
+    {
+        // Used on ctor, warn on temporary object.
+        [[nodiscard]] ResourceHandle()
+        {
+            std::println("Acquiring resource..");
+        }
+    };
+
+    // Used on type, cannot be discarded when returned by a function
+    // even if the function itself is not marked as [[nodiscard]]
+    struct [[nodiscard]] Error
+    {
+        int m_errorCode{};
+    };
+
+    Error DoAction()
+    {
+        return Error{};
+    }
 }
 
 int main()
@@ -28,6 +50,12 @@ int main()
 
     CustomVector vec{};
     vec.Empty(); // warning
+
+    auto rh = ResourceHandle{};
+    ResourceHandle{}; // warning
+
+    auto err = DoAction();
+    DoAction(); // warning
 
     return 0;
 }
